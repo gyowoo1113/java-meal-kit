@@ -18,5 +18,14 @@
 	    <url-pattern>*.tiles</url-pattern>
 	</servlet-mapping>
 	
+	<filter>
+		<filter-name>encoding</filter-name>
+		<filter-class>co.yedam.mealkit.common.EncodingFilter</filter-class>
+	</filter>
+
+	<filter-mapping>
+		<filter-name>encoding</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
 	
 </web-app>
