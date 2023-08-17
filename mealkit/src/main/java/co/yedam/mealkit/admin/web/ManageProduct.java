@@ -22,7 +22,7 @@ public class ManageProduct extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String viewName = "admin/product/manageproduct.jsp";
+		String viewName = "admin/product/manageproduct";
 		ViewResolve.forward(request, response, viewName);
 	}
 
