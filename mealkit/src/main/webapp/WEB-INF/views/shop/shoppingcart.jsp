@@ -31,7 +31,7 @@
 	                        <table>
 	                            <thead>
 	                                <tr>
-	                                    <th class="shoping__product">상품</th>
+	                                    <th class="shoping__product">상품 목록</th>
 	                                    <th>가격</th>
 	                                    <th>개수</th>
 	                                    <th>합계</th>
