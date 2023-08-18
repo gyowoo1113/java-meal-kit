@@ -12,5 +12,6 @@ public class OrderVO {
 	private int orderId;
 	private LocalDate orderDate;
 	private String shipCheck;
-	
+	private String memberId;
+	private int address_id;
 }
