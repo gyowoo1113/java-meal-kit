@@ -1,6 +1,7 @@
 package co.yedam.mealkit.shop.cart.serviceImpl;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
@@ -14,12 +15,12 @@ public class CartServiceImpl implements CartService {
 	CartMapper map = sqlSession.getMapper(CartMapper.class);
 	
 	@Override
-	public List<CartVO> cartSelectList() {
+	public List<Map<String,Object>> cartSelectList() {
 		return map.cartSelectList();
 	}
 
 	@Override
-	public List<CartVO> cartSelectList(String memberId) {
+	public List<Map<String,Object>> cartSelectList(String memberId) {
 		return map.cartSelectList(memberId);
 	}
 
