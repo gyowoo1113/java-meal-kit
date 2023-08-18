@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="co.yedam.mealkit.product.mapper.ProductMapper">	
+	<select id="productSelectList" resultType="co.yedam.mealkit.product.service.ProductVO">
+		SELECT * FROM product
+	</select>
+
+	<select id="productSelect" resultType="co.yedam.mealkit.product.service.ProductVO">
+		SELECT * FROM product WHERE product_id = #{productId}
+	</select>
+	
+	<insert id="productInsert" parameterType="co.yedam.mealkit.product.service.ProductVO">
+		<selectKey resultType="int" keyProperty="noticeId" order="BEFORE">
+			SELECT CASE WHEN max(product_id) IS NULL THEN 1
+    					ELSE MAX(product_id)+1 END AS productId FROM product
+		</selectKey>
+		
+		INSERT INTO product
+		VALUES (#{productId},#{productName},#{productPrice},#{productComment},#{productDate},#{categoryId},#{productImg},0)
+	</insert>
+	
+	<update id="productUpdate" parameterType="co.yedam.mealkit.product.service.ProductVO">
+		UPDATE notice
+		<set>
+			<if test="productName != null">product_name = #{productName},</if>
+			<if test="productPrice != 0">product_price = #{productPrice},</if>
+			<if test="productComment != null">product_comment = #{productComment},</if>
+			<if test="productDate != null">product_date = #{productDate},</if>
+			<if test="categoryId != 0">category_id = #{categoryId}</if>
+			<if test="productImg != null">product_img = #{productImg}</if>
+		</set>
+		WHERE product_id = #{productId}
+	</update>
+	
+	<delete id="productDelete" parameterType="co.yedam.mealkit.product.service.ProductVO">
+		DELETE FROM notice WHERE product_id = #{productId}
+	</delete>
+</mapper>
