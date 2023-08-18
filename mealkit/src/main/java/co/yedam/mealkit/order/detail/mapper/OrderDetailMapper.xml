@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="co.yedam.mealkit.order.detail.mapper.OrderDetailMapper">
-	<select id="orderDetailSelectList" resultType="co.yedam.mealkit.order.detail.service.OrderDetailVO">
+<!-- 	<select id="orderDetailSelectList" resultType="co.yedam.mealkit.order.detail.service.OrderDetailVO">
 		SELECT * FROM order_detail
 	</select>
 	
 	<select id="orderDetailSelectList" resultType="co.yedam.mealkit.order.detail.service.OrderDetailVO">
 		SELECT * FROM order_detail WHERE order_code = #{orderCode} AND product_id = #{productId}
 	</select>
-	
+	 -->
 	<insert id="orderDetailInsert" parameterType="co.yedam.mealkit.order.detail.service.OrderDetailVO">
 		INSERT INTO order_detail
 		VALUES (#{orderDetailCount},#{orderDetailPrice},#{productId},#{orderCode})
