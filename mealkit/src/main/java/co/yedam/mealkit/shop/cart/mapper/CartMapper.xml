@@ -1,10 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="co.yedam.mealkit.shop.cart.mapper.CartMapper">
-	<select id="cartSelectList" resultType="co.yedam.mealkit.shop.cart.service.CartVO">
-		SELECT * FROM cart
-		<if test="memberId != null">WHERE member_id = #{memberId}</if>
-		ORDER BY cart_id DESC
+	<select id="cartSelectList" resultType="co.yedam.mealkit.common.CamelHashMap">
+		SELECT c.*, p.* 
+		FROM cart c, product p
+  		<choose>
+			<when test="memberId != null">
+				WHERE member_id = #{memberId}
+				AND c.product_id = p.product_id
+			</when>
+	  		<otherwise>
+				WHERE c.product_id = p.product_id
+	  		</otherwise>
+  		</choose>
+		ORDER BY c.cart_id DESC
 	</select>
 
 	<select id="cartSelect" resultType="co.yedam.mealkit.shop.cart.service.CartVO">
