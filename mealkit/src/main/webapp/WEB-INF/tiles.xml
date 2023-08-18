@@ -15,5 +15,17 @@
   	<put-attribute name="body" value="/WEB-INF/views/{1}/{2}.jsp"/>
   </definition>
   
+   <definition name="admin.homepage" template="/WEB-INF/views/layout/adminlayout.jsp">
+    <put-attribute name="title" value="Myhome" />
+    <put-attribute name="header" value="/WEB-INF/views/layout/adminheader.jsp" />
+    <put-attribute name="menu" 	value="/WEB-INF/views/layout/menu.jsp" />
+    <put-attribute name="body" value="" />
+    <put-attribute name="footer" value="/WEB-INF/views/layout/adminfooter.jsp" />
+  </definition>
+  
+  <definition name="WILDCARD:admin/*/*" extends="admin.homepage">
+  	<put-attribute name="body" value="/WEB-INF/views/{1}/{2}.jsp"/>
+  </definition>
+  
   
 </tiles-definitions>
