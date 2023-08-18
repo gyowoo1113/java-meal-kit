@@ -19,8 +19,8 @@ public class OrderDetailServiceImpl implements OrderDetailService {
 	}
 
 	@Override
-	public List<OrderDetailVO> orderDetailSelectList(OrderDetailVO vo) {
-		return map.orderDetailSelectList(vo);
+	public List<OrderDetailVO> orderDetailSelectList(String orderCode, int productId) {
+		return map.orderDetailSelectList(orderCode, productId);
 	}
 
 	@Override
