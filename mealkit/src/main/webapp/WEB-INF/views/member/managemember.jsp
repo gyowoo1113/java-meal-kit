@@ -14,10 +14,12 @@
 				<div class="col-sm-4">
 					<div class="page-header float-left">
 						<div class="page-title">
-							<h1>재고관리</h1>
+							<h1>회원관리</h1>
 						</div>
 					</div>
 				</div>
+
+
 			</div>
 		</div>
 	</div>
@@ -29,35 +31,35 @@
 				<div class="col-md-12">
 					<div class="card">
 						<div class="card-header">
-							<strong class="card-title">입출고 관리</strong>
+							<strong class="card-title">회원 계정관리</strong>
 						</div>
 						<div class="card-body">
 							<table id="bootstrap-data-table"
 								class="table table-striped table-bordered">
 								<thead>
 									<tr>
-										<th>제품코드</th>
 										<th>이름</th>
-										<th>제품재고</th>
-										<th>입출고유형</th>
-										<th>입출고날짜</th>
-										<th>입출고개수</th>
-										
+										<th>비밀번호</th>
+										<th>이름</th>
+										<th>이메일</th>
+										<th>등급</th>	
 									</tr>
 								</thead>
 								<c:forEach items="" var="">
 									<tbody>
 										<tr>
-											<td></td>
-											<td></td>
-											<td></td>
-											<td></td>
-											<td></td>
-											<td></td>
+											<td>sda</td>
+											<td>sda</td>
+											<td>sda</td>
+											<td>sda</td>
+											<td>sda</td>
 										</tr>
 								</c:forEach>
 
 							</table>
+							<input type="submit" value="수정">
+							<input type="submit" value="삭제">
+							<input type="submit" value="등급조정">
 						</div>
 					</div>
 				</div>
@@ -66,5 +68,7 @@
 			</div>
 		</div>
 	</div>
+	
+	
 </body>
 </html>
