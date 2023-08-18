@@ -10,7 +10,7 @@
 	</select>
 	
 	<insert id="productInsert" parameterType="co.yedam.mealkit.product.service.ProductVO">
-		<selectKey resultType="int" keyProperty="noticeId" order="BEFORE">
+		<selectKey resultType="int" keyProperty="productId" order="BEFORE">
 			SELECT CASE WHEN max(product_id) IS NULL THEN 1
     					ELSE MAX(product_id)+1 END AS productId FROM product
 		</selectKey>
