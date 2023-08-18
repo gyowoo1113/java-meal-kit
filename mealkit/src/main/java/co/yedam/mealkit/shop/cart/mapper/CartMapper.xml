@@ -27,8 +27,8 @@
 	<update id="cartUpdate" parameterType="co.yedam.mealkit.shop.cart.service.CartVO">
 		UPDATE cart
 		<set>
-			<if test="cartCount != 0">cart_count = #{cartCount},</if>
-			<if test="productId != 0">product_id = #{productId},</if>
+			<if test="cartCount != null AND !cartCount.equals('')">cart_count = #{cartCount},</if>
+			<if test="productId != null AND !productId.equals('')">product_id = #{productId},</if>
 		</set>
 		WHERE cart_id = #{cartId}
 	</update>

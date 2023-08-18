@@ -18,7 +18,7 @@
 		UPDATE order
 		<set>
 			<if test="shipCheck != null">ship_check = #{shipCheck},</if>
-			<if test="addressId != 0">address_id = #{addressId},</if>
+			<if test="addressId != null AND !addressId.equals('')">address_id = #{addressId},</if>
 		</set>
 		WHERE order_date = #{orderDate} AND order_id = #{orderId}
 	</update>

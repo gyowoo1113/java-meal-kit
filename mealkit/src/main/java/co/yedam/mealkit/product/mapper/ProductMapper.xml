@@ -23,10 +23,10 @@
 		UPDATE notice
 		<set>
 			<if test="productName != null">product_name = #{productName},</if>
-			<if test="productPrice != 0">product_price = #{productPrice},</if>
+			<if test="productPrice != null AND !productPrice.equals('')">product_price = #{productPrice},</if>
 			<if test="productComment != null">product_comment = #{productComment},</if>
 			<if test="productDate != null">product_date = #{productDate},</if>
-			<if test="categoryId != 0">category_id = #{categoryId}</if>
+			<if test="categoryId != null AND !categoryId.equals('')">category_id = #{categoryId}</if>
 			<if test="productImg != null">product_img = #{productImg}</if>
 		</set>
 		WHERE product_id = #{productId}
