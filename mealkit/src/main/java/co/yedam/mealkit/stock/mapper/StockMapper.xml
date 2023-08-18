@@ -3,6 +3,18 @@
 <mapper namespace="co.yedam.mealkit.stock.mapper.StockMapper">
 
 
-
+	<select id="stockSelectList" resultType="co.yedam.mealkit.common.CamelHashMap">
+		SELECT S.PRODUCT_ID, PRODUCT_NAME, STOCK_TYPE, STOCK_DATE, STOCK_COUNT
+		FROM STOCK S, PRODUCT P
+		WHERE S.PRODUCT_ID = P.PRODUCT_ID
+	</select>
+	
+	<select id="stockSelect" resultType="co.yedam.mealkit.common.CamelHashMap">
+		SELECT S.PRODUCT_ID, PRODUCT_NAME, STOCK_TYPE, STOCK_DATE, STOCK_COUNT
+		FROM STOCK S, PRODUCT P
+		WHERE S.PRODUCT_ID = P.PRODUCT_ID
+	
+	
+	</select>
 
 </mapper>

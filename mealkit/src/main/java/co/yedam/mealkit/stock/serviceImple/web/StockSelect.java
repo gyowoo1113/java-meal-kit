@@ -1,8 +1,6 @@
-package co.yedam.mealkit.admin.web;
+package co.yedam.mealkit.stock.serviceImple.web;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -15,27 +13,31 @@ import co.yedam.mealkit.stock.service.StockService;
 import co.yedam.mealkit.stock.service.StockVO;
 import co.yedam.mealkit.stock.serviceImple.StockServiceImple;
 
-
-@WebServlet("/managestock.do")
-public class ManageStock extends HttpServlet {
+@WebServlet("/stockselect.do")
+public class StockSelect extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    public ManageStock() {
-        super();  
+ 
+    public StockSelect() {
+        super();
+       
     }
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {	
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	
 		StockService dao = new StockServiceImple();
-		List<StockVO> stocks = new ArrayList<>();
+		StockVO vo = new StockVO();
 		
-		stocks = dao.stockSelectList();
-		request.setAttribute("stocks", stocks);
+		vo = dao.stockSelect(vo);
 		
-		String viewName = "admin/stock/managestock";
+		request.setAttribute("s", vo);
+		String viewName = "admin/stock/stockselect";
 		ViewResolve.forward(request, response, viewName);
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {	
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	
 		doGet(request, response);
 	}
 
