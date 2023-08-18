@@ -54,7 +54,7 @@
                                     <li><a href="shopdetail.do">Shop Details</a></li>
                                     <li><a href="shoppingcart.do">Shoping Cart</a></li>
                                     <li><a href="checkout.do">Check Out</a></li>
-                                    <li><a href="./blog-details.html">Blog Details</a></li>
+                                    <li><a href="admin.do">Admin</a></li>
                                 </ul>
                             </li>
                             <li><a href="./blog.html">Blog</a></li>
