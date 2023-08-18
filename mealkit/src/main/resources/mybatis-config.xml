@@ -22,6 +22,6 @@
     </environment>
   </environments>
   <mappers>
-    <package name="co.micol.example"/>
+    <package name="co.yedam.mealkit"/>
   </mappers>
 </configuration>
