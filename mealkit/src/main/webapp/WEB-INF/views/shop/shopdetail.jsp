@@ -57,11 +57,11 @@
                         <div class="product__details__quantity">
                             <div class="quantity">
                                 <div class="pro-qty">
-                                    <input type="text" value="1">
+                                    <input type="text" value="1" id="productCount" name="productCount">
                                 </div>
                             </div>
                         </div>
-                        <a href="#" class="primary-btn">ADD TO CARD</a>
+                        <a href="#" class="primary-btn" onclick="insertToCart()">ADD TO CARD</a>
                         <a href="#" class="heart-icon"><span class="icon_heart_alt"></span></a>
                         <ul>
                             <li><b>Availability</b> <span>In Stock</span></li>
@@ -91,4 +91,19 @@
     </section>
     <!-- Product Details Section End -->
 </body>
+<script type="text/javascript">
+	function insertToCart(){
+		let count = document.getElementById("productCount").value;
+		//let id = ${product.productId};
+		let id = 101;
+		let payload = "count=" + count + "&id=" + id;
+		let url = "ajaxcartinsert.do";
+		fetch(url,{
+			method: "post",
+			headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+			body: payload
+		});
+	}
+	
+</script>
 </html>
