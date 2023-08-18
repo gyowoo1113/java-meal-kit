@@ -6,7 +6,6 @@ import co.yedam.mealkit.member.service.MemberVO;
 
 public interface MemberMapper {
 	
-	//List<HashMap<String,Object>> memberSelectList();
 	List<MemberVO> memberSelectList();
 	MemberVO memberSelect(MemberVO vo);
 	int memberInsert(MemberVO vo);
