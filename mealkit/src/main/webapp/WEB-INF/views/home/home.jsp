@@ -10,7 +10,7 @@
 	<section class="featured spad">
 		<div class="container">
 			<div class="row">
-				<div class="col-lg-9">
+				<div class="col-lg-7 container">
 					<div class="hero__search">
 						<div class="hero__search__form">
 							<form action="#">
