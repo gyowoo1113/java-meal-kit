@@ -1,6 +1,11 @@
 package co.yedam.mealkit.shop.cart.web;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -8,6 +13,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import co.yedam.mealkit.common.ViewResolve;
+import co.yedam.mealkit.shop.cart.service.CartService;
+import co.yedam.mealkit.shop.cart.service.CartVO;
+import co.yedam.mealkit.shop.cart.serviceImpl.CartServiceImpl;
 
 @WebServlet("/shoppingcart.do")
 public class ShoppingCartController extends HttpServlet {
@@ -18,6 +26,14 @@ public class ShoppingCartController extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		CartService dao = new CartServiceImpl();
+		// 추후 sqlSession의 id로 변경 필요
+		List<Map<String, Object>> carts = new ArrayList<>();
+		
+		carts = dao.cartSelectList("micol");
+		request.setAttribute("carts", carts);
+		System.out.println(carts);
+		
 		String viewName = "shop/shoppingcart";
 		ViewResolve.forward(request, response, viewName);
 	}
