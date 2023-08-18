@@ -14,5 +14,7 @@ public class ReviewVO {
 	private String reviewTitle;
 	private String reviewSubject;
 	private int reviewHit;
+	private String memberId;
+	private int productId;
 	
 }
