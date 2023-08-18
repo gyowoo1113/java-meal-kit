@@ -46,23 +46,13 @@
                                 <input type="text" placeholder="상세주소">
                             </div>
                             <div class="row">
-                                <div class="col-lg-6">
-                                    <div class="checkout__input">
-                                        <p>전화번호<span>*</span></p>
-                                        <input type="text">
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
+                                <div class="col-lg-12">
                                     <div class="checkout__input">
                                         <p>Email<span>*</span></p>
-                                        <input type="text">
+                                        <!-- ${sqlSession - email} 추가 필요 -->
+                                        <input type="text" readonly="readonly">
                                     </div>
                                 </div>
-                            </div>
-                            <div class="checkout__input">
-                                <p>배송 메세지<span>*</span></p>
-                                <input type="text"
-                                    placeholder="배송 시 요청사항을 입력하세요.">
                             </div>
                         </div>
                         <!-- 결제정보 , 상품목록 -->
