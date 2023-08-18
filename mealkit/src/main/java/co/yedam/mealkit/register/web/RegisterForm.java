@@ -1,4 +1,4 @@
-package co.yedam.mealkit.admin.web;
+package co.yedam.mealkit.register.web;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -9,24 +9,34 @@ import javax.servlet.http.HttpServletResponse;
 
 import co.yedam.mealkit.common.ViewResolve;
 
-@WebServlet("/managemember.do")
-public class ManageMember extends HttpServlet {
+/**
+ * Servlet implementation class RegisterForm
+ */
+@WebServlet("/registerform.do")
+public class RegisterForm extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    public ManageMember() {
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public RegisterForm() {
         super();
-        
+        // TODO Auto-generated constructor stub
     }
 
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String viewName = "admin/member/managemember";
-		ViewResolve.forward(request, response, viewName);
-	
+		String ViewName="register/registerform";
+		ViewResolve.forward(request, response, ViewName);
 	}
 
-	
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 

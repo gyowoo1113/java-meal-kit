@@ -30,7 +30,7 @@
                                 </ul>
                             </div>
                             <div class="header__top__right__auth">
-                                <a href="#"><i class="fa fa-user"></i> Login</a>
+                                <a href="loginform.do"><i class="fa fa-user"></i>ㄹㄱㅇ</a>
                             </div>
                         </div>
                     </div>
@@ -48,7 +48,7 @@
                     <nav class="header__menu">
                         <ul>
                             <li class="active"><a href="./index.html">Home</a></li>
-                            <li><a href="./shop-grid.html">Shop</a></li>
+                            <li><a href="shopmenu.do">메뉴</a></li>
                             <li><a href="#">Pages</a>
                                 <ul class="header__menu__dropdown">
                                     <li><a href="shopdetail.do">Shop Details</a></li>
