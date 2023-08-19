@@ -7,18 +7,30 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import co.yedam.mealkit.shop.cart.service.CartService;
+import co.yedam.mealkit.shop.cart.service.CartVO;
+import co.yedam.mealkit.shop.cart.serviceImpl.CartServiceImpl;
+
 @WebServlet("/ajaxcartinsert.do")
 public class AjaxCartInsert extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     public AjaxCartInsert() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String count = request.getParameter("count");
-        int id = Integer.valueOf(request.getParameter("id"));
+        int count = Integer.valueOf(request.getParameter("count"));
+        int productId = Integer.valueOf(request.getParameter("id"));
+        
+        CartService dao = new CartServiceImpl();
+        CartVO vo = new CartVO();
+        vo.setCartCount(count);
+        vo.setProductId(productId);
+        // session id로 수정 필요
+        vo.setMemberId("micol");
+        dao.cartInsert(vo);
+        
         return;
 	}
 
