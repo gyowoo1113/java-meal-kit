@@ -29,8 +29,11 @@ public class AjaxCartInsert extends HttpServlet {
         vo.setProductId(productId);
         // session id로 수정 필요
         vo.setMemberId("micol");
-        dao.cartInsert(vo);
+        int result = dao.cartInsert(vo);
+        String message = (result == 1) ? "카트에 물품이 담겼습니다." : "카드 물품 담기 실패";
         
+        response.setContentType("text/html; charset=UTF-8");
+		response.getWriter().append(message);
         return;
 	}
 

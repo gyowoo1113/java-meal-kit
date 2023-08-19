@@ -102,7 +102,8 @@
 			method: "post",
 			headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
 			body: payload
-		});
+		}).then(response => response.text())
+		.then(text => alert(text));
 	}
 	
 </script>
