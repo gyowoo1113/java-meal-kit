@@ -21,8 +21,8 @@
 	</select>
 	
 	<insert id="cartInsert" parameterType="co.yedam.mealkit.shop.cart.service.CartVO">
-		<selectKey resultType="int" keyProperty="noticeId" order="BEFORE">
-			SELECT NVL(MAX(cart_id),0)+1 FROM cart;
+		<selectKey resultType="int" keyProperty="cartId" order="BEFORE">
+			SELECT NVL(MAX(cart_id),0)+1 FROM cart
 		</selectKey>
 		
 		INSERT INTO cart
