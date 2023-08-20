@@ -25,17 +25,13 @@ public class AjaxCartInsert extends HttpServlet {
         super();
     }
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        CartService dao = new CartServiceImpl();
-        
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {        
         int count = Integer.valueOf(request.getParameter("count"));
         int productId = Integer.valueOf(request.getParameter("id"));
         // session id로 수정 필요
         String memberId = "micol";
-        CartVO vo = new CartVO(count,memberId,productId);
-        int result = dao.cartInsert(vo);
-        
-        
+        int result = doCartInsert(count,productId,memberId);
+
         String data = getJsonData(result);
         response.setContentType("text/html; charset=UTF-8");
 		response.getWriter().append(data);
@@ -45,6 +41,23 @@ public class AjaxCartInsert extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
+	}
+	
+	// -1 : 중복, 1 : 성공, else : 실패
+	protected int doCartInsert(int count, int productId, String memberId) {
+        CartService dao = new CartServiceImpl();
+		int result = -1;
+        CartVO findvo = new CartVO(memberId,productId);
+        findvo = dao.cartSelect(findvo);
+    	// 이미 장바구니에 해당 물품이 있으면, insert 하지않고 return
+        if (findvo != null) {
+        	return result;
+        }
+        
+        // 물품 중복 없으면 cart insert
+        CartVO vo = new CartVO(count,memberId,productId);
+        result = dao.cartInsert(vo);
+		return result;
 	}
 	
 	protected String getJsonData(int result) throws JsonProcessingException {
