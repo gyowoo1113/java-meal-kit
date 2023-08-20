@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import co.yedam.mealkit.shop.cart.service.CartService;
@@ -26,7 +27,6 @@ public class AjaxCartInsert extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         CartService dao = new CartServiceImpl();
-        Map<String,String> resMap = new HashMap<String, String>();
         
         int count = Integer.valueOf(request.getParameter("count"));
         int productId = Integer.valueOf(request.getParameter("id"));
@@ -35,14 +35,8 @@ public class AjaxCartInsert extends HttpServlet {
         CartVO vo = new CartVO(count,memberId,productId);
         int result = dao.cartInsert(vo);
         
-        String icon = (result == 1) ? "success" : "error";
-        String message = (result == 1) ? "카트에 물품이 담겼습니다." : "물품 담기에 실패했습니다.";
-        resMap.put("result",icon);
-        resMap.put("message", message);
         
-        ObjectMapper objectMapper = new ObjectMapper();
-        String data = objectMapper.writeValueAsString(resMap);
-        
+        String data = getJsonData(result);
         response.setContentType("text/html; charset=UTF-8");
 		response.getWriter().append(data);
         return;
@@ -51,6 +45,18 @@ public class AjaxCartInsert extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
+	}
+	
+	protected String getJsonData(int result) throws JsonProcessingException {
+        Map<String,String> resMap = new HashMap<String, String>();
+        String icon = (result == 1) ? "success" : "error";
+        String message = (result == 1) ? "카트에 물품이 담겼습니다." : "물품 담기에 실패했습니다.";
+        resMap.put("result",icon);
+        resMap.put("message", message);
+        
+        ObjectMapper objectMapper = new ObjectMapper();
+        String data = objectMapper.writeValueAsString(resMap);
+		return data;
 	}
 
 }
