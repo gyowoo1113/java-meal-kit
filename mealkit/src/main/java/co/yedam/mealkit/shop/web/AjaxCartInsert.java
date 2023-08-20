@@ -62,8 +62,15 @@ public class AjaxCartInsert extends HttpServlet {
 	
 	protected String getJsonData(int result) throws JsonProcessingException {
         Map<String,String> resMap = new HashMap<String, String>();
+        
         String icon = (result == 1) ? "success" : "error";
-        String message = (result == 1) ? "카트에 물품이 담겼습니다." : "물품 담기에 실패했습니다.";
+        String message = "";
+        switch(result) {
+        case -1 : message = "이미 장바구니에 있는 물품입니다."; break;
+        case 1 : message = "카트에 물품이 담겼습니다."; break;
+        default : message = "물품 담기에 실패했습니다.";
+        }
+        
         resMap.put("result",icon);
         resMap.put("message", message);
         
