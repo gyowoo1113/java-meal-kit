@@ -18,4 +18,10 @@ public class CartVO {
 		this.memberId = memberId;
 		this.productId = productId;
 	}
+	
+	public CartVO(String memberId, int productId) {
+		super();
+		this.memberId = memberId;
+		this.productId = productId;
+	}
 }
