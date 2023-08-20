@@ -23,6 +23,9 @@
     <link rel="stylesheet" href="template/ogani/css/owl.carousel.min.css" type="text/css">
     <link rel="stylesheet" href="template/ogani/css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="template/ogani/css/style.css" type="text/css">
+    
+    <!-- sweetalert2 -->
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 </head>
 <title> <tiles:getAsString name="title"/> </title>
 
@@ -113,7 +116,6 @@
     <script src="template/ogani/js/mixitup.min.js"></script>
     <script src="template/ogani/js/owl.carousel.min.js"></script>
     <script src="template/ogani/js/main.js"></script>
-
 
 </body>
 
