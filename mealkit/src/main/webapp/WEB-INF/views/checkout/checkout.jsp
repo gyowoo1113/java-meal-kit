@@ -34,7 +34,7 @@
                                     <div class="checkout__input">
                                         <p>주문인<span>*</span></p>
                                         <!-- id, name 추가 필요 -->
-                                        <input type="text" required="required">
+                                        <input type="text" readonly="readonly" value="${name}">
                                     </div>
                                 </div>
                             </div>
@@ -49,8 +49,7 @@
                                 <div class="col-lg-12">
                                     <div class="checkout__input">
                                         <p>Email<span>*</span></p>
-                                        <!-- ${sqlSession - email} 추가 필요 -->
-                                        <input type="text" readonly="readonly">
+                                        <input type="text" readonly="readonly" value = "${email }">
                                     </div>
                                 </div>
                             </div>

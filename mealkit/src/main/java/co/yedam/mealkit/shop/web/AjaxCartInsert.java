@@ -9,6 +9,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import org.apache.ibatis.session.SqlSession;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -28,8 +31,8 @@ public class AjaxCartInsert extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {        
         int count = Integer.valueOf(request.getParameter("count"));
         int productId = Integer.valueOf(request.getParameter("id"));
-        // session id로 수정 필요
-        String memberId = "micol";
+        HttpSession session = request.getSession();
+        String memberId = (String) session.getAttribute("id");
         int result = doCartInsert(count,productId,memberId);
 
         String data = getJsonData(result);

@@ -11,6 +11,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -29,11 +30,12 @@ public class ShoppingCartController extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		CartService dao = new CartServiceImpl();
-		// 추후 sqlSession의 id로 변경 필요
 		List<Map<String, Object>> carts = new ArrayList<>();
+		HttpSession session = request.getSession();
+        String memberId = (String) session.getAttribute("id");
 		
 		ObjectMapper objectMapper = new ObjectMapper();	
-		carts = dao.cartSelectList("micol");
+		carts = dao.cartSelectList(memberId);
 		String data = objectMapper.writeValueAsString(carts);
 		request.setAttribute("carts", data);
 		
