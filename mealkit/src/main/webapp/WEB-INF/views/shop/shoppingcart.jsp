@@ -165,7 +165,7 @@
 	            <div class="quantity">
 	                <div class="pro-qty">
 	            		<span class="dec qtybtn" onclick = "updateCount(event)">-</span>
-	                    <input type="text" value="\${data.cartCount }" minlength="1">
+	                    <input type="text" value="\${data.cartCount }" minlength="1" readonly="readonly">
 	                    <span class="inc qtybtn" onclick = "updateCount(event)">+</span>
 	                </div>
 	            </div>
