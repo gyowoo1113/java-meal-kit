@@ -92,6 +92,14 @@
         //부모 태그 명이 TR이 나올때까지 자동순회
         for(;parentTrTag.tagName != 'TR'; parentTrTag=parentTrTag.parentElement);
         parentTrTag.remove();
+        
+		let payload = "id=" + parentTrTag.id;
+		let url = "ajaxcartdelete.do";
+		fetch(url,{
+			method: "post",
+			headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+			body: payload
+		});
 	}
 </script>
 </html>
