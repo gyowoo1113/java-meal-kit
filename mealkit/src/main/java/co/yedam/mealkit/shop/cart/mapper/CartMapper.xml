@@ -17,12 +17,20 @@
 	</select>
 
 	<select id="cartSelect" resultType="co.yedam.mealkit.shop.cart.service.CartVO">
-		SELECT * FROM cart WHERE cart_id = #{cartId}
+		SELECT * FROM cart 
+  		<choose>
+			<when test="memberId != null">
+				WHERE member_id = #{memberId} AND product_id = #{productId}
+			</when>
+			<otherwise>
+				WHERE cart_id = #{cartId}
+			</otherwise>
+		</choose>
 	</select>
 	
 	<insert id="cartInsert" parameterType="co.yedam.mealkit.shop.cart.service.CartVO">
-		<selectKey resultType="int" keyProperty="noticeId" order="BEFORE">
-			SELECT NVL(MAX(cart_id),0)+1 FROM cart;
+		<selectKey resultType="int" keyProperty="cartId" order="BEFORE">
+			SELECT NVL(MAX(cart_id),0)+1 FROM cart
 		</selectKey>
 		
 		INSERT INTO cart
