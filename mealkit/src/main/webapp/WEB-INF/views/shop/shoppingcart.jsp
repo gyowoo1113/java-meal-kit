@@ -76,6 +76,7 @@
 			headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
 			body: payload
 		});
+        updateTotalPrice();
 	}
 	
 	// +- 수량 반영 -----------------------------------------------------------
@@ -178,13 +179,10 @@
 	        <td class="shoping__cart__item__close" onclick="cartDelete(event)">
 	            <span class="icon_close"></span>
 	        </td>
-    	</tr>
-		`; 
+    	</tr>`; 
 		return list;
 	}
 
 	// ------------------- 장바구니 목록 생성 End ------------------------------------
-
-	
 </script>
 </html>
