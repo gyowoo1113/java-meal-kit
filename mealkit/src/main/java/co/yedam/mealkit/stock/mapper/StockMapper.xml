@@ -7,14 +7,11 @@
 		SELECT S.PRODUCT_ID, PRODUCT_NAME, STOCK_TYPE, STOCK_DATE, STOCK_COUNT
 		FROM STOCK S, PRODUCT P
 		WHERE S.PRODUCT_ID = P.PRODUCT_ID
+		<if test = "stockType == 'in'">AND STOCK_TYPE = #{stockType}</if>
+		<if test = "stockType == 'out'">AND STOCK_TYPE = #{stockType}</if>
+		ORDER BY STOCK_DATE ASC
 	</select>
 	
-	<select id="stockSelect" resultType="co.yedam.mealkit.common.CamelHashMap">
-		SELECT S.PRODUCT_ID, PRODUCT_NAME, STOCK_TYPE, STOCK_DATE, STOCK_COUNT
-		FROM STOCK S, PRODUCT P
-		WHERE S.PRODUCT_ID = P.PRODUCT_ID
-	
-	
-	</select>
+
 
 </mapper>

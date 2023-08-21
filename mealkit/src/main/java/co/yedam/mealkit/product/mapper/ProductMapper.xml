@@ -4,9 +4,15 @@
 	<select id="productSelectList" resultType="co.yedam.mealkit.product.service.ProductVO">
 		SELECT * FROM product
 	</select>
+	
+	<select id="productSelectList2" resultType="co.yedam.mealkit.product.service.ProductVO">
+		SELECT PRODUCT_ID, PRODUCT_NAME, PRODUCT_PRICE, PRODUCT_DATE, PRODUCT_STOCK
+		FROM PRODUCT
+		ORDER BY PRODUCT_STOCK ASC
+	</select>
 
 	<select id="productSelect" resultType="co.yedam.mealkit.product.service.ProductVO">
-		SELECT * FROM product WHERE product_id = #{productId}
+		SELECT * FROM PRODUCT WHERE PRODUCT_ID = #{productId}
 	</select>
 	
 	<insert id="productInsert" parameterType="co.yedam.mealkit.product.service.ProductVO">

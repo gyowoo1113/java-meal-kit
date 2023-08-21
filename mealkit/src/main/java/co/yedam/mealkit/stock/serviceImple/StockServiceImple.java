@@ -1,6 +1,7 @@
 package co.yedam.mealkit.stock.serviceImple;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
@@ -37,6 +38,12 @@ public class StockServiceImple implements StockService {
 	public int updateStock(StockVO vo) {
 	
 		return map.updateStock(vo);
+	}
+
+	@Override
+	public List<Map<String, Object>> stockSelectList(String stockType) {
+		
+		return map.stockSelectList(stockType);
 	}
 
 }
