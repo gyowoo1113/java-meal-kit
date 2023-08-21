@@ -78,6 +78,25 @@
 		});
 	}
 	
+	// +- 수량 반영 -----------------------------------------------------------
+	
+	function updateCount(event){
+		var content = event.target.textContent;
+		var inputTarget = event.target.parentElement.querySelector('input');
+        var count = inputTarget.value;
+        
+		var parentTrTag = event.target;
+        for(;parentTrTag.tagName != 'TR'; parentTrTag=parentTrTag.parentElement);
+        
+        var idx = (content == '+') ? Number(count) + 1 : Number(count) - 1;
+        if (idx < 1){ 
+        	return;
+        }
+        
+        inputTarget.value = idx;
+	}
+	
+	// ------------------- 장바구니 목록 생성 ------------------------------------
 	window.onload = function(){
 		createCartList();
 	}
@@ -101,14 +120,13 @@
 	        </td>
 	        <td class="shoping__cart__price">`;
 	    list += `￦` + data.productPrice.toLocaleString();
-	    list += `
-	        </td>
+	    list += `</td>
 	        <td class="shoping__cart__quantity">
 	            <div class="quantity">
 	                <div class="pro-qty">
-	            		<span class="dec qtybtn">-</span>
-	                    <input type="text" value="\${data.cartCount }">
-	                    <span class="inc qtybtn">+</span>
+	            		<span class="dec qtybtn" onclick = "updateCount(event)">-</span>
+	                    <input type="text" value="\${data.cartCount }" minlength="1">
+	                    <span class="inc qtybtn" onclick = "updateCount(event)">+</span>
 	                </div>
 	            </div>
 	        </td>
@@ -126,5 +144,9 @@
 		`; 
 		return list;
 	}
+
+	// ------------------- 장바구니 목록 생성 End ------------------------------------
+
+	
 </script>
 </html>
