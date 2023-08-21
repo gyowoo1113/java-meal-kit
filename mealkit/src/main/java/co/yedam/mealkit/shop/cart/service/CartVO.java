@@ -24,4 +24,10 @@ public class CartVO {
 		this.memberId = memberId;
 		this.productId = productId;
 	}
+	
+	public CartVO(int cartId, int cartCount) {
+		super();
+		this.cartId = cartId;
+		this.cartCount = cartCount;
+	}
 }
