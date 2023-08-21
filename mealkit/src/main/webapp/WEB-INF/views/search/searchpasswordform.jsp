@@ -32,6 +32,47 @@
 <link
 	href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800'
 	rel='stylesheet' type='text/css'>
+	
+	<style>
+	
+	
+	#mail {
+		display: inline;
+    width: 58%;
+    height: calc(2.25rem + 2px);
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+	}
+	
+	#gomail {
+			display: inline;
+			float : right;
+    width: 37%;
+    height: calc(2.25rem + 2px);
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #blue;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+		
+	}
+	
+	a{
+	color : white;
+}
+	
+</style>
 
 <title>로그인</title>
 </head>
@@ -54,11 +95,17 @@
 						</div>
 						<div class="form-group">
 							<label>* 이메일</label> <input type="email" class="form-control"
-								placeholder="본인의 이메일 입력">
+								placeholder="본인 이메일 입력"> <br> <input type="text"
+								placeholder="인증번호" id="mail">
+							<form action="searchpassword.do" method="post">
+							<button type="submit" id="gomail">메일인증</button>
+							</form>
+							<br>
+							<br>
 						</div>
 						
 						<button type="submit"
-							class="btn btn-success btn-flat m-b-30 m-t-30">비밀번호 재설정</button>
+							class="btn btn-success btn-flat m-b-30 m-t-30"><a href="viewpasswordform.do">비밀번호 재설정</a></button>
 						<div class="social-login-content"></div>
 						
 					</form>

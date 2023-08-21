@@ -46,14 +46,14 @@
 					</a>
 				</div>
 				<div class="login-form">
-					<form>
+					<form action="memberlogin.do" method="post">
 						<div class="form-group">
 							<label>아이디</label> <input type="text" class="form-control"
-								placeholder="아이디 입력">
+								placeholder="아이디 입력" id="memberId" name="memberId">
 						</div>
 						<div class="form-group">
 							<label>비밀번호</label> <input type="password" class="form-control"
-								placeholder="비밀번호 입력">
+								placeholder="비밀번호 입력" id="memberPassword" name="memberPassword">
 						</div>
 						<div class="checkbox">
 							<label> <input type="checkbox"> 아이디 기억하기

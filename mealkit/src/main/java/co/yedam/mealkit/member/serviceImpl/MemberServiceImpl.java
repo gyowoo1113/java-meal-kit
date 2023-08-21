@@ -9,7 +9,7 @@ import co.yedam.mealkit.member.mapper.MemberMapper;
 import co.yedam.mealkit.member.service.MemberService;
 import co.yedam.mealkit.member.service.MemberVO;
 
-public class MemberServiceImple implements MemberService {
+public class MemberServiceImpl implements MemberService {
 
 	
 	private SqlSession sqlSession = DataSource.getInstance().openSession(true);

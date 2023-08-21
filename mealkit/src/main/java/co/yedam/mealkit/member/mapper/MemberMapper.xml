@@ -11,8 +11,8 @@
  	</select>
  	
  	<insert id="memberInsert" parameterType="co.yedam.mealkit.member.service.MemberVO">
- 		INSERT INTO MEMBER(MEMBER_ID,MEMBER_PASSWORD,MEMBERNAME)
- 		VALUES(#{memberId},#{memberPassword},#{memberGrade},#{memberEmail})
+ 		INSERT INTO MEMBER(MEMBER_ID,MEMBER_PASSWORD,MEMBER_NAME,MEMBER_EMAIL)
+ 		VALU\ES(#{memberId},#{memberPassword},#{memberGrade},#{memberEmail})
  		
  	</insert>
  	

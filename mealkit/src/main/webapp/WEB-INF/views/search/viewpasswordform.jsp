@@ -69,6 +69,8 @@ a{
 	color : white;
 }
 
+
+
 </style>
 
 <title>ID 찾기</title>
@@ -86,20 +88,13 @@ a{
 				<div class="login-form">
 					<form>
 						<div class="form-group">
-							<label>* 이름</label> <input type="text" class="form-control"
-								placeholder="">
+							<input type="text" class="form-control"
+							placeholder="새로운 비밀번호 입력" id="newpw">
 						</div>
-						<div class="form-group">
-							<label>* 이메일</label> <input type="email" class="form-control"
-								placeholder="본인 이메일 입력"> <br> <input type="text"
-								placeholder="인증번호" id="mail">
-							<button id="gomail">메일인증</button>
-							<br>
-							<br>
-						</div>
+						<br>
 
 						<button type="submit"
-							class="btn btn-success btn-flat m-b-30 m-t-30"><a href="viewidform.do">아이디 찾기</a></button>
+							class="btn btn-success btn-flat m-b-30 m-t-30"><a href="loginform.do">로그인</a></button>
 						<div class="social-login-content"></div>
 
 					</form>

@@ -34,29 +34,39 @@
 	rel='stylesheet' type='text/css'>
 
 <style>
-#mail {
+#A {
 	display: inline;
-	width: 58%;
+	width: 40%;
 	height: calc(2.25rem + 2px);
 	padding: 0.375rem 0.75rem;
 	font-size: 1rem;
 	line-height: 1.5;
 	color: #495057;
-	background-color: #fff;
 	background-clip: padding-box;
 	border: 1px solid #ced4da;
 	border-radius: 0.25rem;
 	transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
 }
 
-#gomail {
+#B {
 	display: inline;
 	float: right;
-	width: 37%;
+	width: 40%;
 	height: calc(2.25rem + 2px);
 	padding: 0.375rem 0.75rem;
 	font-size: 1rem;
 	line-height: 1.5;
+	color: #495057;
+	background-clip: padding-box;
+	border: 1px solid #ced4da;
+	border-radius: 0.25rem;
+	transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+}
+
+#box {
+	float: right;
+
+	font-size: 1rem;
 	color: #495057;
 	background-color: #blue;
 	background-clip: padding-box;
@@ -78,29 +88,18 @@ a{
 	<div class="sufee-login d-flex align-content-center flex-wrap">
 		<div class="container">
 			<div class="login-content">
-				<div class="login-logo">
-					<a href="index.html"> <img class="align-content"
-						src="template/elaadmin/images/logo.png" alt="">
-					</a>
-				</div>
+				
 				<div class="login-form">
 					<form>
 						<div class="form-group">
-							<label>* 이름</label> <input type="text" class="form-control"
-								placeholder="">
+							<h1>아이디  :  </h1>
 						</div>
-						<div class="form-group">
-							<label>* 이메일</label> <input type="email" class="form-control"
-								placeholder="본인 이메일 입력"> <br> <input type="text"
-								placeholder="인증번호" id="mail">
-							<button id="gomail">메일인증</button>
-							<br>
-							<br>
-						</div>
-
+						<br><br><br>
 						<button type="submit"
-							class="btn btn-success btn-flat m-b-30 m-t-30"><a href="viewidform.do">아이디 찾기</a></button>
-						<div class="social-login-content"></div>
+							class="btn btn-success btn-flat m-b-30 m-t-30" id="A" ><a href="loginform.do">로그인</a></button>
+			
+						<button type="submit"
+							class="btn btn-success btn-flat m-b-30 m-t-30" id="B" ><a href="viewpasswordform.do">비밀번호 재설정</a></button>
 
 					</form>
 				</div>
