@@ -1,4 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="co.yedam.mealkit.review.mapper.ReviewMapper">
+
+	<select id="reviewSelectList" resultType="co.yedam.mealkit.common.CamelHashMap">
+		SELECT * FROM REVIEW 
+		<if test="key == 'id'">WHERE MEMBER_ID LIKE '%' || #{val} || '%'</if>
+		<if test="key == 'title'">WHERE REVIEW_TITLE LIKE '%' || #{val} || '%'</if>
+		<if test="key == 'subject'">WHERE REVIEW_SUBJECT LIKE '%' || #{val} || '%'</if>
+	</select>
+
+	<select id="reviewSelectProduct" resultType="co.yedam.mealkit.review.service.ReviewVO">
+		SELECT * FROM REVIEW WHERE PRODUCT_ID = ${productId}
+	</select>
 </mapper>

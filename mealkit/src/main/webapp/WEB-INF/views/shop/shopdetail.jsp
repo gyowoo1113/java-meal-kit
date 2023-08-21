@@ -2,6 +2,7 @@
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -43,7 +44,7 @@
                 </div>
                 <div class="col-lg-6 col-md-6">
                     <div class="product__details__text">
-                        <h3>Vetgetable’s Package</h3>
+                        <h3>좋은 데이</h3>
                         <div class="product__details__rating">
                             <i class="fa fa-star"></i>
                             <i class="fa fa-star"></i>
@@ -76,16 +77,31 @@
                                     aria-selected="false">Review</a>
                             </li>
                         </ul>
-                        <div class="tab-content">
-                            <div class="tab-pane active" id="tabs-1" role="tabpanel">
-                                <div class="product__details__tab__desc">
-                                    <h6>Products Infomation</h6>
-                                    <p>Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui.</p>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
+                 <section class="related-blog spad">
+			        <div class="container">
+				        <div class="row">
+				       		<c:forEach items="${reviews}" var="r">
+					           <div class="col-lg-4 col-md-4 col-sm-6">
+					               <div class="blog__item">
+					                   <div class="blog__item__pic">
+					                       <img src="template/ogani/img/blog/blog-1.jpg" alt="">
+					                   </div>
+					                   <div class="blog__item__text">
+					                       <ul>
+					                           <li><i class="fa fa-calendar-o"></i>${r.reviewDate}</li>
+					                           <li><i class="fa fa-comment-o"></i> 5</li>
+					                       </ul>
+					                       <h5><a href="#">${r.reviewTitle}</a></h5>
+					                       <p>${r.reviewSubject }</p>
+					                   </div>
+					               </div>
+					           	</div>
+				           	</c:forEach>
+				         </div>
+			        </div>
+			    </section>
             </div>
         </div>
     </section>

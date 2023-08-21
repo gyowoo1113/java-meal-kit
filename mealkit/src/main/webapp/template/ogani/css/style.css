@@ -3465,4 +3465,91 @@ ol {
 	.blog__details__hero__text h2 {
 		font-size: 24px;
 	}
+	
+	/* 리뷰 */
+	.review__details__comment {
+	position: relative;
+	}
+	
+	.review__details__comment h5 {
+		color: #111111;
+		font-weight: 600;
+		text-transform: uppercase;
+		margin-bottom: 35px;
+	}
+	
+	.review__details__comment .leave-btn {
+		font-size: 14px;
+		font-weight: 700;
+		color: #111111;
+		text-transform: uppercase;
+		position: absolute;
+		right: 0;
+		top: 0;
+	}
+	
+	.review__details__comment .leave-btn:after {
+		position: absolute;
+		left: 0;
+		bottom: -5px;
+		height: 1px;
+		width: 100%;
+		background: #ca1515;
+		content: "";
+	}
+	
+	.review__comment__item {
+		margin-bottom: 35px;
+	}
+	
+	review.__comment__item:last-child {
+		margin-bottom: 0;
+	}
+	
+	.review__comment__item.blog__comment__item--reply {
+		padding-left: 115px;
+	}
+	
+	.review__comment__item__pic {
+		float: left;
+		margin-right: 25px;
+	}
+	
+	.review__comment__item__pic img {
+		border-radius: 50%;
+	}
+	
+	.review__comment__item__text {
+		overflow: hidden;
+	}
+	
+	.review__comment__item__text h6 {
+		color: #111111;
+		font-weight: 600;
+		margin-bottom: 14px;
+	}
+	
+	.review__comment__item__text p {
+		font-size: 15px;
+		color: #444444;
+		line-height: 26px;
+	}
+	
+	.review__comment__item__text ul li {
+		list-style: none;
+		font-size: 12px;
+		color: #888888;
+		display: inline-block;
+		margin-right: 25px;
+	}
+	
+	.review__comment__item__text ul li:last-child {
+		margin-right: 0;
+	}
+	
+	.review__comment__item__text ul li i {
+		font-size: 14px;
+		color: #ca1515;
+		margin-right: 5px;
+	}
 }
