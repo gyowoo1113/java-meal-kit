@@ -51,10 +51,11 @@
                             <li><a href="shopmenu.do">메뉴</a></li>
                             <li><a href="#">Pages</a>
                                 <ul class="header__menu__dropdown">
-                                    <li><a href="shopdetail.do">Shop Details</a></li>
+                                    <li><a href="shopdetail.do">상세페이지</a></li>
                                     <li><a href="shoppingcart.do">Shoping Cart</a></li>
                                     <li><a href="checkout.do">Check Out</a></li>
                                     <li><a href="admin.do">Admin</a></li>
+                                    <li><a href="reviewform.do">리뷰</a></li>
                                 </ul>
                             </li>
                             <li><a href="./blog.html">Blog</a></li>
