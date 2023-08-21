@@ -50,8 +50,8 @@
 	                    <div class="shoping__checkout">
 	                        <h5>결제 예상 금액</h5>
 	                        <ul>
-	                            <li>상품 가격 <span>$454.98</span></li>
-	                            <li>결제 금액 <span>$454.98</span></li>
+	                            <li>상품 가격 <span></span></li>
+	                            <li>결제 금액 <span></span></li>
 	                        </ul>
                         	<button type="submit" class="site-btn container">상품 주문하기</button>
 	                    </div>
@@ -96,6 +96,7 @@
         inputTarget.value = idx;
         updateCountToCart(idx, parentTrTag.id);
         updateCartTotalView(idx,parentTrTag);
+        updateTotalPrice();
 	}
 	
 	function updateCountToCart(idx, id){
@@ -117,9 +118,26 @@
 		totalTag.textContent = `￦` + price.toLocaleString();
 	}
 	
+	// ------------------- 가격 총합 반영 --------------------------------------
+	function updateTotalPrice(){
+		var tag = document.querySelector('.shoping__checkout');
+		var spanTag = tag.querySelectorAll('span');
+		
+		var priceTags = document.querySelectorAll('.shoping__cart__total');
+		var total = 0;
+		priceTags.forEach(tag => {
+			total += Number(tag.textContent.substr(1).replace(",",""));
+		})
+		
+		spanTag.forEach(tag =>{
+			tag.textContent = `￦` + total.toLocaleString();
+		})
+	}
+	
 	// ------------------- 장바구니 목록 생성 ------------------------------------
 	window.onload = function(){
 		createCartList();
+		updateTotalPrice();
 	}
 	
 	function createCartList(){
@@ -151,8 +169,7 @@
 	                </div>
 	            </div>
 	        </td>
-	        <td class="shoping__cart__total">
-	        `;
+	        <td class="shoping__cart__total">`;
 	    
 	    var sum_price = data.productPrice * data.cartCount;
 	    list += `￦` + sum_price.toLocaleString();
