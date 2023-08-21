@@ -40,30 +40,6 @@
 	                                </tr>
 	                            </thead>
 	                            <tbody>
-	                            	<c:forEach items="${carts}" var="c">
-		                                <tr id = "${c.cartId}">
-		                                    <td class="shoping__cart__item">
-		                                        <img src="template/ogani/img/cart/cart-1.jpg" alt="">
-		                                        <h5>${c.productName}</h5>
-		                                    </td>
-		                                    <td class="shoping__cart__price">
-		                                       ${c.productPrice }
-		                                    </td>
-		                                    <td class="shoping__cart__quantity">
-		                                        <div class="quantity">
-		                                            <div class="pro-qty">
-		                                                <input type="text" value="${c.cartCount }">
-		                                            </div>
-		                                        </div>
-		                                    </td>
-		                                    <td class="shoping__cart__total">
-		                                    	추가필요(JS)
-		                                    </td>
-		                                    <td class="shoping__cart__item__close" onclick="cartDelete(event)">
-		                                        <span class="icon_close"></span>
-		                                    </td>
-		                                </tr>
-	                                </c:forEach>
 	                            </tbody>
 	                        </table>
 	                    </div>
@@ -100,6 +76,55 @@
 			headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
 			body: payload
 		});
+	}
+	
+	window.onload = function(){
+		createCartList();
+	}
+	
+	function createCartList(){
+		var carts = <%= request.getAttribute("carts") %>;
+		document.querySelector('tbody').remove();	
+		
+		const tbody = document.createElement('tbody');
+		tbody.innerHTML = carts.map(data => htmlView(data)).join('');
+		document.querySelector('table').appendChild(tbody);
+	}
+	
+	function htmlView(data){
+		var list = ``;
+		list += `
+	        <tr id = "\${data.cartId}">
+	        <td class="shoping__cart__item">
+	            <img src="template/ogani/img/cart/cart-1.jpg" alt="">
+	            <h5>\${data.productName}</h5>
+	        </td>
+	        <td class="shoping__cart__price">`;
+	    list += `￦` + data.productPrice.toLocaleString();
+	    list += `
+	        </td>
+	        <td class="shoping__cart__quantity">
+	            <div class="quantity">
+	                <div class="pro-qty">
+	            		<span class="dec qtybtn">-</span>
+	                    <input type="text" value="\${data.cartCount }">
+	                    <span class="inc qtybtn">+</span>
+	                </div>
+	            </div>
+	        </td>
+	        <td class="shoping__cart__total">
+	        `;
+	    
+	    var sum_price = data.productPrice * data.cartCount;
+	    list += `￦` + sum_price.toLocaleString();
+	    list += `
+	        </td>
+	        <td class="shoping__cart__item__close" onclick="cartDelete(event)">
+	            <span class="icon_close"></span>
+	        </td>
+    	</tr>
+		`; 
+		return list;
 	}
 </script>
 </html>

@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import co.yedam.mealkit.common.ViewResolve;
 import co.yedam.mealkit.shop.cart.service.CartService;
 import co.yedam.mealkit.shop.cart.service.CartVO;
@@ -30,8 +32,10 @@ public class ShoppingCartController extends HttpServlet {
 		// 추후 sqlSession의 id로 변경 필요
 		List<Map<String, Object>> carts = new ArrayList<>();
 		
+		ObjectMapper objectMapper = new ObjectMapper();	
 		carts = dao.cartSelectList("micol");
-		request.setAttribute("carts", carts);
+		String data = objectMapper.writeValueAsString(carts);
+		request.setAttribute("carts", data);
 		
 		String viewName = "shop/shoppingcart";
 		ViewResolve.forward(request, response, viewName);
