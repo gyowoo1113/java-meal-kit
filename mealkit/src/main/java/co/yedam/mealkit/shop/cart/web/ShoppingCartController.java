@@ -32,7 +32,6 @@ public class ShoppingCartController extends HttpServlet {
 		
 		carts = dao.cartSelectList("micol");
 		request.setAttribute("carts", carts);
-		System.out.println(carts);
 		
 		String viewName = "shop/shoppingcart";
 		ViewResolve.forward(request, response, viewName);
