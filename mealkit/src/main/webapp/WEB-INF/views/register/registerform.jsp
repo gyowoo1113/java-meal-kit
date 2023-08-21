@@ -39,7 +39,44 @@
 		window.open('mail/mailpopup.jsp', 'popup', 'width=300,height=200');
 	}
 </script>
-<title>로그인</title>
+
+<style>
+	
+	
+	#mail {
+		display: inline;
+    width: 58%;
+    height: calc(2.25rem + 2px);
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+	}
+	
+	#gomail {
+			display: inline;
+			float : right;
+    width: 37%;
+    height: calc(2.25rem + 2px);
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #blue;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+		
+	}
+	
+</style>
+<title>회원가입</title>
 </head>
 <body class="bg-white">
 
@@ -69,12 +106,13 @@
 							<label>* 이름</label> <input type="text" class="form-control">
 						</div>
 						<div class="form-group">
-							<label>* 이메일</label> <input type="text" class="form-control">
-							<button class="form-control" onclick="openPopup()">
-								<a href="mail.do">메일 발송</a>
-							</button>
-
+							<label>* 이메일</label> <input type="email" class="form-control" placeholder="본인 이메일 입력">
+							<br>
+							<input type="text" placeholder="인증번호" id="mail"><button id="gomail" >메일인증</button>
+							<br><br>
+							
 						</div>
+						
 
 						<button type="submit"
 							class="btn btn-success btn-flat m-b-30 m-t-30">회 원 가 입</button>

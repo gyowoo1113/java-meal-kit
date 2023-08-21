@@ -30,7 +30,7 @@
                                 </ul>
                             </div>
                             <div class="header__top__right__auth">
-                                <a href="loginform.do"><i class="fa fa-user"></i>ㄹㄱㅇ</a>
+                                <a href="loginform.do"><i class="fa fa-user"></i>로그인</a>
                             </div>
                         </div>
                     </div>
