@@ -41,7 +41,7 @@
 	                            </thead>
 	                            <tbody>
 	                            	<c:forEach items="${carts}" var="c">
-		                                <tr>
+		                                <tr id = "${c.cartId}">
 		                                    <td class="shoping__cart__item">
 		                                        <img src="template/ogani/img/cart/cart-1.jpg" alt="">
 		                                        <h5>${c.productName}</h5>
@@ -59,7 +59,7 @@
 		                                    <td class="shoping__cart__total">
 		                                    	추가필요(JS)
 		                                    </td>
-		                                    <td class="shoping__cart__item__close">
+		                                    <td class="shoping__cart__item__close" onclick="cartDelete(event)">
 		                                        <span class="icon_close"></span>
 		                                    </td>
 		                                </tr>
@@ -86,4 +86,12 @@
     </section>
     <!-- Shoping Cart Section End -->
 </body>
+<script type="text/javascript">
+	function cartDelete(event){
+		var parentTrTag = event.target;
+        //부모 태그 명이 TR이 나올때까지 자동순회
+        for(;parentTrTag.tagName != 'TR'; parentTrTag=parentTrTag.parentElement);
+        parentTrTag.remove();
+	}
+</script>
 </html>
