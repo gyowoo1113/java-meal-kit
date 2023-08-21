@@ -94,6 +94,27 @@
         }
         
         inputTarget.value = idx;
+        updateCountToCart(idx, parentTrTag.id);
+        updateCartTotalView(idx,parentTrTag);
+	}
+	
+	function updateCountToCart(idx, id){
+		let payload = "count=" + idx + "&id=" + id;
+		let url = "ajaxcartupdate.do";
+		fetch(url,{
+			method: "post",
+			headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+			body: payload
+		});
+	}
+	
+	function updateCartTotalView(idx, parentTrTag){
+		var priceTag = parentTrTag.querySelector('.shoping__cart__price');
+		var totalTag = parentTrTag.querySelector('.shoping__cart__total');
+		var value = priceTag.textContent.substr(1).replace(",","");
+		
+		var price = value * idx;
+		totalTag.textContent = `￦` + price.toLocaleString();
 	}
 	
 	// ------------------- 장바구니 목록 생성 ------------------------------------
