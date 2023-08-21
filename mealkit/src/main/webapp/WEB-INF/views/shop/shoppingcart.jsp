@@ -154,7 +154,7 @@
 		list += `
 	        <tr id = "\${data.cartId}">
 	        <td class="shoping__cart__item">
-	            <img src="template/ogani/img/cart/cart-1.jpg" alt="">
+	            <img src="\${data.productImg}" width="100" height="100" alt="">
 	            <h5>\${data.productName}</h5>
 	        </td>
 	        <td class="shoping__cart__price">`;
