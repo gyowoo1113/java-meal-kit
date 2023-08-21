@@ -97,7 +97,9 @@
 							<label>* 이메일</label> <input type="email" class="form-control"
 								placeholder="본인 이메일 입력"> <br> <input type="text"
 								placeholder="인증번호" id="mail">
-							<button id="gomail">메일인증</button>
+							<form action="searchpassword.do" method="post">
+							<button type="submit" id="gomail">메일인증</button>
+							</form>
 							<br>
 							<br>
 						</div>
