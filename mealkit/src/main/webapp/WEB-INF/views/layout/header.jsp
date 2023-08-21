@@ -1,10 +1,23 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
+<style>
+.out {
+	display: inline-block;
+	margin-left: 20px;
+}
+
+.mypage {
+	display: inline-block;
+	margin-right: 20px;
+}
+
+
+</style>
 <title>Insert title here</title>
 </head>
 <body>
@@ -21,25 +34,24 @@
 					</div>
 					<div class="col-lg-6 col-md-6">
 						<div class="header__top__right">
-							<div class="header__top__right__language">
-								<img src="template/ogani/img/language.png" alt="">
-								<div>English</div>
-								<span class="arrow_carrot-down"></span>
-								<ul>
-									<li><a href="#">Spanis</a></li>
-									<li><a href="#">English</a></li>
-								</ul>
-							</div>
-									
+
+
 							<c:if test="${empty id }">
 								<div class="header__top__right__auth">
 									<a href="loginform.do"><i class="fa fa-user"></i>로그인</a>
 								</div>
 							</c:if>
-							
+
 							<c:if test="${not empty id }">
+
+								<div class="mypage">
+									<a href="mypage.do" style="color:black">마이페이지</a>
+								</div>
 								<div class="header__top__right__auth">
 									<i class="fa fa-user"></i>${ name }님 접속중
+								</div>
+								<div class="out">
+									<a href="memberlogout.do" style="color:black" >로그아웃</a>
 								</div>
 							</c:if>
 
