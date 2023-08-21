@@ -50,6 +50,11 @@ public class AjaxCartInsert extends HttpServlet {
 	protected int doCartInsert(int count, int productId, String memberId) {
         CartService dao = new CartServiceImpl();
 		int result = -1;
+		
+		if (memberId == null) {
+			return -2;
+		}
+		
         CartVO findvo = new CartVO(memberId,productId);
         findvo = dao.cartSelect(findvo);
     	// 이미 장바구니에 해당 물품이 있으면, insert 하지않고 return
@@ -69,6 +74,9 @@ public class AjaxCartInsert extends HttpServlet {
         String icon = (result == 1) ? "success" : "error";
         String message = "";
         switch(result) {
+        case -2 : message = "로그인이 필요한 서비스입니다."; 
+        		  icon = "warning";
+        	break;
         case -1 : message = "이미 장바구니에 있는 물품입니다."; break;
         case 1 : message = "카트에 물품이 담겼습니다."; break;
         default : message = "물품 담기에 실패했습니다.";
