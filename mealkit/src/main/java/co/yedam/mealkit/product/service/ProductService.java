@@ -4,6 +4,7 @@ import java.util.List;
 
 public interface ProductService {
 	List<ProductVO> productSelectList();
+	List<ProductVO> productSelectList2();
 	ProductVO productSelect(ProductVO vo);
 	int productInsert(ProductVO vo);
 	int productUpdate(ProductVO vo);

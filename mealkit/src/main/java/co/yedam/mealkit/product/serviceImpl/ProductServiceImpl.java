@@ -38,4 +38,10 @@ public class ProductServiceImpl implements ProductService {
 		return map.productDelete(vo);
 	}
 
+	@Override
+	public List<ProductVO> productSelectList2() {
+		
+		return map.productSelectList2();
+	}
+
 }

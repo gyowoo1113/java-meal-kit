@@ -1,237 +1,279 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+
+
 <!DOCTYPE html>
 <html>
 <head>
+<style>
+.active {
+	font-size: "bold";
+}
+
+#dline {
+	-webkit-tap-highlight-color: transparent;
+	background-color: #fff;
+	border-radius: 5px;
+	border: solid 3px #e8e8e8;
+	box-sizing: border-box;
+	clear: both;
+	cursor: pointer;
+	display: block;
+	float: left;
+	font-family: inherit;
+	font-size: 14px;
+	font-weight: normal;
+	height: 42px;
+	line-height: 40px;
+	outline: none;
+	padding-left: 18px;
+	padding-right: 30px;
+	position: relative;
+	text-align: left !important;
+	-webkit-transition: all 0.2s ease-in-out;
+	transition: all 0.2s ease-in-out;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	white-space: nowrap;
+	width: auto;
+}
+</style>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
-<link rel="apple-touch-icon" href="https://i.imgur.com/QRAUqs9.png">
-<link rel="shortcut icon" href="https://i.imgur.com/QRAUqs9.png">
-
-<link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.0/normalize.min.css">
-<link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css">
-<link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/gh/lykmapipo/themify-icons@0.1.2/css/themify-icons.css">
-<link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/npm/pixeden-stroke-7-icon@1.2.3/pe-icon-7-stroke/dist/pe-icon-7-stroke.min.css">
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.2.0/css/flag-icon.min.css">
-<link rel="stylesheet"
-	href="template/elaadmin/assets/css/cs-skin-elastic.css">
-<link rel="stylesheet"
-	href="template/elaadmin/assets/css/lib/datatable/dataTables.bootstrap.min.css">
-<link rel="stylesheet" href="template/elaadmin/assets/css/style.css">
-
+<!-- Google Font -->
 <link
-	href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800'
-	rel='stylesheet' type='text/css'>
+	href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap"
+	rel="stylesheet">
 
+<!-- Css Styles -->
+<link rel="stylesheet" href="template/ogani/css/bootstrap.min.css"
+	type="text/css">
+<link rel="stylesheet" href="template/ogani/css/font-awesome.min.css"
+	type="text/css">
+<link rel="stylesheet" href="template/ogani/css/elegant-icons.css"
+	type="text/css">
+<link rel="stylesheet" href="template/ogani/css/nice-select.css"
+	type="text/css">
+<link rel="stylesheet" href="template/ogani/css/jquery-ui.min.css"
+	type="text/css">
+<link rel="stylesheet" href="template/ogani/css/owl.carousel.min.css"
+	type="text/css">
+<link rel="stylesheet" href="template/ogani/css/slicknav.min.css"
+	type="text/css">
+<link rel="stylesheet" href="template/ogani/css/style.css"
+	type="text/css">
+
+<!-- sweetalert2 -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 </head>
 <body>
 
-	<div class="breadcrumbs">
-		<div class="breadcrumbs-inner">
-			<div class="row m-0">
-				<div class="col-sm-4">
-					<div class="page-header float-left">
-						<div class="page-title">
-							<h1>제품관리</h1>
-						</div>
-					</div>
-				</div>
-				<div class="col-sm-8">
-					<div class="page-header float-right">
-						<div class="page-title">
-							<ol class="breadcrumb text-right">
-								<li><a href="#">Dashboard</a></li>
-								<li><a href="#">Table</a></li>
-								<li class="active">Data table</li>
-							</ol>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
 
-	<div class="content">
-		<div class="animated fadeIn">
+
+	<!-- Featured Section Begin -->
+	<section class="featured spad">
+		<div class="container">
 			<div class="row">
+				<div class="col-lg-12">
+					<div class="section-title">
+						<h2>밀키트</h2>
+					</div>
 
-				<div class="col-md-12">
-					<div class="card">
-						<div class="card-header">
-							<strong class="card-title">Data Table</strong>
+
+
+					<div class="featured__controls">
+						<ul>
+							<!-- data-filter .클래스 따라가서 출력함!!!!!! 컨+f로 찾아서 넣기 -->
+							<li class="active" data-filter="*">전메뉴</li>
+							<li data-filter=".oranges">육류</li>
+							<li data-filter=".fresh-meat">2</li>
+							<li data-filter=".vegetables">3</li>
+							<li data-filter=".fastfood">4</li>
+						</ul>
+
+						<hr>
+					</div>
+				</div>
+			</div>
+
+
+			<div class="row featured__filter">
+				<div
+					class="col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat review hit">
+					<div class="featured__item">
+						<div class="featured__item__pic set-bg"
+							data-setbg="template/ogani/img/featured/feature-1.jpg">
+							<ul class="featured__item__pic__hover">
+								<li><a href="#"><i class="fa fa-heart"></i></a></li>
+								<li><a href="#"><i class="fa fa-retweet"></i></a></li>
+								<li><a href="showdetail.do"><i
+										class="fa fa-shopping-cart"></i></a></li>
+							</ul>
 						</div>
-						<div class="card-body">
-							<table id="bootstrap-data-table"
-								class="table table-striped table-bordered">
-								<thead>
-									<tr>
-										<th>Name</th>
-										<th>Position</th>
-										<th>Office</th>
-										<th>Salary</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<td>Tiger Nixon</td>
-										<td>System Architect</td>
-										<td>Edinburgh</td>
-										<td>$320,800</td>
-									</tr>
-									<tr>
-										<td>Garrett Winters</td>
-										<td>Accountant</td>
-										<td>Tokyo</td>
-										<td>$170,750</td>
-									</tr>
-									<tr>
-										<td>Ashton Cox</td>
-										<td>Junior Technical Author</td>
-										<td>San Francisco</td>
-										<td>$86,000</td>
-									</tr>
-									<tr>
-										<td>Cedric Kelly</td>
-										<td>Senior Javascript Developer</td>
-										<td>Edinburgh</td>
-										<td>$433,060</td>
-									</tr>
-									<tr>
-										<td>Airi Satou</td>
-										<td>Accountant</td>
-										<td>Tokyo</td>
-										<td>$162,700</td>
-									</tr>
-									<tr>
-										<td>Brielle Williamson</td>
-										<td>Integration Specialist</td>
-										<td>New York</td>
-										<td>$372,000</td>
-									</tr>
-									<tr>
-										<td>Herrod Chandler</td>
-										<td>Sales Assistant</td>
-										<td>San Francisco</td>
-										<td>$137,500</td>
-									</tr>
-									<tr>
-										<td>Rhona Davidson</td>
-										<td>Integration Specialist</td>
-										<td>Tokyo</td>
-										<td>$327,900</td>
-									</tr>
-									<tr>
-										<td>Colleen Hurst</td>
-										<td>Javascript Developer</td>
-										<td>San Francisco</td>
-										<td>$205,500</td>
-									</tr>
-									<tr>
-										<td>Sonya Frost</td>
-										<td>Software Engineer</td>
-										<td>Edinburgh</td>
-										<td>$103,600</td>
-									</tr>
-									<tr>
-										<td>Jena Gaines</td>
-										<td>Office Manager</td>
-										<td>London</td>
-										<td>$90,560</td>
-									</tr>
-									<tr>
-										<td>Paul Byrd</td>
-										<td>Chief Financial Officer (CFO)</td>
-										<td>New York</td>
-										<td>$725,000</td>
-									</tr>
-									<tr>
-										<td>Gloria Little</td>
-										<td>Systems Administrator</td>
-										<td>New York</td>
-										<td>$237,500</td>
-									</tr>
-									<tr>
-										<td>Bradley Greer</td>
-										<td>Software Engineer</td>
-										<td>London</td>
-										<td>$132,000</td>
-									</tr>
-									<tr>
-										<td>Dai Rios</td>
-										<td>Personnel Lead</td>
-										<td>Edinburgh</td>
-										<td>$217,500</td>
-									</tr>
-									<tr>
-										<td>Jenette Caldwell</td>
-										<td>Development Lead</td>
-										<td>New York</td>
-										<td>$345,000</td>
-									</tr>
-									<tr>
-										<td>Yuri Berry</td>
-										<td>Chief Marketing Officer (CMO)</td>
-										<td>New York</td>
-										<td>$675,000</td>
-									</tr>
-
-								</tbody>
-							</table>
+						<div class="featured__item__text">
+							<h6>
+								<a href="#">Crab Pool Security</a>
+							</h6>
+							<h5>$30.00</h5>
 						</div>
 					</div>
 				</div>
-
-
+				<div class="col-lg-3 col-md-4 col-sm-6 mix vegetables fastfood hit">
+					<div class="featured__item">
+						<div class="featured__item__pic set-bg"
+							data-setbg="template/ogani/img/featured/feature-2.jpg">
+							<ul class="featured__item__pic__hover">
+								<li><a href="#"><i class="fa fa-heart"></i></a></li>
+								<li><a href="#"><i class="fa fa-retweet"></i></a></li>
+								<li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+							</ul>
+						</div>
+						<div class="featured__item__text">
+							<h6>
+								<a href="#">Crab Pool Security</a>
+							</h6>
+							<h5>$30.00</h5>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-3 col-md-4 col-sm-6 mix vegetables fresh-meat">
+					<div class="featured__item">
+						<div class="featured__item__pic set-bg"
+							data-setbg="template/ogani/img/featured/feature-3.jpg">
+							<ul class="featured__item__pic__hover">
+								<li><a href="#"><i class="fa fa-heart"></i></a></li>
+								<li><a href="#"><i class="fa fa-retweet"></i></a></li>
+								<li><a href="shopdetail.do"><i
+										class="fa fa-shopping-cart"></i></a></li>
+							</ul>
+						</div>
+						<div class="featured__item__text">
+							<h6>
+								<a href="#">과일</a>
+							</h6>
+							<h5>5,000원</h5>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-3 col-md-4 col-sm-6 mix fastfood oranges hit">
+					<div class="featured__item">
+						<div class="featured__item__pic set-bg"
+							data-setbg="template/ogani/img/featured/feature-4.jpg">
+							<ul class="featured__item__pic__hover">
+								<li><a href="#"><i class="fa fa-heart"></i></a></li>
+								<li><a href="#"><i class="fa fa-retweet"></i></a></li>
+								<li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+							</ul>
+						</div>
+						<div class="featured__item__text">
+							<h6>
+								<a href="#">Crab Pool Security</a>
+							</h6>
+							<h5>$30.00</h5>
+						</div>
+					</div>
+				</div>
+				<div
+					class="col-lg-3 col-md-4 col-sm-6 mix fresh-meat vegetables review">
+					<div class="featured__item">
+						<div class="featured__item__pic set-bg"
+							data-setbg="template/ogani/img/featured/feature-5.jpg">
+							<ul class="featured__item__pic__hover">
+								<li><a href="#"><i class="fa fa-heart"></i></a></li>
+								<li><a href="#"><i class="fa fa-retweet"></i></a></li>
+								<li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+							</ul>
+						</div>
+						<div class="featured__item__text">
+							<h6>
+								<a href="#">Crab Pool Security</a>
+							</h6>
+							<h5>$30.00</h5>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-3 col-md-4 col-sm-6 mix oranges fastfood joindt">
+					<div class="featured__item">
+						<div class="featured__item__pic set-bg"
+							data-setbg="template/ogani/img/featured/feature-6.jpg">
+							<ul class="featured__item__pic__hover">
+								<li><a href="#"><i class="fa fa-heart"></i></a></li>
+								<li><a href="#"><i class="fa fa-retweet"></i></a></li>
+								<li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+							</ul>
+						</div>
+						<div class="featured__item__text">
+							<h6>
+								<a href="#">Crab Pool Security</a>
+							</h6>
+							<h5>$30.00</h5>
+						</div>
+					</div>
+				</div>
+				<div
+					class="col-lg-3 col-md-4 col-sm-6 mix fresh-meat vegetables joindt">
+					<div class="featured__item">
+						<div class="featured__item__pic set-bg"
+							data-setbg="template/ogani/img/featured/feature-7.jpg">
+							<ul class="featured__item__pic__hover">
+								<li><a href="#"><i class="fa fa-heart"></i></a></li>
+								<li><a href="#"><i class="fa fa-retweet"></i></a></li>
+								<li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+							</ul>
+						</div>
+						<div class="featured__item__text">
+							<h6>
+								<a href="#">Crab Pool Security</a>
+							</h6>
+							<h5>$30.00</h5>
+						</div>
+					</div>
+				</div>
+				<div
+					class="col-lg-3 col-md-4 col-sm-6 mix fastfood vegetables joindt">
+					<div class="featured__item">
+						<div class="featured__item__pic set-bg"
+							data-setbg="template/ogani/img/featured/feature-8.jpg">
+							<ul class="featured__item__pic__hover">
+								<li><a href="#"><i class="fa fa-heart"></i></a></li>
+								<li><a href="#"><i class="fa fa-retweet"></i></a></li>
+								<li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+							</ul>
+						</div>
+						<div class="featured__item__text">
+							<h6>
+								<a href="#">Crab Pool Security</a>
+							</h6>
+							<h5>$30.00</h5>
+						</div>
+					</div>
+				</div>
+				
 			</div>
+			<div class="col col-md-12">
+					<div>
+						<button id="button" type="submit"
+							class="btn btn-lg btn-info btn-block">등록</button>
+					</div>
+				</div>
+
 		</div>
-		<!-- .animated -->
-	</div>
-	
-	<!-- .content -->
-
-	<!-- Scripts -->
-	<script
-		src="https://cdn.jsdelivr.net/npm/jquery@2.2.4/dist/jquery.min.js"></script>
-	<script
-		src="https://cdn.jsdelivr.net/npm/popper.js@1.14.4/dist/umd/popper.min.js"></script>
-	<script
-		src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"></script>
-	<script
-		src="https://cdn.jsdelivr.net/npm/jquery-match-height@0.7.2/dist/jquery.matchHeight.min.js"></script>
-	<script src="template/elaadmin/assets/js/main.js"></script>
 
 
-	<script
-		src="template/elaadmin/assets/js/lib/data-table/datatables.min.js"></script>
-	<script
-		src="template/elaadmin/assets/js/lib/data-table/dataTables.bootstrap.min.js"></script>
-	<script
-		src="template/elaadmin/assets/js/lib/data-table/dataTables.buttons.min.js"></script>
-	<script
-		src="template/elaadmin/assets/js/lib/data-table/buttons.bootstrap.min.js"></script>
-	<script src="template/elaadmin/assets/js/lib/data-table/jszip.min.js"></script>
-	<script src="template/elaadmin/assets/js/lib/data-table/vfs_fonts.js"></script>
-	<script
-		src="template/elaadmin/assets/js/lib/data-table/buttons.html5.min.js"></script>
-	<script
-		src="template/elaadmin/assets/js/lib/data-table/buttons.print.min.js"></script>
-	<script
-		src="template/elaadmin/assets/js/lib/data-table/buttons.colVis.min.js"></script>
-	<script src="template/elaadmin/assets/js/init/datatables-init.js"></script>
+	</section>
+	<!-- Featured Section End -->
 
+	<script src="template/ogani/js/jquery-3.3.1.min.js"></script>
+	<script src="template/ogani/js/bootstrap.min.js"></script>
+	<script src="template/ogani/js/jquery.nice-select.min.js"></script>
+	<script src="template/ogani/js/jquery-ui.min.js"></script>
+	<script src="template/ogani/js/jquery.slicknav.js"></script>
+	<script src="template/ogani/js/mixitup.min.js"></script>
+	<script src="template/ogani/js/owl.carousel.min.js"></script>
+	<script src="template/ogani/js/main.js"></script>
 
-	<script type="text/javascript">
-		$(document).ready(function() {
-			$('#bootstrap-data-table-export').DataTable();
-		});
-	</script>
 </body>
 </html>
