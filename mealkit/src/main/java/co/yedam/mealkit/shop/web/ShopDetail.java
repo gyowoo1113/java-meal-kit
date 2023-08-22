@@ -27,18 +27,10 @@ public class ShopDetail extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ReviewService dao = new ReviewServiceImpl();
-		ReviewVO vo = new ReviewVO();
-		
-//		vo.setProductId(Integer.valueOf(request.getParameter("productId")));
-		vo.setProductId(1);
-		
-		List<ReviewVO> reviews = new ArrayList<>();
-		reviews = dao.reviewSelectProduct(vo);
-		
-		request.setAttribute("reviews", reviews);
 		int productId = Integer.valueOf(request.getParameter("productId"));		
 		setProduct(request,productId);
+		setProductReviews(request,productId);
+
 		String viewName = "shop/shopdetail";
 		ViewResolve.forward(request, response, viewName);
 	}
@@ -55,6 +47,17 @@ public class ShopDetail extends HttpServlet {
 		productVO = dao.productSelect(productVO);
 		
 		request.setAttribute("product", productVO);
+	}
+	
+	protected void setProductReviews(HttpServletRequest request, int productId) {
+		ReviewService dao = new ReviewServiceImpl();
+		ReviewVO reviewVo = new ReviewVO();
+		reviewVo.setProductId(Integer.valueOf(request.getParameter("productId")));
+		
+		List<ReviewVO> reviews = new ArrayList<>();
+		reviews = dao.reviewSelectProduct(reviewVo);
+		
+		request.setAttribute("reviews", reviews);
 	}
 
 }
