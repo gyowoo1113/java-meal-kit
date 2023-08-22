@@ -11,7 +11,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import co.yedam.mealkit.common.ViewResolve;
+import co.yedam.mealkit.shop.cart.service.CartService;
+import co.yedam.mealkit.shop.cart.serviceImpl.CartServiceImpl;
 
 @WebServlet("/checkout.do")
 public class CheckoutContrller extends HttpServlet {
@@ -30,6 +34,13 @@ public class CheckoutContrller extends HttpServlet {
 			int cartId = Integer.valueOf(request.getParameter(name));
 			ids.add(cartId);
 		}
+		ObjectMapper objectMapper = new ObjectMapper();	
+		CartService dao = new CartServiceImpl();
+		List<Map<String, Object>> carts = new ArrayList<>();
+		carts = dao.cartSelectInList(ids);
+		String data = objectMapper.writeValueAsString(carts);
+		request.setAttribute("carts", data);
+		
 		String viewName = "checkout/checkout";
 		ViewResolve.forward(request, response, viewName);
 	}
