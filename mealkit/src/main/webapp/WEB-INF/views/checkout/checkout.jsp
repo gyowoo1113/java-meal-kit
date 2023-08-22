@@ -58,12 +58,12 @@
                         <div class="col-lg-4 col-md-6">
                             <div class="checkout__order">
                                 <h4>Your Order</h4>
-                                <div class="checkout__order__products">주문 상품 정보<span>가격</span></div>
+                                <div class="checkout__order__products">주문 상품 정보<span>가격/개수</span></div>
                                 <!-- forEach : table로 변경필요 -->
-                                <div class="checkout__order__subtotal">Subtotal <span>$750.99</span></div>
-                                <div class="checkout__order__total">Total <span>$750.99</span></div>
                                 <div id ="#orderlist">
                                 </div>
+                                <div class="checkout__order__subtotal">Subtotal <span></span></div>
+                                <div class="checkout__order__total">Total <span></span></div>
                                 <!-- 결제 API -->
                                 <div class="checkout__input__checkbox">
                                     <label for="payment">
@@ -92,6 +92,7 @@
 <script type="text/javascript">
 	window.onload = function(){
 		createOrderList();
+		createTotal();
 	}
 	
 	function createOrderList(){
@@ -101,8 +102,23 @@
 	}
 	
 	function orderListView(data){
-		var price = data.productPrice * data.cartCount;
-		return `<li>\${data.productName} <span>￦`+ price.toLocaleString()+ `</span></li>`;
+		var price = data.productPrice;
+		return `<li>\${data.productName} <span>￦`+ price.toLocaleString()+ `/` + data.cartCount + `</span></li>`;
+	}
+	
+	function createTotal(){
+		var carts = <%= request.getAttribute("carts") %>;
+		var subTotalTag = document.querySelector('.checkout__order__subtotal span');
+		var totalTag = document.querySelector('.checkout__order__total span');
+		var total = 0;
+		
+		carts.map(data => {
+			total += data.productPrice * data.cartCount;
+		})
+		total = `￦` + total.toLocaleString();
+		
+		subTotalTag.textContent = total;
+		totalTag.textContent = total;
 	}
 </script>
 </html>
