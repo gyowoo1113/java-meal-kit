@@ -34,7 +34,7 @@
                                     <div class="checkout__input">
                                         <p>주문인<span>*</span></p>
                                         <!-- id, name 추가 필요 -->
-                                        <input type="text" readonly="readonly" value="${name}">
+                                        <input type="text" readonly="readonly" value="${name}" disabled>
                                     </div>
                                 </div>
                             </div>
@@ -65,7 +65,7 @@
                                 <div class="col-lg-12">
                                     <div class="checkout__input">
                                         <p>Email<span>*</span></p>
-                                        <input type="text" readonly="readonly" value = "${email }">
+                                        <input type="text" readonly="readonly" value = "${email }" disabled>
                                     </div>
                                 </div>
                             </div>
