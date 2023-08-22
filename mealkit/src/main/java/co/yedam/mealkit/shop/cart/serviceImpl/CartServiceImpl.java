@@ -1,5 +1,6 @@
 package co.yedam.mealkit.shop.cart.serviceImpl;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -22,6 +23,11 @@ public class CartServiceImpl implements CartService {
 	@Override
 	public List<Map<String,Object>> cartSelectList(String memberId) {
 		return map.cartSelectList(memberId);
+	}
+	
+	@Override
+	public List<Map<String,Object>> cartSelectInList(List<Integer> array) {
+		return map.cartSelectInList(array);
 	}
 
 	@Override
