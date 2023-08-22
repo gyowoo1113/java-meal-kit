@@ -31,8 +31,12 @@ public class CheckoutContrller extends HttpServlet {
 		List<Integer> ids = new ArrayList<Integer>();
 		for (int i=0; i<listNum; ++i) {
 			String name = "carts[" + i + "].cartId";
-			int cartId = Integer.valueOf(request.getParameter(name));
-			ids.add(cartId);
+			
+			String cartId = request.getParameter(name);
+			if (cartId == null) {
+				continue;
+			}
+			ids.add(Integer.valueOf(cartId));
 		}
 		ObjectMapper objectMapper = new ObjectMapper();	
 		CartService dao = new CartServiceImpl();

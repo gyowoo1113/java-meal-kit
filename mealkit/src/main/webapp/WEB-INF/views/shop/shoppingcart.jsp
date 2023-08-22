@@ -77,9 +77,6 @@
 			body: payload
 		});
         updateTotalPrice();
-        
-        var list_num = document.getElementById('#list_num');
-        list_num.value = list_num.value-1;
 	}
 	
 	// +- 수량 반영 -----------------------------------------------------------
