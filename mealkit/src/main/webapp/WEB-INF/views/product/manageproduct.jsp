@@ -251,15 +251,16 @@
 						</div>
 					</div>
 				</div>
-				
+
 			</div>
 			<div class="col col-md-12">
-					<div>
-						<button id="button" type="submit"
-							class="btn btn-lg btn-info btn-block">등록</button>
-					</div>
-				</div>
+				<div>
 
+					<button id="button" type="submit" onclick = "location.href= 'insertformproduct.do'"
+						class="btn btn-lg btn-info btn-block">등록</button>
+
+				</div>
+			</div>
 		</div>
 
 
