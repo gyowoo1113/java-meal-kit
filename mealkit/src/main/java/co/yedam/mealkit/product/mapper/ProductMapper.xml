@@ -17,12 +17,13 @@
 	
 	<insert id="productInsert" parameterType="co.yedam.mealkit.product.service.ProductVO">
 		<selectKey resultType="int" keyProperty="productId" order="BEFORE">
-			SELECT CASE WHEN max(product_id) IS NULL THEN 1
-    					ELSE MAX(product_id)+1 END AS productId FROM product
+			SELECT CASE WHEN MAX(product_id) IS NULL THEN 1
+    					ELSE MAX(product_id)+1 END AS PRODUCTID FROM PRODUCT
+    					
+    		
 		</selectKey>
-		
 		INSERT INTO product
-		VALUES (#{productId},#{productName},#{productPrice},#{productComment},#{productDate},#{categoryId},#{productImg},0)
+		VALUES (#{productId},#{productName},#{productPrice},#{productComment},SYSDATE,#{categoryId},#{productImg},#{productStock})
 	</insert>
 	
 	<update id="productUpdate" parameterType="co.yedam.mealkit.product.service.ProductVO">

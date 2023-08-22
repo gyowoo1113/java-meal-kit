@@ -1,6 +1,10 @@
-package co.yedam.mealkit.stock.serviceImple.web;
+package co.yedam.mealkit.stock.web;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,15 +16,14 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
-import co.yedam.mealkit.product.service.ProductService;
-import co.yedam.mealkit.product.service.ProductVO;
-import co.yedam.mealkit.product.serviceImpl.ProductServiceImpl;
+import co.yedam.mealkit.stock.service.StockService;
+import co.yedam.mealkit.stock.serviceImple.StockServiceImple;
 
-@WebServlet("/ajaxproductselect.do")
-public class AjaxProductSelect extends HttpServlet {
+@WebServlet("/ajaxstockselect.do")
+public class AjaxStockSelect extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	public AjaxProductSelect() {
+	public AjaxStockSelect() {
 		super();
 
 	}
@@ -28,26 +31,24 @@ public class AjaxProductSelect extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		ProductService dao = new ProductServiceImpl();
-		ProductVO vo = new ProductVO();
+		StockService dao = new StockServiceImple();
+		List<Map<String, Object>> stocks = new ArrayList<>();
 
-		//vo.setProductId(Integer.valueOf(request.getParameter("productId")));
-		System.out.println(request.getParameter("productId"));
-		vo.setProductId(Integer.parseInt(request.getParameter("productId")));
-		
-		
-		vo = dao.productSelect(vo);
+		String requestBody = request.getReader().lines().collect(Collectors.joining(System.lineSeparator()));
+		 
 
-		
+		stocks = dao.stockSelectList(requestBody);
+	
 		ObjectMapper objectMapper = new ObjectMapper(); 
-
+		
 		objectMapper.registerModule(new JavaTimeModule()); 
 		objectMapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS); 
 
-		String data = objectMapper.writeValueAsString(vo); 
+		String data = objectMapper.writeValueAsString(stocks); 
 
 		response.setContentType("text/html; charset=UTF-8");
 		response.getWriter().append(data);
+	
 		return;
 
 	}
