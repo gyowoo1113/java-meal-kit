@@ -100,10 +100,22 @@
     </section>
     <!-- Checkout Section End -->
 </body>
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script type="text/javascript">
 	window.onload = function(){
 		createOrderList();
 		createTotal();
+		
+	    document.getElementById("zip_kakao").addEventListener("click", function(){ //우편번호칸을 클릭하면
+	        //카카오 지도 발생
+	        new daum.Postcode({
+	            oncomplete: function(data) { //선택시 입력값 세팅
+	            	document.getElementById("zip_kakao").value = data.zonecode;
+	                document.getElementById("address_kakao").value = data.address; // 주소 넣기
+	                document.getElementById("address_detail").focus(); //상세입력 포커싱
+	            }
+	        }).open();
+	    });
 	}
 	
 	function createOrderList(){
