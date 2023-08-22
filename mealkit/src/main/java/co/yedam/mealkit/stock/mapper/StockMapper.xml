@@ -9,9 +9,13 @@
 		WHERE S.PRODUCT_ID = P.PRODUCT_ID
 		<if test = "stockType == 'in'">AND STOCK_TYPE = #{stockType}</if>
 		<if test = "stockType == 'out'">AND STOCK_TYPE = #{stockType}</if>
-		ORDER BY STOCK_DATE ASC
+		ORDER BY STOCK_DATE DESC
 	</select>
 	
-
+	<insert id="insertStock" parameterType="co.yedam.mealkit.stock.service.StockVO">
+	
+		INSERT INTO STOCK
+		VALUES (#{stockType},SYSDATE,#{productId},#{stockCount})
+	</insert>
 
 </mapper>
