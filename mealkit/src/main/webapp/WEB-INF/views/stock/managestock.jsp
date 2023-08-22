@@ -178,13 +178,13 @@
 												<div class="form-check">
 													<div class="radio">
 														<label for="radio1" class="form-check-label "> <input
-															type="radio" id="input" name="input" value="input"
+															type="radio" id="radio1" name="radios" value="in"
 															class="form-check-input">입고
 														</label>
 													</div>
 													<div class="radio">
 														<label for="radio2" class="form-check-label "> <input
-															type="radio" id="output" name="output" value="output"
+															type="radio" id="radio2" name="radios" value="out"
 															class="form-check-input">출고
 														</label>
 													</div>
@@ -195,8 +195,8 @@
 											<div class="col col-md-6">
 												<div class="form-group">
 													<label for="cc-payment" class="control-label mb-1">수량</label>
-													<input id="cc-payment" name="cc-payment" type="text"
-														class="form-control" aria-required="true"
+													<input id="stockCount" name="stockCount" type="number"
+														class="form-control" aria-required="true"  required="required"
 														aria-invalid="false">
 												</div>
 
@@ -230,7 +230,8 @@
 										</div>
 
 										<div>
-											<button id="button" type="submit" class="btn btn-lg btn-info btn-block">슈웅
+											<button id="button" type="button" class="btn btn-lg btn-info btn-block"
+												onclick = "insertStock()">슈웅
 											</button>
 										</div>
 									</form>
@@ -263,7 +264,7 @@
 
 		
 		let dataValue = linkElement.getAttribute("data-value");
-		console.log(dataValue);
+		
 		let url = "ajaxstockselect.do";
 		fetch(url,{ 
 			method:"POST",
@@ -323,6 +324,29 @@
 		document.getElementById("productDate").value = data.productDate;
 		document.getElementById("productStock").value = data.productStock;
 	}
+	
+ 	function insertStock(){
+		
+		let productCode = document.getElementById("productCode").value;
+		let radios = document.getElementById("radio1").value;
+		let stockCount = document.getElementById("stockCount").value;
+		
+		
+		 let formData = new URLSearchParams();
+		 formData.append("productCode", productCode);
+		 formData.append("radios", radios);
+		 formData.append("stockCount", stockCount);
+		
+		console.log(productCode + radios + stockCount );
+		 let url = "ajaxstockinsert.do";
+		fetch(url,{ 
+			method:"POST",
+			headers: {
+				"Content-Type":"application/x-www-form-urlencoded",
+			},
+			body: formData.toString()
+		}) 
+	} 
 
 	
 	
