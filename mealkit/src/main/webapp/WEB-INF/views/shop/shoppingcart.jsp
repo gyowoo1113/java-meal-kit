@@ -77,6 +77,9 @@
 			body: payload
 		});
         updateTotalPrice();
+        
+        var list_num = document.getElementById('#list_num');
+        list_num.value = list_num.value-1;
 	}
 	
 	// +- 수량 반영 -----------------------------------------------------------
@@ -146,7 +149,7 @@
 		document.querySelector('tbody').remove();	
 		
 		const tbody = document.createElement('tbody');
-		tbody.innerHTML = carts.map(data => htmlView(data)).join('');
+		tbody.innerHTML = `<input type="hidden" id="#list_num" name="list_num" value=` + carts.length + `>` + 
 		carts.map((data,index) => htmlView(data,index)).join('');
 		document.querySelector('table').appendChild(tbody);
 	}
