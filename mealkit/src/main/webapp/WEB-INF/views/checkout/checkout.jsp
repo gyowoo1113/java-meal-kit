@@ -43,8 +43,24 @@
                                 <p>주소<span>*</span></p>
                                 <input type="text" placeholder="우편번호" id="zip_kakao" class="checkout__input__add">
                                 <input type="text" placeholder="주소" id="address_kakao" class="checkout__input__add">
-	                            <input type="text" placeholder="상세주소" id ="address_detail" class="checkout__input__add">
+	                            <input type="text" placeholder="상세주소" id ="address_detail">
                             </div>
+                            <div class="row">
+                                    <div class="col-lg-6">
+										<label>
+											<input type="radio" name="containerType" value="insert" checked
+											onclick="switchReadonly(1)"/> 신규 배송지
+										</label>
+                                    </div>
+                                    <div class="col-lg-6">
+										<label>
+											<input type="radio" name="containerType" value="select"
+											onclick="switchReadonly(0)" /> 주소록에서 선택
+										</label>
+                                    </div>
+                                </div>
+                            <div>
+							</div>
                             <div class="row">
                                 <div class="col-lg-12">
                                     <div class="checkout__input">
@@ -131,6 +147,14 @@
 		
 		subTotalTag.textContent = total;
 		totalTag.textContent = total;
+	}
+	
+	//-----------------------------------------
+	function switchReadonly(isWrite){
+		var ids = ['zip_kakao','address_kakao','address_detail'];
+		for (var id of ids){
+			document.getElementById(id).disabled = (isWrite) ? false : true;
+		}
 	}
 </script>
 </html>
