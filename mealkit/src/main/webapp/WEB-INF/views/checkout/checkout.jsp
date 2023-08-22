@@ -60,13 +60,10 @@
                                 <h4>Your Order</h4>
                                 <div class="checkout__order__products">주문 상품 정보<span>가격</span></div>
                                 <!-- forEach : table로 변경필요 -->
-                                <ul>
-                                    <li>Vegetable’s Package <span>$75.99</span></li>
-                                    <li>Fresh Vegetable <span>$151.99</span></li>
-                                    <li>Organic Bananas <span>$53.99</span></li>
-                                </ul>
                                 <div class="checkout__order__subtotal">Subtotal <span>$750.99</span></div>
                                 <div class="checkout__order__total">Total <span>$750.99</span></div>
+                                <div id ="#orderlist">
+                                </div>
                                 <!-- 결제 API -->
                                 <div class="checkout__input__checkbox">
                                     <label for="payment">
@@ -92,4 +89,20 @@
     </section>
     <!-- Checkout Section End -->
 </body>
+<script type="text/javascript">
+	window.onload = function(){
+		createOrderList();
+	}
+	
+	function createOrderList(){
+		var carts = <%= request.getAttribute("carts") %>;
+		var orderlist = document.getElementById('#orderlist');
+		orderlist.innerHTML = `<ul>` + carts.map(data => orderListView(data)).join('');
+	}
+	
+	function orderListView(data){
+		var price = data.productPrice * data.cartCount;
+		return `<li>\${data.productName} <span>￦`+ price.toLocaleString()+ `</span></li>`;
+	}
+</script>
 </html>
