@@ -74,7 +74,7 @@
 					<nav class="header__menu">
 						<ul>
 							<li class="active"><a href="./index.html">Home</a></li>
-							<li><a href="shopmenu.do">메뉴</a></li>
+							<li><a href="shopmenuform.do">메뉴</a></li>
 							<li><a href="#">Pages</a>
 								<ul class="header__menu__dropdown">
 									<li><a href="shopdetail.do">Shop Details</a></li>
