@@ -40,11 +40,6 @@
 	width: auto;
 }
 
-img{
-	width:210px;
-	height:270px;
-}
-
 </style>
 <meta charset="UTF-8">
 <title>Insert title here</title>
@@ -89,32 +84,29 @@ img{
 
 
 			<div class="row featured__filter">
-
 				<c:forEach items="${products}" var="p">
-					<div
-						class="col-lg-3 col-md-4 col-sm-6 mix fresh-meat vegetables joindt">
+					<div class="col-lg-3 col-md-4 col-sm-6 mix fresh-meat vegetables joindt">
 						<div class="featured__item">
-							<img class="featured__item__pic set-bg" src="${p.productImg }">
-							<ul class="featured__item__pic__hover">
-								<li><a href="#"><i class="fa fa-heart"></i></a></li>
-								<li><a href="#"><i class="fa fa-retweet"></i></a></li>
-								<li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-							</ul>
-						</div>
+							<div class="featured__item__pic set-bg">
+								<img src="${p.productImg }" height=270 width=270>
+								<ul class="featured__item__pic__hover">
+									<li><a href="#"><i class="fa fa-heart"></i></a></li>
+									<li><a href="#"><i class="fa fa-retweet"></i></a></li>
+									<li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+								</ul>
+							</div>
 						<div class="featured__item__text">
 							<h6>
-								<a href="#"></a>
+								<a href="#">${p.productName }</a>
 							</h6>
-							<h5>${p.productName }</h5>
+							<h5>￦${p.productPrice}</h5>
 						</div>
-					</div>
+					</div>	
+				</div>
+				</c:forEach>
 			</div>
-			</c:forEach>
-
-		</div>
 		</div>
 	</section>
-
 
 	<!-- Featured Section End -->
 </body>
