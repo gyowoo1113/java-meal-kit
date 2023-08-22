@@ -86,7 +86,7 @@
 			<div class="row featured__filter">
 				<c:forEach items="${products}" var="p">
 					<div class="col-lg-3 col-md-4 col-sm-6 mix fresh-meat vegetables joindt">
-						<div class="featured__item">
+						<div class="featured__item" onclick="moveShopDetail(event)" id="${p.productId}">
 							<div class="featured__item__pic set-bg">
 								<img src="${p.productImg }" height=270 width=270>
 								<ul class="featured__item__pic__hover">
@@ -107,7 +107,20 @@
 			</div>
 		</div>
 	</section>
-
+	<form id="detailform" method="post" action="shopdetail.do">
+			<input type="hidden" id="productId" name="productId" value="">
+	</form>
 	<!-- Featured Section End -->
 </body>
+<script type="text/javascript">
+
+function moveShopDetail(event){
+	var parentTag = event.target;
+    for(;parentTag.className != 'featured__item'; parentTag=parentTag.parentElement);
+
+	var frm = document.getElementById("detailform");
+	frm.querySelector("#productId").value = parentTag.id;
+	document.getElementById("detailform").submit();
+}
+</script>
 </html>
