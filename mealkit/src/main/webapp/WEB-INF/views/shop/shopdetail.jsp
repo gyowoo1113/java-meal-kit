@@ -36,24 +36,15 @@
                 <div class="col-lg-6 col-md-6">
                     <div class="product__details__pic">
                         <div class="product__details__pic__item">
-                            <img class="product__details__pic__item--large"
-                                src="template/ogani/img/product/details/product-details-1.jpg" alt="">
-                                <!--src="${product.productImg}" alt=""> -->
+                            <img class="product__details__pic__item--large" src="${product.productImg }" 
+                            width=540 height=560 alt="">
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-6">
                     <div class="product__details__text">
-                        <h3>좋은 데이</h3>
-                        <div class="product__details__rating">
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star-half-o"></i>
-                            <span>(18 reviews)</span>
-                        </div>
-                        <div class="product__details__price">${product.productPrice}</div>
+                        <h3>${product.productName }</h3>
+                        <div class="product__details__price">￦${product.productPrice}</div>
                         <p>${product.productComment}</p>
                         <div class="product__details__quantity">
                             <div class="quantity">
@@ -110,8 +101,7 @@
 <script type="text/javascript">
 	function insertToCart(){
 		let count = document.getElementById("productCount").value;
-		//let id = ${product.productId};
-		let id = 101;
+		let id = ${product.productId};
 		let payload = "count=" + count + "&id=" + id;
 		let url = "ajaxcartinsert.do";
 		fetch(url,{
