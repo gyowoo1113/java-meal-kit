@@ -147,14 +147,16 @@
 		
 		const tbody = document.createElement('tbody');
 		tbody.innerHTML = carts.map(data => htmlView(data)).join('');
+		carts.map((data,index) => htmlView(data,index)).join('');
 		document.querySelector('table').appendChild(tbody);
 	}
 	
-	function htmlView(data){
+	function htmlView(data,idx){
+		var idx = "carts[" + idx + "].cartId";
 		var list = ``;
-		list += `
-	        <tr id = "\${data.cartId}">
-	        <td class="shoping__cart__item">
+		list += `<input name =` + idx + ` type ="hidden" value="\${data.cartId}">`;
+		list += `<tr id = "\${data.cartId}">`;
+	    list += `<td class="shoping__cart__item">
 	            <img src="\${data.productImg}" width="100" height="100" alt="">
 	            <h5>\${data.productName}</h5>
 	        </td>
