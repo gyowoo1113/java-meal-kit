@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
+<link rel="stylesheet" type="text/css" href="css/popup.css">
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
@@ -49,13 +50,13 @@
                                     <div class="col-lg-6">
 										<label>
 											<input type="radio" name="containerType" value="insert" checked
-											onclick="switchReadonly(1)"/> 신규 배송지
+											id="newAddress"/> 신규 배송지
 										</label>
                                     </div>
                                     <div class="col-lg-6">
 										<label>
 											<input type="radio" name="containerType" value="select"
-											onclick="switchReadonly(0)" /> 주소록에서 선택
+											id="selectAddress" /> 주소록에서 선택
 										</label>
                                     </div>
                                 </div>
@@ -104,7 +105,38 @@
         </div>
     </section>
     <!-- Checkout Section End -->
+    <div id="modalWrap">    	
+    	<div id="modalBody">
+    		<ul>
+    			<li>
+	    			<h6>배송주소록</h6>
+	    		</li>
+	    		<hr>
+	    		<li>
+		   		    <table border="1" width="100%">
+			            <!--  <caption>caption</caption> -->
+			            <thead>
+			                <tr bgcolor="F0F0F0">
+			                    <td>성함</td>
+			                    <td>주소</th>
+			                    <td></th>
+			                </tr>
+			            </thead>
+			            <tbody>
+			                <tr>
+			                    <td>memberName</th>
+			                    <td>Address</td>
+			                    <td>선택아이콘</td>
+			                </tr>
+			            </tbody>
+			        </table>
+		        </li>
+	        </ul>
+    	</div>
+    </div>
 </body>
+
+
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script type="text/javascript">
 	window.onload = function(){
@@ -150,11 +182,27 @@
 	}
 	
 	//-----------------------------------------
+	const modal = document.getElementById('modalWrap');
+	document.getElementById('newAddress').onclick = function() {
+		switchReadonly(true);
+	}
+	
+	document.getElementById('selectAddress').onclick = function() {
+		switchReadonly(false);
+		modal.style.display = "block";
+	}
+	
 	function switchReadonly(isWrite){
 		var ids = ['zip_kakao','address_kakao','address_detail'];
 		for (var id of ids){
 			document.getElementById(id).disabled = (isWrite) ? false : true;
 		}
+	}
+	
+	window.onclick = function(event) {
+	  	if (event.target == modal) {
+    		modal.style.display = "none";
+ 	 	}
 	}
 </script>
 </html>
