@@ -7,4 +7,19 @@
 			WHERE member_id = #{memberId}
 		</if>
 	</select>
+	
+	<select id="addressSelect" resultType="co.yedam.mealkit.address.service.AddressVO">
+		SELECT * FROM address
+		WHERE member_id =#{memberId} AND address_zip = #{addressZip} AND address_detail = #{addressDetail}
+	</select>
+	
+	<insert id="addressInsert" parameterType="co.yedam.mealkit.address.service.AddressVO">
+		<selectKey resultType="int" keyProperty="addressId" order="BEFORE">
+			SELECT NVL(MAX(address_id),0)+1 FROM address
+		</selectKey>
+		
+		INSERT INTO address
+		VALUES (#{addressId},#{addressZip},#{addressDetail},#{memberId},#{addressName})
+	</insert>
+	
 </mapper>
