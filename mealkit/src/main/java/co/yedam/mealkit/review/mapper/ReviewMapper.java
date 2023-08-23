@@ -11,6 +11,7 @@ public interface ReviewMapper {
 	List<Map<String, Object>> reviewSelectList();
 	List<Map<String, Object>> reviewSelectList(@Param("key") String key, @Param("val") String val);
 	List<ReviewVO> reviewSelectProduct(ReviewVO vo);
+	List<ReviewVO> reviewSelectBestReview(ReviewVO vo);
 	ReviewVO reviewSelect(ReviewVO vo);
 	int reviewInsert(ReviewVO vo);
 	int reviewUpdate(ReviewVO vo);

@@ -30,7 +30,6 @@ public class ReviewPost extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		
 		String ViewName="review/reviewpost";
 		ViewResolve.forward(request, response, ViewName);
 	}

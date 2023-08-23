@@ -16,6 +16,11 @@
 		ORDER BY REVIEW_ID
 	</select>
 	
+	<select id="reviewSelectBestReview" resultType="co.yedam.mealkit.review.service.ReviewVO">
+		SELECT * FROM REVIEW WHERE REVIEW_HIT >= 10
+		ORDER BY REVIEW_HIT DESC
+	</select>
+	
 	<insert id="reviewInsert" parameterType="co.yedam.mealkit.review.service.ReviewVO">
 		<selectKey resultType="int" keyProperty="reviewId" order="BEFORE">
 			SELECT CASE WHEN MAX(REVIEW_ID) IS NULL THEN 1
@@ -25,4 +30,9 @@
 		INSERT INTO REVIEW (REVIEW_ID, REVIEW_TITLE, REVIEW_SUBJECT, REVIEW_IMG, MEMBER_ID, PRODUCT_ID)
 		VALUES (#{reviewId}, #{reviewTitle}, #{reviewSubject}, #{reviewImg}, #{memberId}, #{productId})
 	</insert>
+	
+	<update id="reviewUpdateHit" parameterType="int">
+		UPDATE REVIEW SET REVIEW_HIT = REVIEW_HIT + 1
+		WHERE REVIEW_ID = #{reviewId}
+	</update>
 </mapper>
