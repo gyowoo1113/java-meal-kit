@@ -34,28 +34,32 @@
                                 <div class="col-lg-12">
                                     <div class="checkout__input">
                                         <p>주문인<span>*</span></p>
-                                        <!-- id, name 추가 필요 -->
-                                        <input type="text" readonly="readonly" value="${name}" disabled>
+                                        <input type="text" readonly="readonly" value="${name}" 
+                                        name="memberName" id="memberName">
                                     </div>
                                 </div>
                             </div>
                             <!-- 주소 API -->
                             <div class="checkout__input">
                                 <p>주소<span>*</span></p>
-                                <input type="text" placeholder="우편번호" id="zip_kakao" class="checkout__input__add">
-                                <input type="text" placeholder="주소" id="address_kakao" class="checkout__input__add">
-	                            <input type="text" placeholder="상세주소" id ="address_detail">
+                                <input type="text" placeholder="우편번호" id="zip_kakao" name ="zip_kakao" 
+                                class="checkout__input__add" required="required">
+                                <input type="text" placeholder="주소" id="address_kakao" name ="address_kakao"
+                                 class="checkout__input__add" required="required">
+	                            <input type="text" placeholder="상세주소" id ="address_detail" name="address_detail"
+	                            required="required">
+	                            <!-- 주소이름 입력필요 -->
                             </div>
                             <div class="row">
                                     <div class="col-lg-6">
 										<label>
-											<input type="radio" name="containerType" value="insert" checked
+											<input type="radio" name="addressType" value="insert" checked
 											id="new_address"/> 신규 배송지
 										</label>
                                     </div>
                                     <div class="col-lg-6">
 										<label>
-											<input type="radio" name="containerType" value="select"
+											<input type="radio" name="addressType" value="select"
 											id="select_address" /> 주소록에서 선택
 										</label>
                                     </div>
@@ -66,7 +70,8 @@
                                 <div class="col-lg-12">
                                     <div class="checkout__input">
                                         <p>Email<span>*</span></p>
-                                        <input type="text" readonly="readonly" value = "${email }" disabled>
+                                        <input type="text" readonly="readonly" value = "${email }"
+                                        name ="memberEmail" id="memberEmail">
                                     </div>
                                 </div>
                             </div>
@@ -82,20 +87,6 @@
                                 <div class="checkout__order__subtotal">Subtotal <span></span></div>
                                 <div class="checkout__order__total">Total <span></span></div>
                                 <!-- 결제 API -->
-                                <div class="checkout__input__checkbox">
-                                    <label for="payment">
-                                        Check Payment
-                                        <input type="checkbox" id="payment">
-                                        <span class="checkmark"></span>
-                                    </label>
-                                </div>
-                                <div class="checkout__input__checkbox">
-                                    <label for="paypal">
-                                        Paypal
-                                        <input type="checkbox" id="paypal">
-                                        <span class="checkmark"></span>
-                                    </label>
-                                </div>
                                 <button type="submit" class="site-btn">PLACE ORDER</button>
                             </div>
                         </div>
@@ -123,11 +114,6 @@
 			                </tr>
 			            </thead>
 			            <tbody id="address_body">
-			                <tr>
-			                    <td>memberName</th>
-			                    <td>Address</td>
-			                    <td>선택아이콘</td>
-			                </tr>
 			            </tbody>
 			        </table>
 		        </li>
@@ -182,7 +168,7 @@
 		subTotalTag.textContent = total;
 		totalTag.textContent = total;
 	}
-	//--------------------------------------- address
+	//--------------------------------------- 주소 목록 생성
 	
 	function createAddressList(){
 		var addr = <%= request.getAttribute("address") %>;
@@ -198,7 +184,7 @@
 		return list;
 	}
 	
-	//-----------------------------------------
+	//----------------------------------------- 팝업창 띄우기
 	const modal = document.getElementById('modalWrap');
 	document.getElementById('new_address').onclick = function() {
 		switchReadonly(true);
@@ -209,11 +195,12 @@
 		modal.style.display = "block";
 	}
 	
+	// ----------------------------------------------------주소 radio control
 	function switchReadonly(isWrite){
 		var ids = ['zip_kakao','address_kakao','address_detail'];
 		for (var id of ids){
 			document.getElementById(id).value =``;
-			document.getElementById(id).disabled = (isWrite) ? false : true;
+			document.getElementById(id).readOnly = (isWrite) ? false : true;
 		}
 	}
 	
