@@ -49,8 +49,8 @@
 		DELETE FROM cart WHERE cart_id = #{cartId}
 	</delete>
 	
-	<select id="cartSelectInList" resultType="co.yedam.mealkit.common.CamelHashMap">
-		SELECT * FROM cart, product
+	<select id="cartSelectInList" resultType="co.yedam.mealkit.common.CamelHashMap" parameterType="java.util.List">
+		SELECT * FROM cart, product 
 		WHERE cart_id IN
 		<foreach collection="list" item="item" open="(" close=")" separator=",">
 		#{item}
