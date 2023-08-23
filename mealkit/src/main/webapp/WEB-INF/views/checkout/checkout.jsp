@@ -50,13 +50,13 @@
                                     <div class="col-lg-6">
 										<label>
 											<input type="radio" name="containerType" value="insert" checked
-											id="newAddress"/> 신규 배송지
+											id="new_address"/> 신규 배송지
 										</label>
                                     </div>
                                     <div class="col-lg-6">
 										<label>
 											<input type="radio" name="containerType" value="select"
-											id="selectAddress" /> 주소록에서 선택
+											id="select_address" /> 주소록에서 선택
 										</label>
                                     </div>
                                 </div>
@@ -117,12 +117,12 @@
 			            <!--  <caption>caption</caption> -->
 			            <thead>
 			                <tr bgcolor="F0F0F0">
-			                    <td>성함</td>
+			                    <td>우편번호</td>
 			                    <td>주소</th>
 			                    <td></th>
 			                </tr>
 			            </thead>
-			            <tbody>
+			            <tbody id="address_body">
 			                <tr>
 			                    <td>memberName</th>
 			                    <td>Address</td>
