@@ -12,4 +12,13 @@ public class AddressVO {
 	private String addressDetail;
 	private String memberId;
 	private String addressName;
+	
+	public AddressVO() {}
+	public AddressVO(int addressZip, String addressDetail, String memberId, String addressName) {
+		super();
+		this.addressZip = addressZip;
+		this.addressDetail = addressDetail;
+		this.memberId = memberId;
+		this.addressName = addressName;
+	}
 }

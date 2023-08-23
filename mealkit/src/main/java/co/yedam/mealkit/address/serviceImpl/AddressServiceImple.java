@@ -32,21 +32,21 @@ public class AddressServiceImple implements AddressService {
 	}
 
 	@Override
-	public int insertAddress(AddressVO vo) {
+	public int addressInsert(AddressVO vo) {
 		
-		return map.insertAddress(vo);
+		return map.addressInsert(vo);
 	}
 
 	@Override
-	public int updateAddress(AddressVO vo) {
+	public int addressUpdate(AddressVO vo) {
 		
-		return map.updateAddress(vo);
+		return map.addressUpdate(vo);
 	}
 
 	@Override
-	public int deleteAddress(AddressVO vo) {
+	public int addressDelete(AddressVO vo) {
 		
-		return map.deleteAddress(vo);
+		return map.addressDelete(vo);
 	}
 
 	
