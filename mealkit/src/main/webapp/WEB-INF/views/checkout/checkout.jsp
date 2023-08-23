@@ -187,14 +187,14 @@
 	function createAddressList(){
 		var addr = <%= request.getAttribute("address") %>;
 		var tbody = document.getElementById("address_body");
-		tbody.innerHTML = addr.map(data=> addressView(data)).join('');
+		tbody.innerHTML = addr.map((data,index)=> addressView(data,index)).join('');
 	}
 	
-	function addressView(data){
-		var list = `<tr><td>\${data.addressZip}</td>`;
+	function addressView(data,index){
+		var list = `<tr id=`+index+`><td>\${data.addressZip}</td>`;
 		var detail = data.addressDetail.split('/');
 		list += `<td>`+ detail[0] +` ` + detail[1] + `</td>`;
-		list += `<td><td></tr>`;
+		list += `<td><input type="button" value="선택" onclick="inputAddress(event)"/><td></tr>`;
 		return list;
 	}
 	
@@ -214,6 +214,22 @@
 		for (var id of ids){
 			document.getElementById(id).disabled = (isWrite) ? false : true;
 		}
+	}
+	
+	function inputAddress(event){
+		var parentTrTag = event.target;
+        for(;parentTrTag.tagName != 'TR'; parentTrTag=parentTrTag.parentElement);
+        var id = parentTrTag.id;
+        
+        // address 항목 채워넣기
+		var addr = <%= request.getAttribute("address") %>;
+        var detail = addr[id].addressDetail.split("/");
+        document.getElementById('zip_kakao').value = addr[id].addressZip;
+        document.getElementById('address_kakao').value = detail[0];
+        document.getElementById('address_detail').value = detail[1];
+        
+        // modalWrap 닫기
+		modal.style.display = "none";
 	}
 	
 	window.onclick = function(event) {
