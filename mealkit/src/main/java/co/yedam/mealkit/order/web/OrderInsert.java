@@ -22,13 +22,27 @@ public class OrderInsert extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		HttpSession session = request.getSession();
+		String memberId = (String) session.getAttribute("id");
+		int addressId = getAddressId(request,memberId);
+		
 		String viewName = "home/home";
 		ViewResolve.forward(request, response, viewName);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
+	}
+	
+	// checked radio button type에 따라서 addressId 구하기
+	protected int getAddressId(HttpServletRequest request,String memberId) {
+		String addressRadio = request.getParameter("addressType");
+		int addressId = -1;
+		if (addressRadio.equals("insert")) {
+		} else {
+			addressId = Integer.valueOf(request.getParameter("addressId"));
+		}
+		return addressId;
 	}
 	
 }
