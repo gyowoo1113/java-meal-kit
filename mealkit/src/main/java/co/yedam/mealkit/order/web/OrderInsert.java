@@ -12,6 +12,9 @@ import co.yedam.mealkit.address.service.AddressService;
 import co.yedam.mealkit.address.service.AddressVO;
 import co.yedam.mealkit.address.serviceImpl.AddressServiceImple;
 import co.yedam.mealkit.common.ViewResolve;
+import co.yedam.mealkit.ordar.service.OrdarService;
+import co.yedam.mealkit.ordar.service.OrdarVO;
+import co.yedam.mealkit.ordar.serviceImpl.OrdarServiceImpl;
 
 @WebServlet("/orderinsert.do")
 public class OrderInsert extends HttpServlet {
@@ -26,6 +29,7 @@ public class OrderInsert extends HttpServlet {
 		String memberId = (String) session.getAttribute("id");
 		int addressId = getAddressId(request,memberId);
 		
+		orderInsert(memberId,addressId);
 		String viewName = "home/home";
 		ViewResolve.forward(request, response, viewName);
 	}
@@ -61,5 +65,11 @@ public class OrderInsert extends HttpServlet {
 		addressVO = dao.addressSelect(addressVO);
 		
 		return addressVO.getAddressId();
+	}
+	
+	protected void orderInsert(String memberId, int addressId ) {
+		OrdarService dao = new OrdarServiceImpl();
+		OrdarVO ordarVO = new OrdarVO(memberId,addressId);
+		int res = dao.ordarInsert(ordarVO);
 	}
 }
