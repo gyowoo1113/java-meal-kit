@@ -92,6 +92,8 @@
                         </div>
                     </div>
                     <input type="hidden" id="addressId" name="addressId">
+                    <div id="create_cart_id">
+                    </div>
                 </form>
             </div>
         </div>
@@ -144,11 +146,16 @@
 	    });
 	    
 	}
-	
+	// --------------------------------------------------------------- 주문 상품 목록 List 출력
 	function createOrderList(){
 		var carts = <%= request.getAttribute("carts") %>;
 		var orderlist = document.getElementById('#orderlist');
 		orderlist.innerHTML = `<ul>` + carts.map(data => orderListView(data)).join('');
+		
+		var ids = document.getElementById("create_cart_id");
+		// orderinsert 시 사용할 cartId 목록을 hidden input tag로 생성
+		ids.innerHTML = `<input type="hidden" id="cart_num" name="cart_num" value=` + carts.length +`>`+
+			carts.map((data,index) =>cartIdView(data,index)).join('');
 	}
 	
 	function orderListView(data){
@@ -170,6 +177,14 @@
 		subTotalTag.textContent = total;
 		totalTag.textContent = total;
 	}
+	
+	function cartIdView(data,index){
+		var list = ``;
+		var idx = "cart[" + index + "]";
+		list += `<input type="hidden" name="` +  idx + `" value="` + data.cartId + `">`;
+		return list;
+	}
+	
 	//--------------------------------------- 주소 목록 생성
 	
 	function createAddressList(){
