@@ -27,19 +27,17 @@
 	</insert>
 	
 	<update id="productUpdate" parameterType="co.yedam.mealkit.product.service.ProductVO">
-		UPDATE notice
+		UPDATE PRODUCT
 		<set>
-			<if test="productName != null">product_name = #{productName},</if>
-			<if test="productPrice != null AND !productPrice.equals('')">product_price = #{productPrice},</if>
-			<if test="productComment != null">product_comment = #{productComment},</if>
-			<if test="productDate != null">product_date = #{productDate},</if>
-			<if test="categoryId != null AND !categoryId.equals('')">category_id = #{categoryId}</if>
-			<if test="productImg != null">product_img = #{productImg}</if>
+			<if test="productName != null">PRODUCT_NAME = #{productName},</if>
+			<if test="productPrice != null ">PRODUCT_PRICE = #{productPrice},</if>
+			<if test="productComment != null">PRODUCT_COMMENT = #{productComment},</if>
+			<if test="productImg != null">PRODUCT_IMG = #{productImg}</if>
 		</set>
-		WHERE product_id = #{productId}
+		WHERE PRODUCT_ID = #{productId}
 	</update>
 	
 	<delete id="productDelete" parameterType="co.yedam.mealkit.product.service.ProductVO">
-		DELETE FROM notice WHERE product_id = #{productId}
+		DELETE FROM PRODUCT WHERE PRODUCT_ID = #{productId}
 	</delete>
 </mapper>
