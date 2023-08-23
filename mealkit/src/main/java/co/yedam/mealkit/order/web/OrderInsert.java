@@ -1,6 +1,9 @@
 package co.yedam.mealkit.order.web;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -30,6 +33,8 @@ public class OrderInsert extends HttpServlet {
 		int addressId = getAddressId(request,memberId);
 		
 		orderInsert(memberId,addressId);
+		orderDetailInsert(request);
+		
 		String viewName = "home/home";
 		ViewResolve.forward(request, response, viewName);
 	}
@@ -71,5 +76,18 @@ public class OrderInsert extends HttpServlet {
 		OrdarService dao = new OrdarServiceImpl();
 		OrdarVO ordarVO = new OrdarVO(memberId,addressId);
 		int res = dao.ordarInsert(ordarVO);
+	}
+	
+	protected void orderDetailInsert(HttpServletRequest request) {
+		OrdarService dao = new OrdarServiceImpl();
+		int orderId = dao.ordarIdMax();
+		
+		List<Integer> ids = new ArrayList<Integer>();
+		int num = Integer.valueOf(request.getParameter("cart_num"));
+		for (int i=0; i<num; ++i) {
+			String name = "cart[" + i +"]";
+			String id = request.getParameter(name);
+			ids.add(Integer.valueOf(id));
+		}
 	}
 }
