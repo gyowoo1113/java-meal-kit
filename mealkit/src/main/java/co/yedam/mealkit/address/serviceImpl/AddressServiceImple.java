@@ -20,6 +20,12 @@ public class AddressServiceImple implements AddressService {
 	}
 
 	@Override
+	public List<AddressVO> addressSelectList(String memberId) {
+		
+		return map.addressSelectList(memberId);
+	}
+	
+	@Override
 	public AddressVO addressSelect(AddressVO vo) {
 		
 		return map.addressSelect(vo);
