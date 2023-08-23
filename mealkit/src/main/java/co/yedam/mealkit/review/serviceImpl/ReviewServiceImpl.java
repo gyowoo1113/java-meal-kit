@@ -31,7 +31,7 @@ public class ReviewServiceImpl implements ReviewService {
 	
 	@Override
 	public List<ReviewVO> reviewSelectBestReview(ReviewVO vo) {
-		map.reviewUpdateHit(vo.getReviewId());
+		map.reviewUpdateHit(vo);
 		return map.reviewSelectBestReview(vo);
 	}
 	
@@ -56,8 +56,8 @@ public class ReviewServiceImpl implements ReviewService {
 	}
 
 	@Override
-	public void reviewUpdateHit(int id) {
-		map.reviewUpdateHit(id);
+	public int reviewUpdateHit(ReviewVO vo) {
+		return map.reviewUpdateHit(vo);
 	}
 
 	

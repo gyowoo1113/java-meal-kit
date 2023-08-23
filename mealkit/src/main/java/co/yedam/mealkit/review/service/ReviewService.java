@@ -15,5 +15,5 @@ public interface ReviewService {
 	int reviewInsert(ReviewVO vo);
 	int reviewUpdate(ReviewVO vo);
 	int reviewDelete(ReviewVO vo);
-	void reviewUpdateHit(int id);
+	int reviewUpdateHit(ReviewVO vo);
 }

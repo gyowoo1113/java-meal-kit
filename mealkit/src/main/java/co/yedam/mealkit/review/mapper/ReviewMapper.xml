@@ -9,7 +9,10 @@
 		<if test="key == 'subject'">WHERE REVIEW_SUBJECT LIKE '%' || #{val} || '%'</if>
 		ORDER BY REVIEW_ID
 	</select>
-		
+	
+	<select id="reviewSelect" resultType="co.yedam.mealkit.review.service.ReviewVO">
+		SELECT * FROM REVIEW WHERE REVIEW_ID = ${reviewId} 
+	</select>
 		
 	<select id="reviewSelectProduct" resultType="co.yedam.mealkit.review.service.ReviewVO">
 		SELECT * FROM REVIEW WHERE PRODUCT_ID = ${productId}
@@ -31,7 +34,7 @@
 		VALUES (#{reviewId}, #{reviewTitle}, #{reviewSubject}, #{reviewImg}, #{memberId}, #{productId})
 	</insert>
 	
-	<update id="reviewUpdateHit" parameterType="int">
+	<update id="reviewUpdateHit" parameterType="co.yedam.mealkit.review.service.ReviewVO">
 		UPDATE REVIEW SET REVIEW_HIT = REVIEW_HIT + 1
 		WHERE REVIEW_ID = #{reviewId}
 	</update>
