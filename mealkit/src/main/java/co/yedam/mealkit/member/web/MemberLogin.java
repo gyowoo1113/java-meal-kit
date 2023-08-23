@@ -1,6 +1,7 @@
 package co.yedam.mealkit.member.web;
 
 import java.io.IOException;
+import java.net.URLEncoder;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -41,18 +42,24 @@ public class MemberLogin extends HttpServlet {
 		
 		vo.setMemberId(request.getParameter("memberId"));
 		vo.setMemberPassword(request.getParameter("memberPassword"));
-		System.out.println(vo.getMemberId() +  vo.getMemberPassword());
+		
+		String message = null;
 		
 		vo = dao.memberSelect(vo);
 		
-		System.out.println(vo);
 		if (vo != null) {
 			session.setAttribute("id", vo.getMemberId()); // 세션에 값을 넣어줌
 			session.setAttribute("name", vo.getMemberName());
 			session.setAttribute("email", vo.getMemberEmail());
+			message = vo.getMemberName() + "님 환영합니다";
+		} else {
+			message = "아이디 또는 비밀번호가 맞지 않습니다.";
+			
 		}
 		
-		String viewName = "home/home";
+		request.setAttribute("message", message);
+			
+		String viewName = "member/membermessage";
 		ViewResolve.forward(request, response, viewName);
 		
 	}
