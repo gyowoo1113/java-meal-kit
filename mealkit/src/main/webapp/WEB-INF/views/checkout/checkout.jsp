@@ -142,6 +142,7 @@
 	window.onload = function(){
 		createOrderList();
 		createTotal();
+	    createAddressList();
 		
 	    document.getElementById("zip_kakao").addEventListener("click", function(){ //우편번호칸을 클릭하면
 	        //카카오 지도 발생
@@ -153,6 +154,7 @@
 	            }
 	        }).open();
 	    });
+	    
 	}
 	
 	function createOrderList(){
@@ -180,14 +182,29 @@
 		subTotalTag.textContent = total;
 		totalTag.textContent = total;
 	}
+	//--------------------------------------- address
+	
+	function createAddressList(){
+		var addr = <%= request.getAttribute("address") %>;
+		var tbody = document.getElementById("address_body");
+		tbody.innerHTML = addr.map(data=> addressView(data)).join('');
+	}
+	
+	function addressView(data){
+		var list = `<tr><td>\${data.addressZip}</td>`;
+		var detail = data.addressDetail.split('/');
+		list += `<td>`+ detail[0] +` ` + detail[1] + `</td>`;
+		list += `<td><td></tr>`;
+		return list;
+	}
 	
 	//-----------------------------------------
 	const modal = document.getElementById('modalWrap');
-	document.getElementById('newAddress').onclick = function() {
+	document.getElementById('new_address').onclick = function() {
 		switchReadonly(true);
 	}
 	
-	document.getElementById('selectAddress').onclick = function() {
+	document.getElementById('select_address').onclick = function() {
 		switchReadonly(false);
 		modal.style.display = "block";
 	}

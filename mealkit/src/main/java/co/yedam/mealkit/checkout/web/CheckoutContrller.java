@@ -15,6 +15,9 @@ import javax.servlet.http.HttpSession;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import co.yedam.mealkit.address.service.AddressService;
+import co.yedam.mealkit.address.service.AddressVO;
+import co.yedam.mealkit.address.serviceImpl.AddressServiceImple;
 import co.yedam.mealkit.common.ViewResolve;
 import co.yedam.mealkit.shop.cart.service.CartService;
 import co.yedam.mealkit.shop.cart.serviceImpl.CartServiceImpl;
@@ -29,6 +32,7 @@ public class CheckoutContrller extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		setCartList(request);
+		setAddressList(request);
 		String viewName = "checkout/checkout";
 		ViewResolve.forward(request, response, viewName);
 	}
@@ -58,4 +62,16 @@ public class CheckoutContrller extends HttpServlet {
 		request.setAttribute("carts", data);
 	}
 	
+	protected void setAddressList(HttpServletRequest request) throws JsonProcessingException {
+        HttpSession session = request.getSession();
+        String memberId = (String) session.getAttribute("id");
+        
+		ObjectMapper objectMapper = new ObjectMapper();	
+        AddressService dao = new AddressServiceImple();
+        
+        List<AddressVO> address = new ArrayList<AddressVO>();
+        address = dao.addressSelectList(memberId);
+		String data = objectMapper.writeValueAsString(address);
+		request.setAttribute("address", data);
+	}
 }
