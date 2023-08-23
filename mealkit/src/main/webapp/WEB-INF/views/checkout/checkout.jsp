@@ -27,7 +27,7 @@
         <div class="container">
             <div class="checkout__form">
                 <h4>배송정보 입력</h4>
-                <form action="#">
+                <form action="orderinsert.do" method="post">
                     <div class="row">
                         <div class="col-lg-8 col-md-6">
                             <div class="row">
@@ -91,6 +91,7 @@
                             </div>
                         </div>
                     </div>
+                    <input type="hidden" id="addressId" name="addressId">
                 </form>
             </div>
         </div>
@@ -218,6 +219,9 @@
         
         // modalWrap 닫기
 		modal.style.display = "none";
+        
+        // 해당 주소를 input tag value로 설정
+        document.getElementById('addressId').value = addr[id].addressId;
 	}
 	
 	window.onclick = function(event) {
