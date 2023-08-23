@@ -188,7 +188,6 @@
 															class="form-check-input">출고
 														</label>
 													</div>
-
 												</div>
 											</div>
 
@@ -288,6 +287,8 @@
 	}
 	
 	function htmlView(data){
+		
+		console.log(data);
 		return `
 		
 		<tr>
@@ -328,24 +329,24 @@
  	function insertStock(){
 		
 		let productCode = document.getElementById("productCode").value;
-		let radios = document.getElementById("radio1").value;
+		let radios = document.getElementById("radio1").value;  
 		let stockCount = document.getElementById("stockCount").value;
 		
-		
-		 let formData = new URLSearchParams();
-		 formData.append("productCode", productCode);
-		 formData.append("radios", radios);
-		 formData.append("stockCount", stockCount);
+		let formData = new URLSearchParams();
+		formData.append("productCode", productCode);
+		formData.append("radios", radios);
+		formData.append("stockCount", stockCount);
 		
 		console.log(productCode + radios + stockCount );
-		 let url = "ajaxstockinsert.do";
+		let url = "ajaxstockinsert.do";
 		fetch(url,{ 
 			method:"POST",
 			headers: {
 				"Content-Type":"application/x-www-form-urlencoded",
 			},
 			body: formData.toString()
-		}) 
+		}).then(response => response.json())
+		  .then(json => htmpConevert(json));
 	} 
 
 	

@@ -66,20 +66,11 @@
 					<div class="col-lg-6 col-md-6">
 						<div class="product__details__pic">
 							<div class="product__details__pic__item">
-								<!--  <img class="product__details__pic__item--large"
-								src="attech/product/${product.productImg }" width=540 height=560
-								alt="">  
-							<div class="col-12 col-md-9">
-								<input type="file" id="file-input" name="file-input"
-									class="form-control-file">
-							</div>
-		-->
-
-								<input type="file" id="file" name="file" style="display: none;">
-								<img id="productImg" src="attech/product/${product.productImg }"
-									width=540 height=560 alt="이미지" onclick="changeImg()">
-
-
+								<label> <img id="productImg"
+									src="attech/product/${product.productImg }" width=540
+									height=560 alt="이미지" onclick="changeImg()">
+								</label> <input type="file" id="file" name="file"
+									onchange="readURL(this)" style="display: none;">
 
 							</div>
 						</div>
@@ -98,8 +89,7 @@
 							<textarea name="productComment" id="productComment" rows="9"
 								class="form-control">${product.productComment}</textarea>
 							<hr>
-							<!--  <a href="#" class="primary-btn" onclick="">수정</a>
-							<a href="#" class="primary-btn" onclick="">삭제</a> -->
+
 
 							<button type="submit" class="primary-btn">수정</button>
 							<button type="button" class="primary-btn" onclick="product()">삭제</button>
@@ -132,17 +122,26 @@
 	<script src="template/ogani/js/main.js"></script>
 </body>
 <script type="text/javascript">
+ 
+	function readURL(input) {// 이미지 미리보기!!
+	  if (input.files && input.files[0]) {
+	    var reader = new FileReader();
+	    reader.onload = function(e) {
+	      document.getElementById('productImg').src = e.target.result;
+	    };
+	    reader.readAsDataURL(input.files[0]);
+	  } else {
+	    document.getElementById('productImg').src = "";
+	  }
+	}
 
 	function changeImg(){
 		document.getElementById('file').click();
-		selectImg();
-	}
-	function selectImg(){
-	
+		
 		let fileInput = document.getElementById('file');
-
-
-			let selectedFile = fileInput.files[0];
+	
+		let selectedFile = fileInput.files[0];
+		console.log(fileInput);
 			let formData = new FormData();
 		    formData.append('file', selectedFile);
 		
@@ -154,8 +153,9 @@
 			    .then(response => response.text())
 			    .then(text => 
 			    {
-		          	document.getElementById('productImg').src = text;
-		            imgElement.src = text; 
+		            const imgElement = document.getElementById('productImg');
+		            imgElement.src = text.trim(); 
+		            console.log( imgElement);
 		        });
 		
 		
