@@ -41,11 +41,11 @@ public class MemberLogin extends HttpServlet {
 		
 		vo.setMemberId(request.getParameter("memberId"));
 		vo.setMemberPassword(request.getParameter("memberPassword"));
-		System.out.println(vo.getMemberId() +  vo.getMemberPassword());
+		//System.out.println(vo.getMemberId() +  vo.getMemberPassword());
 		
 		vo = dao.memberSelect(vo);
 		
-		System.out.println(vo);
+		//System.out.println(vo);
 		if (vo != null) {
 			session.setAttribute("id", vo.getMemberId()); // 세션에 값을 넣어줌
 			session.setAttribute("name", vo.getMemberName());

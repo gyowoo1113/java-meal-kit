@@ -55,8 +55,6 @@ public class ReviewInsert extends HttpServlet {
 		}
 		
 		vo.setMemberId(multi.getParameter("memberId"));
-		System.out.println(multi.getParameter("memberId"));
-		
 		vo.setProductId(1);
 		
 		vo.setReviewTitle(multi.getParameter("reviewTitle"));	
