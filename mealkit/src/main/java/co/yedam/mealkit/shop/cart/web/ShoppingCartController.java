@@ -33,9 +33,12 @@ public class ShoppingCartController extends HttpServlet {
 		List<Map<String, Object>> carts = new ArrayList<>();
 		HttpSession session = request.getSession();
         String memberId = (String) session.getAttribute("id");
-		
+        
+        if (memberId != null) {
+    		carts = dao.cartSelectList(memberId);
+        }
+        
 		ObjectMapper objectMapper = new ObjectMapper();	
-		carts = dao.cartSelectList(memberId);
 		String data = objectMapper.writeValueAsString(carts);
 		request.setAttribute("carts", data);
 		

@@ -1,4 +1,4 @@
-package co.yedam.mealkit.shop.web;
+package co.yedam.mealkit.product.web;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -18,20 +18,24 @@ import co.yedam.mealkit.review.service.ReviewService;
 import co.yedam.mealkit.review.service.ReviewVO;
 import co.yedam.mealkit.review.serviceImpl.ReviewServiceImpl;
 
-@WebServlet("/shopdetail.do")
-public class ShopDetail extends HttpServlet {
+
+@WebServlet("/updateformproduct.do")
+public class UpdateFormProduct extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    public ShopDetail() {
+   
+    public UpdateFormProduct() {
         super();
+       
     }
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int productId = Integer.valueOf(request.getParameter("productId"));		
 		setProduct(request,productId);
 		setProductReviews(request,productId);
 
-		String viewName = "shop/shopdetail";
+		String viewName = "admin/product/updateformproduct";
 		ViewResolve.forward(request, response, viewName);
 	}
 

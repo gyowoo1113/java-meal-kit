@@ -36,13 +36,19 @@
 			<version>1.1.1</version>
 		</dependency>
 
+		<dependency>
+			<groupId>servlets.com</groupId>
+			<artifactId>cos</artifactId>
+			<version>05Nov2002</version>
+		</dependency>
+
 
 		<dependency>
 			<groupId>javax.mail</groupId>
 			<artifactId>mail</artifactId>
 			<version>1.4.7</version>
 		</dependency>
-		
+
 		<!-- https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api -->
 
 		<dependency>

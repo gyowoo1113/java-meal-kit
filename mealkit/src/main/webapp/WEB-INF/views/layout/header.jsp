@@ -74,7 +74,7 @@
 					<nav class="header__menu">
 						<ul>
 							<li class="active"><a href="./index.html">Home</a></li>
-							<li><a href="shopmenu.do">메뉴</a></li>
+							<li><a href="shopmenuform.do">메뉴</a></li>
 							<li><a href="#">Pages</a>
 								<ul class="header__menu__dropdown">
 									<li><a href="shopdetail.do">Shop Details</a></li>
@@ -91,7 +91,7 @@
 				<div class="col-lg-3">
 					<div class="header__cart">
 						<ul>
-							<li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>
+							<li><a href="reviewpost.do"><i class="fa fa-heart"></i> <span>1</span></a></li>
 							<li><a href="#"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
 						</ul>
 						<div class="header__cart__price">

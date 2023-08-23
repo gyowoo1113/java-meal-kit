@@ -39,8 +39,6 @@ public class ShopMenuform extends HttpServlet {
 		products = ps.productSelectList();
 
 		request.setAttribute("products", products);
-		System.out.println(products);
-		
 		String viewName = "shop/shopmenuform";
 		ViewResolve.forward(request, response, viewName);
 	}

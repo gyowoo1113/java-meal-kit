@@ -40,11 +40,6 @@
 	width: auto;
 }
 
-img{
-	width:210px;
-	height:270px;
-}
-
 </style>
 <meta charset="UTF-8">
 <title>Insert title here</title>
@@ -89,33 +84,43 @@ img{
 
 
 			<div class="row featured__filter">
-
 				<c:forEach items="${products}" var="p">
-					<div
-						class="col-lg-3 col-md-4 col-sm-6 mix fresh-meat vegetables joindt">
-						<div class="featured__item">
-							<img class="featured__item__pic set-bg" src="${p.productImg }">
-							<ul class="featured__item__pic__hover">
-								<li><a href="#"><i class="fa fa-heart"></i></a></li>
-								<li><a href="#"><i class="fa fa-retweet"></i></a></li>
-								<li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-							</ul>
-						</div>
+					<div class="col-lg-3 col-md-4 col-sm-6 mix fresh-meat vegetables joindt">
+						<div class="featured__item" onclick="moveShopDetail(event)" id="${p.productId}">
+							<div class="featured__item__pic set-bg">
+								<img src="${p.productImg }" height=270 width=270>
+								<ul class="featured__item__pic__hover">
+									<li><a href="#"><i class="fa fa-heart"></i></a></li>
+									<li><a href="#"><i class="fa fa-retweet"></i></a></li>
+									<li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+								</ul>
+							</div>
 						<div class="featured__item__text">
 							<h6>
-								<a href="#"></a>
+								<a href="#">${p.productName }</a>
 							</h6>
-							<h5>${p.productName }</h5>
+							<h5>￦${p.productPrice}</h5>
 						</div>
-					</div>
+					</div>	
+				</div>
+				</c:forEach>
 			</div>
-			</c:forEach>
-
-		</div>
 		</div>
 	</section>
-
-
+	<form id="detailform" method="post" action="shopdetail.do">
+			<input type="hidden" id="productId" name="productId" value="">
+	</form>
 	<!-- Featured Section End -->
 </body>
+<script type="text/javascript">
+
+function moveShopDetail(event){
+	var parentTag = event.target;
+    for(;parentTag.className != 'featured__item'; parentTag=parentTag.parentElement);
+
+	var frm = document.getElementById("detailform");
+	frm.querySelector("#productId").value = parentTag.id;
+	document.getElementById("detailform").submit();
+}
+</script>
 </html>

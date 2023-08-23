@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <!DOCTYPE html>
 <html>
@@ -43,6 +43,13 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
+<meta charset="UTF-8">
+<meta name="description" content="Ogani Template">
+<meta name="keywords" content="Ogani, unica, creative, html">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Ogani | Template</title>
+
 <!-- Google Font -->
 <link
 	href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap"
@@ -69,11 +76,11 @@
 <!-- sweetalert2 -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 </head>
+
 <body>
 
 
 
-	<!-- Featured Section Begin -->
 	<section class="featured spad">
 		<div class="container">
 			<div class="row">
@@ -88,11 +95,17 @@
 						<ul>
 							<!-- data-filter .클래스 따라가서 출력함!!!!!! 컨+f로 찾아서 넣기 -->
 							<li class="active" data-filter="*">전메뉴</li>
-							<li data-filter=".oranges">육류</li>
-							<li data-filter=".fresh-meat">2</li>
+							<li data-filter=".oranges">과일류</li>
+							<li data-filter=".fresh-meat">육류</li>
 							<li data-filter=".vegetables">3</li>
 							<li data-filter=".fastfood">4</li>
 						</ul>
+						<select style="height: 50px" name="selecto" id="dline">
+							<option value="1">조회순</option>
+							<option value="2">신상품순</option>
+							<option value="3">낮은가격순</option>
+							<option value="4">높은가격순</option>
+						</select> <br> <br> <br> <br>
 
 						<hr>
 					</div>
@@ -101,169 +114,43 @@
 
 
 			<div class="row featured__filter">
-				<div
-					class="col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat review hit">
-					<div class="featured__item">
-						<div class="featured__item__pic set-bg"
-							data-setbg="template/ogani/img/featured/feature-1.jpg">
-							<ul class="featured__item__pic__hover">
-								<li><a href="#"><i class="fa fa-heart"></i></a></li>
-								<li><a href="#"><i class="fa fa-retweet"></i></a></li>
-								<li><a href="showdetail.do"><i
-										class="fa fa-shopping-cart"></i></a></li>
-							</ul>
-						</div>
-						<div class="featured__item__text">
-							<h6>
-								<a href="#">Crab Pool Security</a>
-							</h6>
-							<h5>$30.00</h5>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-3 col-md-4 col-sm-6 mix vegetables fastfood hit">
-					<div class="featured__item">
-						<div class="featured__item__pic set-bg"
-							data-setbg="template/ogani/img/featured/feature-2.jpg">
-							<ul class="featured__item__pic__hover">
-								<li><a href="#"><i class="fa fa-heart"></i></a></li>
-								<li><a href="#"><i class="fa fa-retweet"></i></a></li>
-								<li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-							</ul>
-						</div>
-						<div class="featured__item__text">
-							<h6>
-								<a href="#">Crab Pool Security</a>
-							</h6>
-							<h5>$30.00</h5>
+				<c:forEach items="${products}" var="p">
+					<div
+						class="col-lg-3 col-md-4 col-sm-6 mix fresh-meat vegetables joindt">
+						<div class="featured__item" onclick="moveShopDetail(event)"
+							id="${p.productId}">
+							<div class="featured__item__pic set-bg">
+								<img src="attech/product/${p.productImg }" height=270 width=270>
+								<ul class="featured__item__pic__hover">
+									<li><a href="#"><i class="fa fa-heart"></i></a></li>
+									<li><a href="#"><i class="fa fa-retweet"></i></a></li>
+									<li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+								</ul>
+							</div>
+							<div class="featured__item__text">
+								<h6>
+									<a href="#">${p.productName }</a>
+								</h6>
+								<h5>￦${p.productPrice}</h5>
+							</div>
 						</div>
 					</div>
-				</div>
-				<div class="col-lg-3 col-md-4 col-sm-6 mix vegetables fresh-meat">
-					<div class="featured__item">
-						<div class="featured__item__pic set-bg"
-							data-setbg="template/ogani/img/featured/feature-3.jpg">
-							<ul class="featured__item__pic__hover">
-								<li><a href="#"><i class="fa fa-heart"></i></a></li>
-								<li><a href="#"><i class="fa fa-retweet"></i></a></li>
-								<li><a href="shopdetail.do"><i
-										class="fa fa-shopping-cart"></i></a></li>
-							</ul>
-						</div>
-						<div class="featured__item__text">
-							<h6>
-								<a href="#">과일</a>
-							</h6>
-							<h5>5,000원</h5>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-3 col-md-4 col-sm-6 mix fastfood oranges hit">
-					<div class="featured__item">
-						<div class="featured__item__pic set-bg"
-							data-setbg="template/ogani/img/featured/feature-4.jpg">
-							<ul class="featured__item__pic__hover">
-								<li><a href="#"><i class="fa fa-heart"></i></a></li>
-								<li><a href="#"><i class="fa fa-retweet"></i></a></li>
-								<li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-							</ul>
-						</div>
-						<div class="featured__item__text">
-							<h6>
-								<a href="#">Crab Pool Security</a>
-							</h6>
-							<h5>$30.00</h5>
-						</div>
-					</div>
-				</div>
-				<div
-					class="col-lg-3 col-md-4 col-sm-6 mix fresh-meat vegetables review">
-					<div class="featured__item">
-						<div class="featured__item__pic set-bg"
-							data-setbg="template/ogani/img/featured/feature-5.jpg">
-							<ul class="featured__item__pic__hover">
-								<li><a href="#"><i class="fa fa-heart"></i></a></li>
-								<li><a href="#"><i class="fa fa-retweet"></i></a></li>
-								<li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-							</ul>
-						</div>
-						<div class="featured__item__text">
-							<h6>
-								<a href="#">Crab Pool Security</a>
-							</h6>
-							<h5>$30.00</h5>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-3 col-md-4 col-sm-6 mix oranges fastfood joindt">
-					<div class="featured__item">
-						<div class="featured__item__pic set-bg"
-							data-setbg="template/ogani/img/featured/feature-6.jpg">
-							<ul class="featured__item__pic__hover">
-								<li><a href="#"><i class="fa fa-heart"></i></a></li>
-								<li><a href="#"><i class="fa fa-retweet"></i></a></li>
-								<li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-							</ul>
-						</div>
-						<div class="featured__item__text">
-							<h6>
-								<a href="#">Crab Pool Security</a>
-							</h6>
-							<h5>$30.00</h5>
-						</div>
-					</div>
-				</div>
-				<div
-					class="col-lg-3 col-md-4 col-sm-6 mix fresh-meat vegetables joindt">
-					<div class="featured__item">
-						<div class="featured__item__pic set-bg"
-							data-setbg="template/ogani/img/featured/feature-7.jpg">
-							<ul class="featured__item__pic__hover">
-								<li><a href="#"><i class="fa fa-heart"></i></a></li>
-								<li><a href="#"><i class="fa fa-retweet"></i></a></li>
-								<li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-							</ul>
-						</div>
-						<div class="featured__item__text">
-							<h6>
-								<a href="#">Crab Pool Security</a>
-							</h6>
-							<h5>$30.00</h5>
-						</div>
-					</div>
-				</div>
-				<div
-					class="col-lg-3 col-md-4 col-sm-6 mix fastfood vegetables joindt">
-					<div class="featured__item">
-						<div class="featured__item__pic set-bg"
-							data-setbg="template/ogani/img/featured/feature-8.jpg">
-							<ul class="featured__item__pic__hover">
-								<li><a href="#"><i class="fa fa-heart"></i></a></li>
-								<li><a href="#"><i class="fa fa-retweet"></i></a></li>
-								<li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-							</ul>
-						</div>
-						<div class="featured__item__text">
-							<h6>
-								<a href="#">Crab Pool Security</a>
-							</h6>
-							<h5>$30.00</h5>
-						</div>
-					</div>
-				</div>
-				
+				</c:forEach>
 			</div>
 			<div class="col col-md-12">
-					<div>
-						<button id="button" type="submit"
-							class="btn btn-lg btn-info btn-block">등록</button>
-					</div>
+				<div>
+
+					<button id="button" type="submit"
+						onclick="location.href= 'insertformproduct.do'"
+						class="btn btn-lg btn-info btn-block">등록</button>
+
 				</div>
-
+			</div>
 		</div>
-
-
 	</section>
+	<form id="detailform" method="post" action="updateformproduct.do">
+		<input type="hidden" id="productId" name="productId" value="">
+	</form>
 	<!-- Featured Section End -->
 
 	<script src="template/ogani/js/jquery-3.3.1.min.js"></script>
@@ -276,4 +163,14 @@
 	<script src="template/ogani/js/main.js"></script>
 
 </body>
+<script type="text/javascript">
+	function moveShopDetail(event) {
+		var parentTag = event.target;
+		for (; parentTag.className != 'featured__item'; parentTag = parentTag.parentElement);
+
+		var frm = document.getElementById("detailform");
+		frm.querySelector("#productId").value = parentTag.id;
+		document.getElementById("detailform").submit();
+	}
+</script>
 </html>
