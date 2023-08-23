@@ -39,10 +39,27 @@ public class OrderInsert extends HttpServlet {
 		String addressRadio = request.getParameter("addressType");
 		int addressId = -1;
 		if (addressRadio.equals("insert")) {
+			addressId = insertAndGetId(request,memberId);
 		} else {
 			addressId = Integer.valueOf(request.getParameter("addressId"));
 		}
 		return addressId;
 	}
 	
+	//  Address 테이블에 Insert 후 AddressId 값 받아옴
+	protected int insertAndGetId(HttpServletRequest request, String memberId) {
+		AddressService dao = new AddressServiceImple();
+		
+		String zip = request.getParameter("zip_kakao");
+		String addr = request.getParameter("address_kakao");
+		String addrDetail = request.getParameter("address_detail");
+		String address = addr +"/ "+ addrDetail;
+		
+		AddressVO addressVO = new AddressVO(Integer.valueOf(zip),address,memberId,"집");
+		// 입력 실패 처리 추가필요
+		int res = dao.addressInsert(addressVO);
+		addressVO = dao.addressSelect(addressVO);
+		
+		return addressVO.getAddressId();
+	}
 }
