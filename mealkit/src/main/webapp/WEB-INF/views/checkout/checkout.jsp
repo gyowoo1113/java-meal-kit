@@ -212,6 +212,7 @@
 	function switchReadonly(isWrite){
 		var ids = ['zip_kakao','address_kakao','address_detail'];
 		for (var id of ids){
+			document.getElementById(id).value =``;
 			document.getElementById(id).disabled = (isWrite) ? false : true;
 		}
 	}
