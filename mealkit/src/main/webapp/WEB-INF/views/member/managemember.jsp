@@ -27,7 +27,7 @@
 				<div class="col-sm-4">
 					<div class="page-header float-left">
 						<div class="page-title">
-							<h1 style="font-size: 400%">
+							<h1 style="font-size: 150%">
 								<strong>회원관리</strong>
 							</h1>
 						</div>

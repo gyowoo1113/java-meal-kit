@@ -78,79 +78,106 @@
 </head>
 
 <body>
-
-
-
-	<section class="featured spad">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-12">
-					<div class="section-title">
-						<h2>밀키트</h2>
+	<div class="breadcrumbs">
+		<div class="breadcrumbs-inner">
+			<div class="row m-0">
+				<div class="col-sm-4">
+					<div class="page-header float-left">
+						<h1 style="font-size: 150%">
+								<strong>제품관리</strong>
+							</h1>
 					</div>
-
-
-
-					<div class="featured__controls">
-						<ul>
-							<!-- data-filter .클래스 따라가서 출력함!!!!!! 컨+f로 찾아서 넣기 -->
-							<li class="active" data-filter="*">전메뉴</li>
-							<li data-filter=".oranges">과일류</li>
-							<li data-filter=".fresh-meat">육류</li>
-							<li data-filter=".vegetables">3</li>
-							<li data-filter=".fastfood">4</li>
-						</ul>
-						<select style="height: 50px" name="selecto" id="dline">
-							<option value="1">조회순</option>
-							<option value="2">신상품순</option>
-							<option value="3">낮은가격순</option>
-							<option value="4">높은가격순</option>
-						</select> <br> <br> <br> <br>
-
-						<hr>
-					</div>
-				</div>
-			</div>
-
-
-			<div class="row featured__filter">
-				<c:forEach items="${products}" var="p">
-					<div
-						class="col-lg-3 col-md-4 col-sm-6 mix fresh-meat vegetables joindt">
-						<div class="featured__item" onclick="moveShopDetail(event)"
-							id="${p.productId}">
-							<div class="featured__item__pic set-bg">
-								<img src="attech/product/${p.productImg }" height=270 width=270>
-								<ul class="featured__item__pic__hover">
-									<li><a href="#"><i class="fa fa-heart"></i></a></li>
-									<li><a href="#"><i class="fa fa-retweet"></i></a></li>
-									<li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-								</ul>
-							</div>
-							<div class="featured__item__text">
-								<h6>
-									<a href="#">${p.productName }</a>
-								</h6>
-								<h5>￦${p.productPrice}</h5>
-							</div>
-						</div>
-					</div>
-				</c:forEach>
-			</div>
-			<div class="col col-md-12">
-				<div>
-
-					<button id="button" type="submit"
-						onclick="location.href= 'insertformproduct.do'"
-						class="btn btn-lg btn-info btn-block">등록</button>
-
 				</div>
 			</div>
 		</div>
-	</section>
-	<form id="detailform" method="post" action="updateformproduct.do">
-		<input type="hidden" id="productId" name="productId" value="">
-	</form>
+	</div>
+
+	<div class="content">
+		<div class="animated fadeIn">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="card">
+						<div class="card-header">
+							<strong class="card-title">입출고 수불대장</strong>
+						</div>
+						<div class="card-body">
+
+							<section class="featured spad">
+								<div class="container">
+									<div class="row">
+										<div class="col-lg-12">
+											<div class="section-title">
+												<h2>밀키트</h2>
+											</div>
+
+
+
+											<div class="featured__controls">
+												<ul>
+											
+													<li class="active" data-filter="*">전메뉴</li>
+													<li data-filter=".oranges">과일류</li>
+													<li data-filter=".fresh-meat">육류</li>
+													<li data-filter=".vegetables">3</li>
+													<li data-filter=".fastfood">4</li>
+												</ul>
+												<select style="height: 50px" name="selecto" id="dline">
+													<option value="1">조회순</option>
+													<option value="2">신상품순</option>
+													<option value="3">낮은가격순</option>
+													<option value="4">높은가격순</option>
+												</select> <br> <br> <br> <br>
+
+												<hr>
+											</div>
+										</div>
+									</div>
+
+
+									<div class="row featured__filter">
+										<c:forEach items="${products}" var="p">
+											<div
+												class="col-lg-3 col-md-4 col-sm-6 mix fresh-meat vegetables joindt">
+												<div class="featured__item" onclick="moveShopDetail(event)"
+													id="${p.productId}">
+													<div class="featured__item__pic set-bg">
+														<img src="img/${p.productImg }" height=270 width=270>
+														<ul class="featured__item__pic__hover">
+															<li><a href="#"><i class="fa fa-heart"></i></a></li>
+															<li><a href="#"><i class="fa fa-retweet"></i></a></li>
+															<li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+														</ul>
+													</div>
+													<div class="featured__item__text">
+														<h6>
+															<a href="#">${p.productName }</a>
+														</h6>
+														<h5>￦${p.productPrice}</h5>
+													</div>
+												</div>
+											</div>
+										</c:forEach>
+									</div>
+									<div class="col col-md-12">
+										<div>
+
+											<button id="button" type="submit"
+												onclick="location.href= 'insertformproduct.do'"
+												class="btn btn-lg btn-info btn-block">등록</button>
+
+										</div>
+									</div>
+								</div>
+							</section>
+							<form id="detailform" method="post" action="updateformproduct.do">
+								<input type="hidden" id="productId" name="productId" value="">
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 	<!-- Featured Section End -->
 
 	<script src="template/ogani/js/jquery-3.3.1.min.js"></script>
@@ -166,7 +193,8 @@
 <script type="text/javascript">
 	function moveShopDetail(event) {
 		var parentTag = event.target;
-		for (; parentTag.className != 'featured__item'; parentTag = parentTag.parentElement);
+		for (; parentTag.className != 'featured__item'; parentTag = parentTag.parentElement)
+			;
 
 		var frm = document.getElementById("detailform");
 		frm.querySelector("#productId").value = parentTag.id;

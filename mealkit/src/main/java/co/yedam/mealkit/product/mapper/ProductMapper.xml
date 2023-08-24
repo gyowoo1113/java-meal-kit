@@ -30,9 +30,10 @@
 		UPDATE PRODUCT
 		<set>
 			<if test="productName != null">PRODUCT_NAME = #{productName},</if>
-			<if test="productPrice != null ">PRODUCT_PRICE = #{productPrice},</if>
+			<if test="productPrice != 0">PRODUCT_PRICE = #{productPrice},</if>
 			<if test="productComment != null">PRODUCT_COMMENT = #{productComment},</if>
-			<if test="productImg != null">PRODUCT_IMG = #{productImg}</if>
+			<if test="productImg != null">PRODUCT_IMG = #{productImg},</if>
+			<if test="productStock != 0">PRODUCT_STOCK = #{productStock}</if>
 		</set>
 		WHERE PRODUCT_ID = #{productId}
 	</update>

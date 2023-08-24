@@ -67,7 +67,7 @@
 						<div class="product__details__pic">
 							<div class="product__details__pic__item">
 								<label> <img id="productImg"
-									src="attech/product/${product.productImg }" width=540
+									src="img/${product.productImg }" width=540
 									height=560 alt="이미지" onclick="changeImg()">
 								</label> <input type="file" id="file" name="file"
 									onchange="readURL(this)" style="display: none;">

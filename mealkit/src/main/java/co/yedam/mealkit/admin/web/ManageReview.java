@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import co.yedam.mealkit.common.ViewResolve;
+
 
 @WebServlet("/managereview.do")
 public class ManageReview extends HttpServlet {
@@ -20,7 +22,8 @@ public class ManageReview extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		String viewName = "admin/review/managereview";
+		ViewResolve.forward(request, response, viewName);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

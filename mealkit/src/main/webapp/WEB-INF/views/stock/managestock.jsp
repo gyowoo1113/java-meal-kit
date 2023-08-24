@@ -39,9 +39,9 @@
 			<div class="row m-0">
 				<div class="col-sm-4">
 					<div class="page-header float-left">
-						<div class="page-title">
-							<h1>재고관리</h1>
-						</div>
+						<h1 style="font-size: 150%">
+								<strong>재고관리</strong>
+							</h1>
 					</div>
 				</div>
 			</div>
@@ -63,9 +63,9 @@
 									<div class="page-title">
 										<ol class="breadcrumb text-right">
 											<li><a href="#" id="in" data-value="in"
-												onclick="select('in')">IN</a></li>
+												onclick="select('in')"><strong>IN</strong></a></li>
 											<li><a href="#" id="out" data-value="out"
-												onclick="select('out')">OUT</a></li>
+												onclick="select('out')"><strong>OUT</strong></a></li>
 
 										</ol>
 									</div>
@@ -118,7 +118,7 @@
 								<div class="page-header float-right"></div>
 							</div>
 							<div>
-								<table id="bootstrap-data-table"
+								<table id="producttable"
 									class="table table-striped table-bordered">
 									<thead>
 										<tr>
@@ -130,7 +130,7 @@
 										</tr>
 									</thead>
 
-									<tbody>
+									<tbody id= "tbody2">
 										<c:forEach items="${products}" var="p">
 											<tr 
 												onclick="selectProduct(${p.productId})">
@@ -154,7 +154,8 @@
 	<div class="content">
 		<div class="animated fadeIn">
 			<div class="row">
-				<div class="col-lg-6">
+				<div class="col-lg-3"></div>
+				<div class="col-lg-6" >
 					<div class="card">
 						<div class="card-header">
 							<strong class="card-title"></strong>
@@ -276,22 +277,21 @@
 	}
 	
 	function htmpConevert(datas){
-	
+		console.log(datas);
 		document.querySelector('tbody').remove();
 		const tbody = document.createElement('tbody');
 		
 		tbody.innerHTML = datas.map(data => htmlView(data)).join(''); 
-	
 		document.querySelector('#bootstrap-data-table').appendChild(tbody);
-	
+		
 	}
 	
 	function htmlView(data){
 		
-		console.log(data);
+		//console.log(data.['product']);
 		return `
 		
-		<tr>
+		<tr >
 			<td >\${data.productId}</td>
 			<td >\${data.productName}</td>
 			<td >\${data.stockType}</td>
@@ -300,6 +300,7 @@
 		</tr>
 			`
 	}
+
 	
 	function selectProduct(n){
 		
@@ -328,6 +329,7 @@
 	
  	function insertStock(){
 		
+ 		let productStock = document.getElementById("productStock").value;
 		let productCode = document.getElementById("productCode").value;
 		//let radios = document.getElementById("radio1").value;  
 		let stockCount = document.getElementById("stockCount").value;
@@ -345,7 +347,7 @@
 		formData.append("productCode", productCode);
 		formData.append("radios", radios);
 		formData.append("stockCount", stockCount);
-		
+		formData.append("productStock", productStock);
 		console.log(productCode + radios + stockCount );
 		let url = "ajaxstockinsert.do";
 		fetch(url,{ 
@@ -355,11 +357,41 @@
 			},
 			body: formData.toString()
 		}).then(response => response.json())
-		  .then(json => htmpConevert(json));
+		  .then(json => htmpConevert2(json));
 	} 
 
-	
-	
+ 		function htmpConevert2(datas){
+ 			
+ 			document.querySelector('tbody').remove();
+ 			const tbody = document.createElement('tbody');
+ 			
+ 			tbody.innerHTML = datas['stocks'].map(data => htmlView(data)).join(''); 
+ 			document.querySelector('#bootstrap-data-table').appendChild(tbody);
+ 			
+ 			
+ 			
+ 			document.querySelector('#tbody2').remove();
+ 			const tbody2 = document.createElement('tbody');
+ 			
+ 			tbody2.innerHTML = datas['products'].map(data => htmlView2(data)).join(''); 
+ 			document.querySelector('#producttable').appendChild(tbody2);
+		
+		
+	}
+ 		function htmlView2(data){
+ 			
+ 			return `
+ 			
+ 			<tr onclick="selectProduct(${data.productId})">
+ 				<td >\${data.productId}</td>
+ 				<td >\${data.productName}</td>
+ 				<td >\${data.productPrice}</td>
+ 				<td >\${data.productDate}</td>
+ 				<td >\${data.productStock}</td>
+ 			</tr>
+ 				`
+ 		}
+		
 </script>
 </body>
 </html>
