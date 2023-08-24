@@ -42,7 +42,7 @@ public class OrderInsert extends HttpServlet {
 		orderInsert(memberId,addressId);
 		setOrderDetail(request);
 		
-		String viewName = "home/home";
+		String viewName = "mypage/mypage/mypageorder";
 		ViewResolve.forward(request, response, viewName);
 	}
 

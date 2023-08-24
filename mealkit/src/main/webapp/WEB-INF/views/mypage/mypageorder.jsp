@@ -23,7 +23,7 @@ tr,td {
 						<th width="20%">주문일</th>
 						<th width="20%">주문번호</th>
 						<th width="40%">주문상품</th>
-						<th width="20%">결제/배송</th>
+						<th width="15%">결제/배송</th>
 					</tr>
 				</thead>
 				<tbody id="order_body">
