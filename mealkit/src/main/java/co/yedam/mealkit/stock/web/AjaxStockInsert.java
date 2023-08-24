@@ -2,7 +2,9 @@ package co.yedam.mealkit.stock.web;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,6 +16,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
+import co.yedam.mealkit.product.service.ProductService;
+import co.yedam.mealkit.product.service.ProductVO;
+import co.yedam.mealkit.product.serviceImpl.ProductServiceImpl;
 import co.yedam.mealkit.stock.service.StockService;
 import co.yedam.mealkit.stock.service.StockVO;
 import co.yedam.mealkit.stock.serviceImple.StockServiceImple;
@@ -39,22 +44,33 @@ public class AjaxStockInsert extends HttpServlet {
 
 		dao.insertStock(vo);
 
-		//////////////// 수불대장 ajax 여기서 해버릴까..
+		//////////////// 수불대장 ajax 
 
 		List<StockVO> stocks = new ArrayList<>();
 		stocks = dao.stockSelectList();
 		request.setAttribute("stocks", stocks);
 
+		
+		ProductService dao2 = new ProductServiceImpl();
+		List<ProductVO> products = new ArrayList<>();
+		
+		products= dao2.productSelectList2();
+		request.setAttribute("products", products);
 	
 		ObjectMapper objectMapper = new ObjectMapper(); 
 
 		objectMapper.registerModule(new JavaTimeModule()); 
 		objectMapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS); 
 
-		String data = objectMapper.writeValueAsString(stocks);
-
+		//String data = objectMapper.writeValueAsString(stocks);
+		Map<String, Object> responseData = new HashMap<>();
+		responseData.put("stocks", stocks);
+		responseData.put("products", products);
+	
 		response.setContentType("text/html; charset=UTF-8");
-		response.getWriter().append(data);
+		
+		response.getWriter().append(responseData);
+	
 		return;
 	}
 

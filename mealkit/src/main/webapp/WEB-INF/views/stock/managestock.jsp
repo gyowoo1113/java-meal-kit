@@ -178,13 +178,13 @@
 												<div class="form-check">
 													<div class="radio">
 														<label for="radio1" class="form-check-label "> <input
-															type="radio" id="radio1" name="radios" value="in"
-															class="form-check-input">입고
+															type="radio" id="radios" name="radios" value="in"
+															class="form-check-input" checked>입고
 														</label>
 													</div>
 													<div class="radio">
 														<label for="radio2" class="form-check-label "> <input
-															type="radio" id="radio2" name="radios" value="out"
+															type="radio" id="radios" name="radios" value="out"
 															class="form-check-input">출고
 														</label>
 													</div>
@@ -329,8 +329,17 @@
  	function insertStock(){
 		
 		let productCode = document.getElementById("productCode").value;
-		let radios = document.getElementById("radio1").value;  
+		//let radios = document.getElementById("radio1").value;  
 		let stockCount = document.getElementById("stockCount").value;
+		
+		let radioButtons = document.getElementsByName("radios");
+		let radios;
+		for (let i = 0; i < radioButtons.length; i++) {
+	      
+	        if (radioButtons[i].checked) {
+	        	 radios = radioButtons[i].value;
+	        }
+	    }
 		
 		let formData = new URLSearchParams();
 		formData.append("productCode", productCode);
