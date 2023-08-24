@@ -61,6 +61,7 @@ function orderView(data,index,detail){
 }
 
 function doPayment(event){
+	var detail = <%= request.getAttribute("detail") %>;
 	var parentTrTag = event.target;
     for(;parentTrTag.tagName != 'TR'; parentTrTag=parentTrTag.parentElement);
     
@@ -72,7 +73,7 @@ function doPayment(event){
 		pg : 'kakaopay',
 		pay_method : 'card',
 		merchant_uid : 'merchant_' + new Date().getTime(),   //주문번호
-		name : 'TEST',                                  	 //상품명
+		name : detail[parentTrTag.id],                                  	 //상품명
 		amount : 1,                    						 //가격
 		//customer_uid : buyer_name + new Date().getTime(),  //해당 파라미터값이 있어야 빌링 키 발급 시도
 		buyer_email : '${email}',             				 //구매자 이메일
@@ -83,10 +84,13 @@ function doPayment(event){
 	},function(data){
 		if(data.success){
 			var msg = "결제 완료";
-            msg += '고유ID : ' + data.imp_uid;        
-            msg += '// 상점 거래ID : ' + data.merchant_uid;
-            msg += '// 결제 금액 : ' + data.paid_amount;
-            msg += '// 카드 승인번호 : ' + data.apply_num;
+    		let payload = "orderId=" + parentTrTag.id;
+    		let url = "ajaxorderupdate.do";
+    		fetch(url,{
+    			method: "post",
+    			headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    			body: payload
+    		}).then(updatePayment(parentTrTag));
         }else{
         	var msg = data.error_msg;
         	alertIcon = 'error'
@@ -96,9 +100,12 @@ function doPayment(event){
             icon: alertIcon,
             text: msg,
         });
-
 	});
 	// --------------------------------------- 결제 end
+	
+	function updatePayment(parentTrTag){
+		parentTrTag.children[3].innerHTML = `결제완료`;
+	}
 }
 
 </script>
