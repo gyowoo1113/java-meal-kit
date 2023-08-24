@@ -20,25 +20,25 @@
                                 <table id="bootstrap-data-table" class="table table-striped table-bordered">
                                     <thead>
                                         <tr>
-                                            <th>리뷰 번호</th>
-                                            <th>제목</th>
-                                            <th>내용</th>
-                                            <th>리뷰 날짜</th>
-                                            <th>제품 번호</th>
-                                            <th>아이디</th>
-                                            <th>리뷰 조회수</th>
+                                            <th style="text-align: center;">리뷰 번호</th>
+                                            <th style="text-align: center;">제목</th>
+                                            <th style="text-align: center;">내용</th>
+                                            <th style="text-align: center;">리뷰 날짜</th>
+                                            <th style="text-align: center;">제품 번호</th>
+                                            <th style="text-align: center;">아이디</th>
+                                            <th style="text-align: center;">리뷰 조회수</th>
                                         </tr>
                                     </thead>
                                     <tbody>
 										<c:forEach items="${reviews}" var="r">
 	                                        <tr>
-	                                            <td>${r.reviewId}</td>
+	                                            <td width="100px" style="text-align: center;">${r.reviewId}</td>
 	                                            <td width="300px">${r.reviewTitle }</td>
-	                                            <td>${r.reviewSubject }</td>
-	                                            <td>${r.reviewDate }</td>
-	                                            <td>${r.productId }</td>
-	                                            <td>${r.memberId }</td>
-	                                            <td>${r.reviewHit }</td>
+	                                            <td width="500px">${r.reviewSubject }</td>
+	                                            <td width="200px">${r.reviewDate }</td>
+	                                            <td width="100px" style="text-align: center;">${r.productId }</td>
+	                                            <td width="100px">${r.memberId }</td>
+	                                            <td width="100px" style="text-align: center;">${r.reviewHit }</td>
 	                                        </tr>
 										</c:forEach>
                                     </tbody>

@@ -96,7 +96,7 @@
 						        		<div class="popup">
 					      					 	<div class="popmenu center2">
 				  							<div class="blog__item__pic">
-								            	<img src="${r.reviewImg}" alt="No Image"  width="100px" height="240px">
+								            	<img src="${r.reviewImg}" alt="No Image"  width="200px" height="240px">
 					                        </div>
 					                        <div class="blog__item__text  sidespace">
 					                            <ul>
