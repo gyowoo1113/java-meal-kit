@@ -48,6 +48,10 @@
   		font-size:25px;
   		cursor: pointer;
 	}
+	
+	.center1 {
+		margin-left: 20px;
+	}
 </style>
 </head>
 <body>
@@ -113,7 +117,7 @@
                 </div>
                 <!-- Shoping Cart Section Begin -->
 			    <section class="shoping-cart spad">
-			        <div class="container">
+			        <div class="container  center1">
 			        	<c:forEach items="${reviews}" var="r">
 				            <div class="row">
 				                <div class="col-lg-12">
@@ -134,7 +138,7 @@
 								                                <li><i class="fa fa-calendar-o"></i> ${r.reviewDate}</li>
 								                                <li><i class="fa fa-eye hit"> ${r.reviewHit }</i></li>
 								                            </ul>
-								                            <h5><a href="#">${r.reviewTitle }</a></h5>
+								                            <h5>${r.reviewTitle }</h5>
 								                            <p>${r.reviewSubject }</p>
 								                            <input type="hidden" id="memberId" name="memberId" value="${id}">
 								                        </div>
@@ -153,11 +157,11 @@
 					                           				<tbody>
 								                                <tr>
 								                                    <td class="shoping__cart__item">
-								                                        <img src="${r.reviewImg}" alt="" width="100px" height="100px">
+								                                        <img src="${r.reviewImg}" alt="" width="100px" height="100px" style="margin-right: 50px">
 								                                        <h5>${r.reviewTitle }</h5>
 								                                    </td>
-								                                    <td class="shoping__cart__price">
-								                                         ${r.reviewDate}
+								                                    <td class="shoping__cart__price" style="width: 200px">
+								                                         <i class="fa fa-calendar-o">${r.reviewDate}</i>
 								                                    </td>
 								                                    <td class="shoping__cart__item__close">
 								                                        <i class="fa fa-eye hit"> ${r.reviewHit }</i>

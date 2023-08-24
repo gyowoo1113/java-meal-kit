@@ -1879,6 +1879,8 @@ ol {
 .shoping-cart {
 	padding-top: 80px;
 	padding-bottom: 80px;
+	margin: 0 auto;
+	text-align: center;
 }
 
 .shoping__cart__table {
@@ -2616,6 +2618,8 @@ ol {
 	background: #F3F6FA;
 	padding-top: 70px;
 	padding-bottom: 0;
+	clear: both;
+	
 }
 
 .footer__about {

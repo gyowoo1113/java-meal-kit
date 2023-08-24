@@ -4,10 +4,6 @@
 <!DOCTYPE html>
 <html>
 <style>
-	.btnWrap {
-  		width: 1000px;
- 		margin: 300px auto;
-	}
 	.popupBtn {
   		width: 150px;
   		height: 50px;
@@ -25,7 +21,7 @@
   		background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
   		display: none;
 	}
-	.modalBody {
+	.modalBody { /* 팝업창 */
   		width: 700px;
   		padding: 50px 50px;
   		margin: 0 auto;
@@ -38,6 +34,18 @@
   		color: #777;
   		font-size:25px;
   		cursor: pointer;
+	}
+	.center2 {
+		border: 1px solid black;
+		padding: 10px;
+		border-radius: 20px;
+		float: left;
+		width: 30%;
+		margin-right: 38px;
+		margin-bottom: 60px;
+	}
+	.sidespace{
+		padding-left: 20px;
 	}
 </style>
 <head>
@@ -67,7 +75,7 @@
 						                        <div class="blog__item__pic">
 						                            <img src="${r.reviewImg}" alt="No Image">
 						                        </div>
-						                        <div class="blog__item__text">
+						                        <div class="blog__item__text  sidespace">
 						                        	<ul>
 						                                <li style="float:right"><i class="fa fa-user"> ${r.memberId }</i></li>
 						                            </ul>
@@ -86,11 +94,11 @@
 					        	<div>
 					        		<div onclick= "modalDisplay(event)">
 						        		<div class="popup">
-					      					 	<div class="popmenu">
+					      					 	<div class="popmenu center2">
 				  							<div class="blog__item__pic">
-								            	<img src="${r.reviewImg}" alt="No Image">
+								            	<img src="${r.reviewImg}" alt="No Image"  width="100px" height="240px">
 					                        </div>
-					                        <div class="blog__item__text">
+					                        <div class="blog__item__text  sidespace">
 					                            <ul>
 					                                <li><i class="fa fa-calendar-o"> ${r.reviewDate}</i></li>
 					                                <li><i class="fa fa-eye hit"> ${r.reviewHit }</i></li>

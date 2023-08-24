@@ -33,7 +33,7 @@
 										<c:forEach items="${reviews}" var="r">
 	                                        <tr>
 	                                            <td>${r.reviewId}</td>
-	                                            <td>${r.reviewTitle }</td>
+	                                            <td width="300px">${r.reviewTitle }</td>
 	                                            <td>${r.reviewSubject }</td>
 	                                            <td>${r.reviewDate }</td>
 	                                            <td>${r.productId }</td>
@@ -41,7 +41,6 @@
 	                                            <td>${r.reviewHit }</td>
 	                                        </tr>
 										</c:forEach>
-                                        
                                     </tbody>
                                 </table>
                             </div>

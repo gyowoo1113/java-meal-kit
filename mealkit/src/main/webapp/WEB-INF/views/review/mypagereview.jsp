@@ -51,43 +51,34 @@
 <body>
 	<h1>asdsa</h1>
 	<!-- Shoping Cart Section Begin -->
-    <section class="shoping-cart spad">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="shoping__cart__table">
-                        <table>
-                        	<thead>
-                                
-                            </thead>
-				        	<c:forEach items="${reviews}" var="r">
-	                            <tbody>
-	                                <tr>
-	                                    <td class="shoping__cart__item">
-	                                        <img src="${r.reviewImg}" alt="No Image" width="100px" height="100px">
-	                                    </td>
-	                                    <td class="shoping__cart__item">
-	                                        <h4>${r.reviewTitle }</h4>
-	                                    </td>
-	                                    <td class="shoping__cart__item">
-	                                        <p>${r.reviewSubject }</p>
-	                                    </td>
-	                                    <td class="shoping__cart__price">
-	                                         ${r.reviewDate}
-	                                    </td>
-	                                    <td class="shoping__cart__item__close">
-	                                        <i class="fa fa-eye hit"> ${r.reviewHit }</i>
-	                                        <input type="hidden" id="memberId" name="memberId" value="${id}">
-	                                    </td>
-	                                </tr>
-	               				</tbody>
-               				</c:forEach>
-                        </table>
+    <div class="content">
+            <div class="animated fadeIn">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <table id="bootstrap-data-table" class="table table-striped table-bordered">
+                                    <tbody>
+										<c:forEach items="${reviews}" var="r">
+	                                        <tr>
+	                                            <td>
+	                                            	<img src="${r.reviewImg}" alt="No Image" width="200px" height="100px">
+	                                            </td>
+	                                            <td>${r.reviewTitle }</td>
+	                                            <td>${r.reviewSubject }</td>
+	                                            <td>${r.reviewDate }</td>
+	                                            <td>${r.reviewHit }</td>
+	                                        </tr>
+										</c:forEach>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
                     </div>
+
                 </div>
-            </div>
-        </div>
-    </section>
+            </div><!-- .animated -->
+        </div><!-- .content -->
     <!-- Shoping Cart Section End -->
 </body>
 <script type="text/javascript">
