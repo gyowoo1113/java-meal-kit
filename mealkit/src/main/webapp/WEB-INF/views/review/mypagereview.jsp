@@ -75,7 +75,7 @@ tr,td {
 					<tr>
 						<td><img src="${p.productImg}" width="20%" alt="No Image"></td>
 						<td>${p.productName }</td>
-						<td><input type="button" value="작성" onclick="">
+						<td><input type="button" value="작성" onclick="moveReviewInsert(event)"  id="${p.productId}">
 						</td>
 					</tr>
 					</c:forEach>
@@ -123,6 +123,9 @@ tr,td {
         </div>
     </section>
     <!-- Shoping Cart Section End -->
+    <form action="reviewinsert.do" method="post" id="frm">
+    	<input type="hidden" name="productId" id="productId">
+    </form>
 </body>
 <script type="text/javascript">
 function modalDisplay(event) {
@@ -164,6 +167,11 @@ function reviewUp(parentTrTag){
 
 function updatehit(text, parentTrTag) {
 	 parentTrTag.querySelector(".hit").innerHTML=text;
+}
+
+function moveReviewInsert(event){
+	document.getElementById("productId").value = event.target.id;
+	document.getElementById("frm").submit();
 }
 </script>
 </html>
