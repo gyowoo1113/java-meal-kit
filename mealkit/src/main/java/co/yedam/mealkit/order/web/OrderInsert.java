@@ -40,7 +40,7 @@ public class OrderInsert extends HttpServlet {
 		int addressId = getAddressId(request,memberId);
 		
 		orderInsert(memberId,addressId);
-		orderDetailInsert(request);
+		setOrderDetail(request);
 		
 		String viewName = "home/home";
 		ViewResolve.forward(request, response, viewName);
@@ -64,7 +64,7 @@ public class OrderInsert extends HttpServlet {
 	
 	//  Address 테이블에 Insert 후 AddressId 값 받아옴
 	protected int insertAndGetId(HttpServletRequest request, String memberId) {
-		AddressService dao = new AddressServiceImple();
+		AddressService addressDAO = new AddressServiceImple();
 		
 		String zip = request.getParameter("zip_kakao");
 		String addr = request.getParameter("address_kakao");
@@ -73,8 +73,8 @@ public class OrderInsert extends HttpServlet {
 		
 		AddressVO addressVO = new AddressVO(Integer.valueOf(zip),address,memberId,"집");
 		// 입력 실패 처리 추가필요
-		int res = dao.addressInsert(addressVO);
-		addressVO = dao.addressSelect(addressVO);
+		int res = addressDAO.addressInsert(addressVO);
+		addressVO = addressDAO.addressSelect(addressVO);
 		
 		return addressVO.getAddressId();
 	}
@@ -85,10 +85,15 @@ public class OrderInsert extends HttpServlet {
 		int res = dao.ordarInsert(ordarVO);
 	}
 	
-	protected void orderDetailInsert(HttpServletRequest request) {
+	protected void setOrderDetail(HttpServletRequest request) {
 		OrdarService dao = new OrdarServiceImpl();
 		int orderId = dao.ordarIdMax();
-		
+
+		List<Integer> ids = getCartIdList(request);
+		orderDetailInsert(ids, orderId);
+	}
+	
+	protected List<Integer> getCartIdList(HttpServletRequest request){
 		List<Integer> ids = new ArrayList<Integer>();
 		int num = Integer.valueOf(request.getParameter("cart_num"));
 		for (int i=0; i<num; ++i) {
@@ -96,7 +101,10 @@ public class OrderInsert extends HttpServlet {
 			String id = request.getParameter(name);
 			ids.add(Integer.valueOf(id));
 		}
-		
+		return ids;
+	}
+	
+	protected void orderDetailInsert(List<Integer> ids, int orderId) {
 		CartService cartDAO = new CartServiceImpl();
 		OrderDetailService detailDAO = new OrderDetailServiceImpl();
 		List<Map<String, Object>> carts = new ArrayList<>();
