@@ -22,6 +22,8 @@ import co.yedam.mealkit.common.ViewResolve;
 import co.yedam.mealkit.ordar.service.OrdarService;
 import co.yedam.mealkit.ordar.service.OrdarVO;
 import co.yedam.mealkit.ordar.serviceImpl.OrdarServiceImpl;
+import co.yedam.mealkit.order.detail.service.OrderDetailService;
+import co.yedam.mealkit.order.detail.serviceImpl.OrderDetailServiceImpl;
 
 @WebServlet("/mypageorder.do")
 public class MypageOrder extends HttpServlet {
@@ -38,6 +40,9 @@ public class MypageOrder extends HttpServlet {
 		List<OrdarVO> ordars = ordarDAO.ordarSelectList(memberId);
 		
 		setOrderList(request,ordars);
+		List<Integer> ids = getOrderIds(ordars);
+		setOrderDetailList(request,ids);
+		
 		String viewName = "mypage/mypage/mypageorder";
 		ViewResolve.forward(request, response, viewName);
 	}
@@ -53,5 +58,31 @@ public class MypageOrder extends HttpServlet {
 		
 		String data = objectMapper.writeValueAsString(ordars);
 		request.setAttribute("order", data);
+	}
+	
+	protected List<Integer> getOrderIds(List<OrdarVO> ordars){
+		List<Integer> ids = new ArrayList<Integer>();
+		for (OrdarVO ordar : ordars) {
+			ids.add(ordar.getOrdarId());
+		}
+		return ids;
+	}
+	
+	protected void setOrderDetailList(HttpServletRequest request, List<Integer> ids) throws JsonProcessingException {
+		OrderDetailService detailDAO = new OrderDetailServiceImpl();
+		List<Map<String,Object>> details = new ArrayList<>();
+		details = detailDAO.orderDetailGroupList(ids);
+		
+		Map<Integer,String> detailStrings = new HashMap<Integer, String>();
+		for (Map<String,Object> detail : details) {
+			String str = detail.get("productName") + "외 총 " + detail.get("totalCount")+"종 "
+					+ detail.get("detailCount") + "개 " + detail.get("totalPrice") +"원";
+			String orderId = String.valueOf(detail.get("orderId"));
+			detailStrings.put(Integer.valueOf(orderId), str);
+		}
+		
+		ObjectMapper objectMapper = new ObjectMapper();	
+		String data = objectMapper.writeValueAsString(detailStrings);
+		request.setAttribute("detail", data);
 	}
 }

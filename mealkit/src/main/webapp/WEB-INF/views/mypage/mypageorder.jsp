@@ -55,7 +55,7 @@ function orderView(data,index,detail){
 	list += `<tr id=`+ data.ordarId +`><td>\${data.ordarDate}</td>`;
 	var ordercode = data.ordarDate.replace(/\-/gi,"") + "-" + data.ordarId;
 	list += `<td>` + ordercode + `</td>`;
-	list += `<td></td>`;
+	list += `<td>` + detail[data.ordarId]+`</td>`;
 	list += `<td></td>`;
 	return list;
 }
