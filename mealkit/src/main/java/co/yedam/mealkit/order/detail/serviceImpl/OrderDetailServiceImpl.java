@@ -1,6 +1,7 @@
 package co.yedam.mealkit.order.detail.serviceImpl;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
@@ -21,6 +22,11 @@ public class OrderDetailServiceImpl implements OrderDetailService {
 	@Override
 	public List<OrderDetailVO> orderDetailSelectList(String orderCode, int productId) {
 		return map.orderDetailSelectList(orderCode, productId);
+	}
+	
+	@Override
+	public List<Map<String, Object>> orderDetailGroupList(List<Integer> ids) {
+		return map.orderDetailGroupList(ids);
 	}
 
 	@Override

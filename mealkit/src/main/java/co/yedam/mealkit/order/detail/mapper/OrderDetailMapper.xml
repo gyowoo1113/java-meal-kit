@@ -22,4 +22,16 @@
 		<!-- 특정 작성자의 주문내역 (주문날짜-주문번호)에 대한 모든 데이터를 삭제-->
 		DELETE FROM order_detail WHERE order_code = #{orderCode} AND product_id = #{productId}
 	</delete>
+	
+	<select id="orderDetailGroupList" resultType="co.yedam.mealkit.common.CamelHashMap" parameterType="java.util.List">
+		SELECT SUM(order_detail_count) AS DETAIL_COUNT, SUM(order_detail_price) AS TOTAL_PRICE,
+		 COUNT(*) AS TOTAL_COUNT, order_id, MAX(product.product_name) AS PRODUCT_NAME
+		FROM order_detail, product
+		WHERE product.product_id = order_detail.product_id
+		AND order_id IN 
+		<foreach collection="list" item="item" open="(" close=")" separator=",">
+		#{item}
+		</foreach>
+		GROUP BY order_id
+	</select>
 </mapper>
