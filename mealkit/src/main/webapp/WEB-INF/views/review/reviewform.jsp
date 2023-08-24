@@ -1,18 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <style>
-	#btnWrap {
+	.btnWrap {
   		width: 500px;
  		margin: 100px auto;
 	}
-	#popupBtn {
+	.popupBtn {
   		width: 150px;
   		height: 50px;
  		padding: 10px 5px;
 	}
-	#modalWrap {
+	.modalWrap {
  		position: fixed; /* Stay in place */
   		z-index: 1; /* Sit on top */
   		padding-top: 100px; /* Location of the box */
@@ -25,16 +26,15 @@
   		display: none;
 	}
 
-	#modalBody {
-  		width: 500px;
-  		height: 300px;
-  		padding: 30px 30px;
+	.modalBody {
+  		width: 700px;
+  		padding: 50px 50px;
   		margin: 0 auto;
   		border: 1px solid #777;
   		background-color: #fff;
 	}
 
-	#closeBtn {
+	.closeBtn {
   		float:right;
   		font-weight: bold;
   		color: #777;
@@ -60,244 +60,95 @@
             </div>
             <div class="row">
                 <div class="col-lg-4 col-md-4 col-sm-6">
-                    <div class="blog__item">
-                    	<div id="modalWrap">
-    						<div id="modalBody">
-		                    	<div id="popup">
-		      					 	<div id="popmenu">
-		      					 		<span id="closeBtn">X</span>
-				                        <div class="blog__item__pic">
-				                            <img src="img/happi.jpg" alt="">
+                	<c:forEach items="${reviews}" var="r">
+		                    <div class="blog__item" id="${r.reviewId}">
+		                    	<div class="modalWrap">
+		    						<div class="modalBody">
+				                    	<div class="popup">
+				      					 	<div class="popmenu">
+				      					 		<span class="closeBtn" onclick="closeDisplay(event)">X</span>
+						                        <div class="blog__item__pic">
+						                            <img src="${r.reviewImg}" alt="">
+						                        </div>
+						                        <div class="blog__item__text">
+						                            <ul>
+						                                <li><i class="fa fa-calendar-o"></i>${r.reviewDate}</li>
+						                                <li><i class="fa fa-comment-o"></i> 5</li>
+						                            </ul>
+						                            <h5><a href="#">${r.reviewTitle }</a></h5>
+						                            <p>${r.reviewSubject }</p>
+						                            <h5 class="hit">${r.reviewHit }</h5>
+						                            <input type="hidden" id="memberId" name="memberId" value="${id}">
+						                        </div>
+							            	</div>
+					        			</div>
+					        		</div>
+								</div>
+					        	<div class="btnWrap">
+					        		<div class="popupBtn" onclick= "modalDisplay(event)">
+			  							<div class="blog__item__pic">
+							            	<img src="${r.reviewImg}" alt="">
 				                        </div>
 				                        <div class="blog__item__text">
 				                            <ul>
-				                                <li><i class="fa fa-calendar-o"></i> May 4,2019</li>
+				                                <li><i class="fa fa-calendar-o"></i>${r.reviewDate}</li>
 				                                <li><i class="fa fa-comment-o"></i> 5</li>
 				                            </ul>
-				                            <h5><a href="#">Cooking tips make cooking simple</a></h5>
-				                            <p>Sed quia non numquam modi tempora indunt ut labore et dolore magnam aliquam quaerat </p>
+				                            <h5><a href="#">${r.reviewTitle }</a></h5>
+				                            <p>${r.reviewSubject }</p>
+				                            <h5 class="hit">${r.reviewHit }</h5>
 				                        </div>
-					            	</div>
-			        			</div>
-			        		</div>
-						</div>
-			        	<div id="btnWrap">
-			        		<div id="popupBtn">
-	  							<div class="blog__item__pic">
-					            	<img src="img/happi.jpg" alt="">
-		                        </div>
-		                        <div class="blog__item__text">
-		                            <ul>
-		                                <li><i class="fa fa-calendar-o"></i> May 4,2019</li>
-		                                <li><i class="fa fa-comment-o"></i> 5</li>
-		                            </ul>
-		                            <h5><a href="#">Cooking tips make cooking simple</a></h5>
-		                            <p>Sed quia non numquam modi tempora indunt ut labore et dolore magnam aliquam quaerat </p>
-		                        </div>
-	                        </div>
-						</div>
-						
-			        	<div id="contents">
-	                        <div class="blog__item__pic">
-	                            <img src="template/ogani/img/blog/blog-1.jpg" alt="">
-	                        </div>
-	                        <div class="blog__item__text">
-	                            <ul>
-	                                <li><i class="fa fa-calendar-o"></i> May 4,2019</li>
-	                                <li><i class="fa fa-comment-o"></i> 5</li>
-	                            </ul>
-	                            <h5><a href="#">Cooking tips make cooking simple</a></h5>
-	                            <p>Sed quia non numquam modi tempora indunt ut labore et dolore magnam aliquam quaerat </p>
-	                        </div>
-	                    </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-4 col-sm-6">
-                    <div class="blog__item">
-                        <div class="blog__item__pic">
-                            <img src="template/ogani/img/blog/blog-2.jpg" alt="">
-                        </div>
-                        <div class="blog__item__text">
-                            <ul>
-                                <li><i class="fa fa-calendar-o"></i> May 4,2019</li>
-                                <li><i class="fa fa-comment-o"></i> 5</li>
-                            </ul>
-                            <h5><a href="#">6 ways to prepare breakfast for 30</a></h5>
-                            <p>Sed quia non numquam modi tempora indunt ut labore et dolore magnam aliquam quaerat </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-4 col-sm-6">
-                    <div class="blog__item">
-                        <div class="blog__item__pic">
-                            <img src="template/ogani/img/blog/blog-3.jpg" alt="">
-                        </div>
-                        <div class="blog__item__text">
-                            <ul>
-                                <li><i class="fa fa-calendar-o"></i> May 4,2019</li>
-                                <li><i class="fa fa-comment-o"></i> 5</li>
-                            </ul>
-                            <h5><a href="#">Visit the clean farm in the US</a></h5>
-                            <p>Sed quia non numquam modi tempora indunt ut labore et dolore magnam aliquam quaerat </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-4 col-sm-6">
-                    <div class="blog__item">
-                        <div class="blog__item__pic">
-                            <img src="template/ogani/img/blog/blog-1.jpg" alt="">
-                        </div>
-                        <div class="blog__item__text">
-                            <ul>
-                                <li><i class="fa fa-calendar-o"></i> May 4,2019</li>
-                                <li><i class="fa fa-comment-o"></i> 5</li>
-                            </ul>
-                            <h5><a href="#">Cooking tips make cooking simple</a></h5>
-                            <p>Sed quia non numquam modi tempora indunt ut labore et dolore magnam aliquam quaerat </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-4 col-sm-6">
-                    <div class="blog__item">
-                        <div class="blog__item__pic">
-                            <img src="template/ogani/img/blog/blog-2.jpg" alt="">
-                        </div>
-                        <div class="blog__item__text">
-                            <ul>
-                                <li><i class="fa fa-calendar-o"></i> May 4,2019</li>
-                                <li><i class="fa fa-comment-o"></i> 5</li>
-                            </ul>
-                            <h5><a href="#">6 ways to prepare breakfast for 30</a></h5>
-                            <p>Sed quia non numquam modi tempora indunt ut labore et dolore magnam aliquam quaerat </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-4 col-sm-6">
-                    <div class="blog__item">
-                        <div class="blog__item__pic">
-                            <img src="template/ogani/img/blog/blog-3.jpg" alt="">
-                        </div>
-                        <div class="blog__item__text">
-                            <ul>
-                                <li><i class="fa fa-calendar-o"></i> May 4,2019</li>
-                                <li><i class="fa fa-comment-o"></i> 5</li>
-                            </ul>
-                            <h5><a href="#">Visit the clean farm in the US</a></h5>
-                            <p>Sed quia non numquam modi tempora indunt ut labore et dolore magnam aliquam quaerat </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-4 col-sm-6">
-                    <div class="blog__item">
-                        <div class="blog__item__pic">
-                            <img src="template/ogani/img/blog/blog-1.jpg" alt="">
-                        </div>
-                        <div class="blog__item__text">
-                            <ul>
-                                <li><i class="fa fa-calendar-o"></i> May 4,2019</li>
-                                <li><i class="fa fa-comment-o"></i> 5</li>
-                            </ul>
-                            <h5><a href="#">Cooking tips make cooking simple</a></h5>
-                            <p>Sed quia non numquam modi tempora indunt ut labore et dolore magnam aliquam quaerat </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-4 col-sm-6">
-                    <div class="blog__item">
-                        <div class="blog__item__pic">
-                            <img src="template/ogani/img/blog/blog-2.jpg" alt="">
-                        </div>
-                        <div class="blog__item__text">
-                            <ul>
-                                <li><i class="fa fa-calendar-o"></i> May 4,2019</li>
-                                <li><i class="fa fa-comment-o"></i> 5</li>
-                            </ul>
-                            <h5><a href="#">6 ways to prepare breakfast for 30</a></h5>
-                            <p>Sed quia non numquam modi tempora indunt ut labore et dolore magnam aliquam quaerat </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-4 col-sm-6">
-                    <div class="blog__item">
-                        <div class="blog__item__pic">
-                            <img src="template/ogani/img/blog/blog-3.jpg" alt="">
-                        </div>
-                        <div class="blog__item__text">
-                            <ul>
-                                <li><i class="fa fa-calendar-o"></i> May 4,2019</li>
-                                <li><i class="fa fa-comment-o"></i> 5</li>
-                            </ul>
-                            <h5><a href="#">Visit the clean farm in the US</a></h5>
-                            <p>Sed quia non numquam modi tempora indunt ut labore et dolore magnam aliquam quaerat </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-4 col-sm-6">
-                    <div class="blog__item">
-                        <div class="blog__item__pic">
-                            <img src="template/ogani/img/blog/blog-1.jpg" alt="">
-                        </div>
-                        <div class="blog__item__text">
-                            <ul>
-                                <li><i class="fa fa-calendar-o"></i> May 4,2019</li>
-                                <li><i class="fa fa-comment-o"></i> 5</li>
-                            </ul>
-                            <h5><a href="#">Cooking tips make cooking simple</a></h5>
-                            <p>Sed quia non numquam modi tempora indunt ut labore et dolore magnam aliquam quaerat </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-4 col-sm-6">
-                    <div class="blog__item">
-                        <div class="blog__item__pic">
-                            <img src="template/ogani/img/blog/blog-2.jpg" alt="">
-                        </div>
-                        <div class="blog__item__text">
-                            <ul>
-                                <li><i class="fa fa-calendar-o"></i> May 4,2019</li>
-                                <li><i class="fa fa-comment-o"></i> 5</li>
-                            </ul>
-                            <h5><a href="#">6 ways to prepare breakfast for 30</a></h5>
-                            <p>Sed quia non numquam modi tempora indunt ut labore et dolore magnam aliquam quaerat </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-4 col-sm-6">
-                    <div class="blog__item">
-                        <div class="blog__item__pic">
-                            <img src="template/ogani/img/blog/blog-3.jpg" alt="">
-                        </div>
-                        <div class="blog__item__text">
-                            <ul>
-                                <li><i class="fa fa-calendar-o"></i> May 4,2019</li>
-                                <li><i class="fa fa-comment-o"></i> 5</li>
-                            </ul>
-                            <h5><a href="#">Visit the clean farm in the US</a></h5>
-                            <p>Sed quia non numquam modi tempora indunt ut labore et dolore magnam aliquam quaerat </p>
-                        </div>
-                    </div>
+			                        </div>
+								</div>	
+		                    </div>
+					</c:forEach>					           
                 </div>
             </div>
         </div>
     </section>
     <!-- Related Blog Section End -->
 </body>
-<script>
-	const btn = document.getElementById('popupBtn');
-	const modal = document.getElementById('modalWrap');
-	const closeBtn = document.getElementById('closeBtn');
-
-	btn.onclick = function() {
-	  	modal.style.display = 'block';
+<script type="text/javascript">
+	
+	function modalDisplay(event) {
+		
+		var parentTrTag = event.target;
+		
+		for(;parentTrTag.className != 'blog__item'; parentTrTag=parentTrTag.parentElement);
+        
+		reviewUp(parentTrTag);
+        parentTrTag.querySelector(".modalWrap").style.display = 'block';
 	}
-	closeBtn.onclick = function() {
-	  	modal.style.display = 'none';
+	
+	function closeDisplay(event) {
+		var parentTrTag = event.target;
+		
+		for(;parentTrTag.className != 'blog__item'; parentTrTag=parentTrTag.parentElement);
+        parentTrTag.querySelector(".modalWrap").style.display = 'none';
 	}
-
-	window.onclick = function(event) {
-	  	if (event.target == modal) {
-    modal.style.display = "none";
- 	 	}
+	
+	function reviewUp(parentTrTag){
+		// ajax를 이용해서 검색 결과를 가져오고 화면을 재구성한다.
+		let reviewId = parentTrTag.id; //  
+		
+		let payload = "reviewId="+reviewId;
+		let url = "ajaxreviewupdate.do";
+		
+		
+		fetch(url,{
+			method: "post",
+			headers: { 'Content-Type' : 'application/x-www-form-urlencoded'},
+			body: payload
+		}).then(response => response.text())
+			.then(text => updatehit(text, parentTrTag));
+			
+		  //.then(json => console.log(json));
+		  
+       
+	}
+	
+	function updatehit(text, parentTrTag) {
+		 parentTrTag.querySelector(".hit").innerHTML=text;
 	}
 </script>
 </html>
