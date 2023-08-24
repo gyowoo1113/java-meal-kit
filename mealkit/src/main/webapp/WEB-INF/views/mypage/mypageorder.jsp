@@ -39,5 +39,26 @@ tr,td {
 	</div>
 </body>
 <script type="text/javascript">
+window.onload = function(){
+	createOrderList();
+}
+
+function createOrderList(){
+	var addr = <%= request.getAttribute("order") %>;
+	var detail = <%= request.getAttribute("detail") %>;
+	var tbody = document.getElementById("order_body");
+	tbody.innerHTML = addr.map((data,index)=> orderView(data,index,detail)).join('');
+}
+
+function orderView(data,index,detail){
+	var list = ``;
+	list += `<tr id=`+ data.ordarId +`><td>\${data.ordarDate}</td>`;
+	var ordercode = data.ordarDate.replace(/\-/gi,"") + "-" + data.ordarId;
+	list += `<td>` + ordercode + `</td>`;
+	list += `<td></td>`;
+	list += `<td></td>`;
+	return list;
+}
+
 </script>
 </html>
