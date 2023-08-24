@@ -27,12 +27,6 @@ tr,td {
 					</tr>
 				</thead>
 				<tbody id="order_body">
-					<tr>
-						<td>102</td>
-						<td>김치찌개</td>
-						<td>7800</td>
-						<td>2023-08-21</td>
-					</tr>
 				</tbody>
 			</table>
 		</div>
@@ -56,7 +50,12 @@ function orderView(data,index,detail){
 	var ordercode = data.ordarDate.replace(/\-/gi,"") + "-" + data.ordarId;
 	list += `<td>` + ordercode + `</td>`;
 	list += `<td>` + detail[data.ordarId]+`</td>`;
-	list += `<td></td>`;
+	
+	if (data.ordarPayment === 'FALSE'){
+		list += `<td><input type="button" value="결제" onclick="doPayment(event)"></td>`;
+	} else {
+		list += `<td>결제완료</td>`;
+	}
 	return list;
 }
 
