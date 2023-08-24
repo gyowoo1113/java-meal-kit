@@ -32,6 +32,7 @@ tr,td {
 		</div>
 	</div>
 </body>
+<script src="https://cdn.iamport.kr/v1/iamport.js"></script>
 <script type="text/javascript">
 window.onload = function(){
 	createOrderList();
@@ -57,6 +58,47 @@ function orderView(data,index,detail){
 		list += `<td>결제완료</td>`;
 	}
 	return list;
+}
+
+function doPayment(event){
+	var parentTrTag = event.target;
+    for(;parentTrTag.tagName != 'TR'; parentTrTag=parentTrTag.parentElement);
+    
+    // ---------------------------- 결제 
+    var alertIcon = 'success';
+	var IMP = window.IMP;
+	IMP.init('imp11388436');
+	IMP.request_pay({		
+		pg : 'kakaopay',
+		pay_method : 'card',
+		merchant_uid : 'merchant_' + new Date().getTime(),   //주문번호
+		name : 'TEST',                                  	 //상품명
+		amount : 1,                    						 //가격
+		//customer_uid : buyer_name + new Date().getTime(),  //해당 파라미터값이 있어야 빌링 키 발급 시도
+		buyer_email : '${email}',             				 //구매자 이메일
+		buyer_name : '${id}',                           		 //구매자 이름
+		buyer_tel : 'hp',                                  	 //전화번호
+		buyer_addr : 'addr',	                             //주소
+		buyer_postcode : '123-456'                           //우편번호 
+	},function(data){
+		if(data.success){
+			var msg = "결제 완료";
+            msg += '고유ID : ' + data.imp_uid;        
+            msg += '// 상점 거래ID : ' + data.merchant_uid;
+            msg += '// 결제 금액 : ' + data.paid_amount;
+            msg += '// 카드 승인번호 : ' + data.apply_num;
+        }else{
+        	var msg = data.error_msg;
+        	alertIcon = 'error'
+        }
+		
+        Swal.fire({
+            icon: alertIcon,
+            text: msg,
+        });
+
+	});
+	// --------------------------------------- 결제 end
 }
 
 </script>
