@@ -37,7 +37,12 @@ public class MemberServiceImpl implements MemberService {
 		
 		return map.memberUpdate(vo);
 	}
-
+	
+	@Override
+	public int memberUpdateVer2(MemberVO vo) {
+		
+		return map.memberUpdateVer2(vo);
+	}
 	@Override
 	public int memberDelete(MemberVO vo) {
 		

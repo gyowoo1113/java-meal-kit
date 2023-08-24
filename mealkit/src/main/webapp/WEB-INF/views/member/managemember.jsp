@@ -1,8 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
+<style>
+.cute {
+	display: inline-block;
+	backgorund-color: #fff;
+	padding: 5px;
+	border-top-left-radius: 5px;
+	border-bottom-left-radius: 5px;
+	border-top-right-radius: 5px;
+	border-bottom-right-radius: 5px;
+}
+</style>
+
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
@@ -14,7 +27,9 @@
 				<div class="col-sm-4">
 					<div class="page-header float-left">
 						<div class="page-title">
-							<h1>회원관리</h1>
+							<h1 style="font-size: 400%">
+								<strong>회원관리</strong>
+							</h1>
 						</div>
 					</div>
 				</div>
@@ -38,37 +53,45 @@
 								class="table table-striped table-bordered">
 								<thead>
 									<tr>
-										<th>이름</th>
-										<th>비밀번호</th>
+										<th>아이디</th>
 										<th>이름</th>
 										<th>이메일</th>
-										<th>등급</th>	
+										<th>등급</th>
+										<th>등급수정</th>
 									</tr>
 								</thead>
-								<c:forEach items="" var="">
+								<c:forEach items="${members }" var="m">
 									<tbody>
 										<tr>
-											<td>sda</td>
-											<td>sda</td>
-											<td>sda</td>
-											<td>sda</td>
-											<td>sda</td>
+											<td>${m.memberId }</td>
+											<td>${m.memberName }</td>
+											<td>${m.memberEmail }</td>
+											<td>${m.memberGrade }</td>
+											<td>
+												<form action="memberupdategrade.do" method="post">
+													<input type="hidden" id="memberId" name="memberId" value=${m.memberId }> 
+														<select name="memberGrade">
+														<option>----------------</option>
+														<option value="BRONZE">BRONZE</option>
+														<option value="SILVER">SILVER</option>
+														<option value="GOLD">GOLD</option>
+														<option value="PLATINUM">PLATINUM</option>
+														<option value="DIAMOND">DIAMOND</option>
+														<option>----------------</option>
+													</select>
+													<button type="submit">수정</button>
+												</form>
+											</td>
 										</tr>
+									</tbody>
 								</c:forEach>
-
 							</table>
-							<input type="submit" value="수정">
-							<input type="submit" value="삭제">
-							<input type="submit" value="등급조정">
+
 						</div>
 					</div>
 				</div>
-
-
 			</div>
 		</div>
 	</div>
-	
-	
 </body>
 </html>

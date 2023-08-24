@@ -51,6 +51,7 @@ public class MemberLogin extends HttpServlet {
 			session.setAttribute("id", vo.getMemberId()); // 세션에 값을 넣어줌
 			session.setAttribute("name", vo.getMemberName());
 			session.setAttribute("email", vo.getMemberEmail());
+			session.setAttribute("grade", vo.getMemberGrade());
 			message = vo.getMemberName() + "님 환영합니다";
 		} else {
 			message = "아이디 또는 비밀번호가 맞지 않습니다.";

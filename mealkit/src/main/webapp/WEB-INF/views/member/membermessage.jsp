@@ -14,10 +14,22 @@
         if (message !== null && message !== "") {
             alert(message);
             
-         // 실패 메시지일 경우에 로그인 페이지로 이동
+         // 실패 메시지일 경우 로그인 페이지로 이동
             if (message.includes("아이디 또는 비밀번호가 맞지 않습니다.")) {
-                window.location.href = 'loginform.do'; // 로그인 페이지의 경로
+                window.location.href = 'loginform.do';
             }
+         // 회원가입 성공시 로그인 페이지로 이동
+            if (message.includes("회원가입이 정상적으로 완료되었습니다.")) {
+                window.location.href = 'loginform.do'; 
+            }
+         // 등급변경 성공 or 실패시 등급수정 페이지로 이동
+         	if (message.includes("등급변경이 완료되었습니다.")){
+         		windows.location.href = 'managemember.do';
+         	}
+            if (message.includes("등급변경이 실패했습니다.")){
+            	windows.location.href = 'managemember.do';
+            }
+         	
         }
         
     </script>

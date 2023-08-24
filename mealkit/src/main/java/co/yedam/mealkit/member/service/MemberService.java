@@ -9,5 +9,6 @@ public interface MemberService {
 	MemberVO memberSelect(MemberVO vo);
 	int memberInsert(MemberVO vo);
 	int memberUpdate(MemberVO vo);
+	int memberUpdateVer2(MemberVO vo);
 	int memberDelete(MemberVO vo);
 }
