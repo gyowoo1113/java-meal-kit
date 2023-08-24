@@ -41,11 +41,6 @@
 	<div class="sufee-login d-flex align-content-center flex-wrap">
 		<div class="container">
 			<div class="login-content">
-				<div class="login-logo">
-					<a href="index.html"> <img class="align-content"
-						src="template/elaadmin/images/logo.png" alt="">
-					</a>
-				</div>
 				<div class="login-form">
 
 
@@ -61,11 +56,8 @@
 
 
 						<div class="checkbox">
-							<label> <input type="checkbox"> 아이디 기억하기
 							</label> <label class="pull-right"> <a
 								href="searchpasswordform.do"> 비밀번호 재설정</a>
-							</label><label class="pull-right"> <a href="searchidform.do">
-									아이디 찾기&nbsp&nbsp&nbsp&nbsp </a>
 							</label>
 
 						</div>
