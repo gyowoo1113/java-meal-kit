@@ -12,11 +12,9 @@
        <div class="blog__sidebar__item">
            <h4>Categories</h4>
            <ul>
-               <li><a href="#">All</a></li>
-               <li><a href="#">Beauty (20)</a></li>
-               <li><a href="#">Food (5)</a></li>
-               <li><a href="#">Life Style (9)</a></li>
-               <li><a href="#">Travel (10)</a></li>
+               <li><a href="#">회원정보</a></li>
+               <li><a href="#">주문내역</a></li>
+               <li><a href="#">리뷰관리</a></li>
            </ul>
        </div>
    </div>
