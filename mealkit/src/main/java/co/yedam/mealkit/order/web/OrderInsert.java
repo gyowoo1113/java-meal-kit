@@ -3,6 +3,7 @@ package co.yedam.mealkit.order.web;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -18,6 +19,12 @@ import co.yedam.mealkit.common.ViewResolve;
 import co.yedam.mealkit.ordar.service.OrdarService;
 import co.yedam.mealkit.ordar.service.OrdarVO;
 import co.yedam.mealkit.ordar.serviceImpl.OrdarServiceImpl;
+import co.yedam.mealkit.order.detail.service.OrderDetailService;
+import co.yedam.mealkit.order.detail.service.OrderDetailVO;
+import co.yedam.mealkit.order.detail.serviceImpl.OrderDetailServiceImpl;
+import co.yedam.mealkit.shop.cart.service.CartService;
+import co.yedam.mealkit.shop.cart.service.CartVO;
+import co.yedam.mealkit.shop.cart.serviceImpl.CartServiceImpl;
 
 @WebServlet("/orderinsert.do")
 public class OrderInsert extends HttpServlet {
@@ -88,6 +95,19 @@ public class OrderInsert extends HttpServlet {
 			String name = "cart[" + i +"]";
 			String id = request.getParameter(name);
 			ids.add(Integer.valueOf(id));
+		}
+		
+		CartService cartDAO = new CartServiceImpl();
+		OrderDetailService detailDAO = new OrderDetailServiceImpl();
+		List<Map<String, Object>> carts = new ArrayList<>();
+		carts = cartDAO.cartSelectInList(ids);
+		
+		for (Map<String,Object> cart : carts) {
+			String count = String.valueOf(cart.get("cartCount"));
+			String price = String.valueOf(cart.get("productPrice"));
+			String productId = String.valueOf(cart.get("productId"));
+			OrderDetailVO vo = new OrderDetailVO(Integer.valueOf(count),Integer.valueOf(price),Integer.valueOf(productId),orderId);
+			int res = detailDAO.orderDetailInsert(vo);
 		}
 	}
 }
