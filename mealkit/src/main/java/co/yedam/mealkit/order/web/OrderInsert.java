@@ -117,5 +117,8 @@ public class OrderInsert extends HttpServlet {
 			OrderDetailVO vo = new OrderDetailVO(Integer.valueOf(count),Integer.valueOf(price),Integer.valueOf(productId),orderId);
 			int res = detailDAO.orderDetailInsert(vo);
 		}
+		
+		// order-detail에 insert한 제품 삭제
+		cartDAO.cartDeleteList(ids);
 	}
 }
