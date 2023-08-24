@@ -2,19 +2,49 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="co.yedam.mealkit.member.mapper.MemberMapper">
 
- 	<select id="memberSelectList" resultType="co.yedam.mealkit.member.service.MemberVO">
- 		SELECT * FROM MEMBER
- 	</select>
- 	
- 	<select id="memberSelect" resultType="co.yedam.mealkit.member.service.MemberVO">
- 		SELECT * FROM MEMBER WHERE MEMBER_ID = #{memberId}
- 	</select>
- 	
- 	<insert id="memberInsert" parameterType="co.yedam.mealkit.member.service.MemberVO">
- 		INSERT INTO MEMBER(MEMBER_ID,MEMBER_PASSWORD,MEMBER_NAME,MEMBER_EMAIL)
- 		VALU\ES(#{memberId},#{memberPassword},#{memberGrade},#{memberEmail})
- 		
- 	</insert>
- 	
- 	
+	<select id="memberSelectList"
+		resultType="co.yedam.mealkit.member.service.MemberVO">
+		SELECT * FROM MEMBER
+	</select>
+
+	<select id="memberSelect"
+		resultType="co.yedam.mealkit.member.service.MemberVO">
+		SELECT * FROM MEMBER WHERE MEMBER_ID = #{memberId}
+		<if test="memberPassword != null">
+		 AND MEMBER_PASSWORD = #{memberPassword}
+		</if>
+	</select>
+
+	<insert id="memberInsert"
+		parameterType="co.yedam.mealkit.member.service.MemberVO">
+		INSERT INTO MEMBER (MEMBER_ID, MEMBER_PASSWORD, MEMBER_NAME, MEMBER_EMAIL)
+		VALUES(#{memberId},#{memberPassword},#{memberName},#{memberEmail})
+	</insert>
+
+	<update id="memberUpdate"
+		parameterType="co.yedam.mealkit.member.service.MemberVO">
+		UPDATE MEMBER
+		<set>
+			<if test="memberId != null">member_Id = #{memberId},</if>
+			<if test="memberName != null">member_Name = #{memberName},</if>
+			<if test="memberGrade != null">member_Grade = #{memberGrade}</if>
+		</set>
+		WHERE MEMBER_GRADE = #{memberGrade}
+	</update>
+	
+	<update id="memberUpdateVer2" parameterType="co.yedam.mealkit.member.service.MemberVO">
+	UPDATE MEMBER
+	<set>
+		<if test="memberId != null">member_Id = #{memberId},</if>
+		<if test="memberGrade != null">member_Grade = #{memberGrade}</if>
+	</set>
+	WHERE MEMBER_ID = #{memberId}
+	</update>
+	
+
+	<delete id="memberDelete"
+		parameterType="co.yedam.mealkit.member.service.MemberVO">
+		DELETE FROM MEMBER WHERE MEMBER_ID = #{MEMBER_ID}
+	</delete>
+
 </mapper>

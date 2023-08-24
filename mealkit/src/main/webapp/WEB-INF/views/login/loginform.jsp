@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -46,7 +47,9 @@
 					</a>
 				</div>
 				<div class="login-form">
-					<form action="memberlogin.do" method="post">
+
+
+					<form id="frm" action="memberlogin.do" method="post">
 						<div class="form-group">
 							<label>아이디</label> <input type="text" class="form-control"
 								placeholder="아이디 입력" id="memberId" name="memberId">
@@ -55,6 +58,8 @@
 							<label>비밀번호</label> <input type="password" class="form-control"
 								placeholder="비밀번호 입력" id="memberPassword" name="memberPassword">
 						</div>
+
+
 						<div class="checkbox">
 							<label> <input type="checkbox"> 아이디 기억하기
 							</label> <label class="pull-right"> <a
@@ -64,15 +69,19 @@
 							</label>
 
 						</div>
+
+
 						<button type="submit"
 							class="btn btn-success btn-flat m-b-30 m-t-30">로 그 인</button>
-						<div class="social-login-content"></div>
-						<div class="register-link m-t-15 text-center">
-							<p>
-								아이디가 없습니까? <a href="registerform.do">&nbsp&nbsp&nbsp 회원가입 </a>
-							</p>
-						</div>
 					</form>
+
+					<div class="social-login-content"></div>
+					<div class="register-link m-t-15 text-center">
+						<p>
+							아이디가 없습니까? <a href="registerform.do">&nbsp&nbsp&nbsp 회원가입 </a>
+						</p>
+					</div>
+
 				</div>
 			</div>
 		</div>
@@ -87,6 +96,7 @@
 	<script
 		src="https://cdn.jsdelivr.net/npm/jquery-match-height@0.7.2/dist/jquery.matchHeight.min.js"></script>
 	<script src="template/elaadmin/assets/js/main.js"></script>
+
 
 </body>
 </html>

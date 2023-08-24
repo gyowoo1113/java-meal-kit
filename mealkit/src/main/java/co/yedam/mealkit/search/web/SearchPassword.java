@@ -3,6 +3,7 @@ package co.yedam.mealkit.search.web;
 import java.io.IOException;
 import java.util.Date;
 import java.util.Properties;
+import java.util.Random;
 
 import javax.mail.Authenticator;
 import javax.mail.Message;
@@ -42,30 +43,30 @@ public class SearchPassword extends HttpServlet {
 			throws ServletException, IOException {
         Properties props = System.getProperties();
         props.put("mail.smtp.starttls.enable", "true");
-        props.put("mail.smtp.host", "smtp.gmail.com");      // smtp 서버 주소
+        props.put("mail.smtp.host", "smtp.naver.com");      // smtp 서버 주소
         props.put("mail.smtp.auth","true");
         props.put("mail.smtp.port", "587");                 // 구글,네이버 포트
-        props.put("mail.smtp.ssl.trust", "smtp.gmail.com");
+        props.put("mail.smtp.ssl.trust", "smtp.naver.com");
         props.put("mail.smtp.ssl.protocols", "TLSv1.2");
            
         //session 생성 및  MimeMessage생성
 		Session session = Session.getInstance(props, new Authenticator() {
 			@Override
 			protected PasswordAuthentication getPasswordAuthentication() {
-				return new PasswordAuthentication("user@example.com", "앱 비밀번호(구글)");
+				return new PasswordAuthentication("jack2078", "anfbf9812");
 			}
 		});
         MimeMessage msg = new MimeMessage(session);
          
-		String receiver = "admin@example.com"; // 메일 받을 주소
-		String title = "메일 제목";
-		String content = "메일 내용";
+		String receiver = "jack2078@naver.com"; // 메일 받을 주소
+		String title = "MealKit";
+		String content = "인증번호는 : " + randomCode();
 		Message message = new MimeMessage(session);
         try{
             //편지보낸시간
             msg.setSentDate(new Date());
             InternetAddress from = new InternetAddress() ;
-            from = new InternetAddress("user@example.com", "Mr. User"); //발신자 아이디
+            from = new InternetAddress("jack2078@naver.com", "맛없는밀키트"); //발신자 아이디
             // 이메일 발신자
             msg.setFrom(from);
             // 이메일 수신자
@@ -84,8 +85,14 @@ public class SearchPassword extends HttpServlet {
         }catch (Exception msg_e) {
             msg_e.printStackTrace();
         }
-
 	}
+	
+	// 인증코드 난수로 생성해서 뿌려버리기
+	private String randomCode() {
+        Random random = new Random();
+        int randomNumber = 1000 + random.nextInt(9000); // 난수 4자리 생성
+        return String.valueOf(randomNumber);
+    }
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
