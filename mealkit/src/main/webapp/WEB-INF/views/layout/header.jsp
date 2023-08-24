@@ -79,9 +79,9 @@
 				</div>
 				<div class="col-lg-3">
 					<div class="header__cart">
-						<ul>
-							<li><a href="reviewpost.do"><i class="fa fa-heart"></i> <span>1</span></a></li>
-						</ul>
+					  	<ul>
+					    <li><a href="shoppingcart.do"><i class="fa fa-shopping-bag"></i></a></li>
+					    </ul>
 					</div>
 				</div>
 			</div>

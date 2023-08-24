@@ -34,4 +34,14 @@
 		</foreach>
 		GROUP BY order_id
 	</select>
+	
+	<select id="orderDetailProductList" resultType="co.yedam.mealkit.common.CamelHashMap" parameterType="java.util.List">
+		SELECT DISTINCT product.product_id, product.product_name,product.product_img
+		FROM order_detail, product
+		WHERE product.product_id = order_detail.product_id
+		AND order_id IN
+		<foreach collection="list" item="item" open="(" close=")" separator=",">
+		#{item}
+		</foreach>
+	</select>
 </mapper>

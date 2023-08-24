@@ -44,12 +44,46 @@
 	font-size: 25px;
 	cursor: pointer;
 }
+
+/* table css */
+.list-content {
+    margin: 8vh auto;
+}
+
+tr,td {
+	text-align:center;
+}
 </style>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
 	<h1>asdsa</h1>
+	<!-- 리뷰 가능한 물품 리스트 출력 및 리뷰 버튼 생성 -->
+		<div class="container">
+		<div class="list-content">
+			<table id="bootstrap-data-table" class="table table-striped table-bordered">
+				<thead>
+					<tr>
+						<th width="50%"></th>
+						<th width="25%">상품이름</th>
+						<th width="25%">리뷰</th>
+					</tr>
+				</thead>
+				<tbody>
+					<c:forEach items="${products}" var="p">
+					<tr>
+						<td><img src="${p.productImg}" width="20%" alt="No Image"></td>
+						<td>${p.productName }</td>
+						<td><input type="button" value="작성" onclick="moveReviewInsert(event)"  id="${p.productId}">
+						</td>
+					</tr>
+					</c:forEach>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	
 	<!-- Shoping Cart Section Begin -->
     <div class="content">
             <div class="animated fadeIn">
@@ -80,6 +114,9 @@
             </div><!-- .animated -->
         </div><!-- .content -->
     <!-- Shoping Cart Section End -->
+    <form action="reviewinsert.do" method="post" id="frm">
+    	<input type="hidden" name="productId" id="productId">
+    </form>
 </body>
 <script type="text/javascript">
 function modalDisplay(event) {
@@ -121,6 +158,11 @@ function reviewUp(parentTrTag){
 
 function updatehit(text, parentTrTag) {
 	 parentTrTag.querySelector(".hit").innerHTML=text;
+}
+
+function moveReviewInsert(event){
+	document.getElementById("productId").value = event.target.id;
+	document.getElementById("frm").submit();
 }
 </script>
 </html>
