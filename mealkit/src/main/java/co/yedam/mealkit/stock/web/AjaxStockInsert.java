@@ -2,9 +2,7 @@ package co.yedam.mealkit.stock.web;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -58,19 +56,14 @@ public class AjaxStockInsert extends HttpServlet {
 		request.setAttribute("products", products);
 	
 		ObjectMapper objectMapper = new ObjectMapper(); 
-
+		
 		objectMapper.registerModule(new JavaTimeModule()); 
 		objectMapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS); 
 
-		//String data = objectMapper.writeValueAsString(stocks);
-		Map<String, Object> responseData = new HashMap<>();
-		responseData.put("stocks", stocks);
-		responseData.put("products", products);
-	
+		String data = objectMapper.writeValueAsString(stocks);
+			
 		response.setContentType("text/html; charset=UTF-8");
-		
-		response.getWriter().append(responseData);
-	
+		response.getWriter().append(data);
 		return;
 	}
 
