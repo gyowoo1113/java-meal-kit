@@ -27,15 +27,16 @@
 				<div class="row">
 					<div class="col-lg-6 col-md-6">
 						<div class="header__top__left">
+						<c:if test="${not empty id }">
 							<ul>
-								<li><i class="fa fa-envelope"></i> hello@colorlib.com</li>
+								<li><i class="fa fa-envelope"></i> ${email }</li>
 							</ul>
+						</c:if>
 						</div>
 					</div>
 					<div class="col-lg-6 col-md-6">
 						<div class="header__top__right">
-
-
+						
 							<c:if test="${empty id }">
 								<div class="header__top__right__auth">
 									<a href="loginform.do"><i class="fa fa-user"></i>로그인</a>
@@ -43,10 +44,6 @@
 							</c:if>
 
 							<c:if test="${not empty id }">
-
-								<div class="mypage">
-									<a href="mypage.do" style="color:black">마이페이지</a>
-								</div>
 								<div class="header__top__right__auth">
 									<i class="fa fa-user"></i>${ name }님 접속중
 								</div>
@@ -54,9 +51,6 @@
 									<a href="memberlogout.do" style="color:black" >로그아웃</a>
 								</div>
 							</c:if>
-
-
-
 						</div>
 					</div>
 				</div>
@@ -66,25 +60,20 @@
 			<div class="row">
 				<div class="col-lg-3">
 					<div class="header__logo">
-						<a href="./index.html"><img src="template/ogani/img/logo.png"
+						<a href="home.do"><img src="template/ogani/img/logo.png"
 							alt=""></a>
 					</div>
 				</div>
-				<div class="col-lg-6">
+				<div class="col-lg-6 container">
 					<nav class="header__menu">
 						<ul>
-							<li class="active"><a href="./index.html">Home</a></li>
-							<li><a href="shopmenuform.do">메뉴</a></li>
-							<li><a href="#">Pages</a>
-								<ul class="header__menu__dropdown">
-									<li><a href="shopdetail.do">Shop Details</a></li>
-									<li><a href="shoppingcart.do">Shoping Cart</a></li>
-									<li><a href="checkout.do">Check Out</a></li>
-									<li><a href="admin.do">Admin</a></li>
-                                    <li><a href="reviewform.do">리뷰</a></li>
-								</ul></li>
-							<li><a href="./blog.html">Blog</a></li>
-							<li><a href="./contact.html">Contact</a></li>
+							<li><a href="shopmenuform.do">상품목록</a></li>
+							<li><a href="shoppingcart.do">장바구니</a>
+							<li><a href="reviewform.do">베스트리뷰</a>
+							<c:if test="${not empty id }">
+							<li><a href="mypage.do">마이페이지</a>
+							</c:if>
+							<li><a href="admin.do">관리</a></li>
 						</ul>
 					</nav>
 				</div>
@@ -92,11 +81,7 @@
 					<div class="header__cart">
 						<ul>
 							<li><a href="reviewpost.do"><i class="fa fa-heart"></i> <span>1</span></a></li>
-							<li><a href="#"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
 						</ul>
-						<div class="header__cart__price">
-							item: <span>$150.00</span>
-						</div>
 					</div>
 				</div>
 			</div>
