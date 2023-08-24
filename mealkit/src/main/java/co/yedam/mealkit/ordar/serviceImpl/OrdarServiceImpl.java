@@ -1,6 +1,7 @@
 package co.yedam.mealkit.ordar.serviceImpl;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
@@ -17,7 +18,12 @@ public class OrdarServiceImpl implements OrdarService {
 	public List<OrdarVO> ordarSelectList() {
 		return map.ordarSelectList();
 	}
-
+	
+	@Override
+	public List<OrdarVO> ordarSelectList(String memberId) {
+		return map.ordarSelectList(memberId);
+	}
+	
 	@Override
 	public OrdarVO ordarSelect(OrdarVO vo) {
 		return map.ordarSelect(vo);

@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="co.yedam.mealkit.ordar.mapper.OrdarMapper">
+	<select id="ordarSelectList" resultType="co.yedam.mealkit.ordar.service.OrdarVO">
+		SELECT * FROM ordar
+		<if test="memberId != null"> WHERE member_id = #{memberId}</if>
+		ORDER BY ordar_id DESC
+	</select>
 
 	<insert id="ordarInsert" parameterType="co.yedam.mealkit.ordar.service.OrdarVO">
 		<selectKey resultType="int" keyProperty="ordarId" order="BEFORE">
