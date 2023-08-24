@@ -7,7 +7,7 @@ import org.apache.ibatis.annotations.Param;
 
 public interface ReviewService {
 	
-	List<Map<String, Object>> reviewSelectList();
+	List<ReviewVO> reviewSelectList();
 	List<Map<String, Object>>reviewSelectList(@Param("key") String key, @Param("val") String val);
 	List<ReviewVO> reviewSelectProduct(ReviewVO vo);
 	List<ReviewVO> reviewSelectBestReview(ReviewVO vo);

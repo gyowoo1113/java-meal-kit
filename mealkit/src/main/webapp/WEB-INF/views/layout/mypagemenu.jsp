@@ -14,7 +14,7 @@
            <ul>
                <li><a href="#">회원정보</a></li>
                <li><a href="#">주문내역</a></li>
-               <li><a href="#">리뷰관리</a></li>
+               <li><a href="mypagereview.do">리뷰관리</a></li>
            </ul>
        </div>
    </div>

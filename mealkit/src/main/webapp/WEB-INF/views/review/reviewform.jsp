@@ -5,8 +5,8 @@
 <html>
 <style>
 	.btnWrap {
-  		width: 500px;
- 		margin: 100px auto;
+  		width: 1000px;
+ 		margin: 300px auto;
 	}
 	.popupBtn {
   		width: 150px;
@@ -25,7 +25,6 @@
   		background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
   		display: none;
 	}
-
 	.modalBody {
   		width: 700px;
   		padding: 50px 50px;
@@ -33,7 +32,6 @@
   		border: 1px solid #777;
   		background-color: #fff;
 	}
-
 	.closeBtn {
   		float:right;
   		font-weight: bold;
@@ -41,7 +39,6 @@
   		font-size:25px;
   		cursor: pointer;
 	}
-	
 </style>
 <head>
 <meta charset="UTF-8">
@@ -51,15 +48,15 @@
  <!-- Related Blog Section Begin -->
     <section class="related-blog spad">
         <div class="container">
-            <div class="row">
+            <div>
                 <div class="col-lg-12">
                     <div class="section-title related-blog-title">
                         <h2>베스트 리뷰</h2>
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-lg-4 col-md-4 col-sm-6">
+            <div class="marginauto">
+                <div>
                 	<c:forEach items="${reviews}" var="r">
 		                    <div class="blog__item" id="${r.reviewId}">
 		                    	<div class="modalWrap">
@@ -68,40 +65,44 @@
 				      					 	<div class="popmenu">
 				      					 		<span class="closeBtn" onclick="closeDisplay(event)">X</span>
 						                        <div class="blog__item__pic">
-						                            <img src="${r.reviewImg}" alt="">
+						                            <img src="${r.reviewImg}" alt="No Image">
 						                        </div>
 						                        <div class="blog__item__text">
+						                        	<ul>
+						                                <li style="float:right"><i class="fa fa-user"> ${r.memberId }</i></li>
+						                            </ul>
 						                            <ul>
-						                                <li><i class="fa fa-calendar-o"></i>${r.reviewDate}</li>
-						                                <li><i class="fa fa-comment-o"></i> 5</li>
+						                                <li><i class="fa fa-calendar-o"></i> ${r.reviewDate}</li>
+						                                <li><i class="fa fa-eye hit"> ${r.reviewHit }</i></li>
 						                            </ul>
 						                            <h5><a href="#">${r.reviewTitle }</a></h5>
 						                            <p>${r.reviewSubject }</p>
-						                            <h5 class="hit">${r.reviewHit }</h5>
 						                            <input type="hidden" id="memberId" name="memberId" value="${id}">
 						                        </div>
 							            	</div>
 					        			</div>
 					        		</div>
 								</div>
-					        	<div class="btnWrap">
-					        		<div class="popupBtn" onclick= "modalDisplay(event)">
-			  							<div class="blog__item__pic">
-							            	<img src="${r.reviewImg}" alt="">
-				                        </div>
-				                        <div class="blog__item__text">
-				                            <ul>
-				                                <li><i class="fa fa-calendar-o"></i>${r.reviewDate}</li>
-				                                <li><i class="fa fa-comment-o"></i> 5</li>
-				                            </ul>
-				                            <h5><a href="#">${r.reviewTitle }</a></h5>
-				                            <p>${r.reviewSubject }</p>
-				                            <h5 class="hit">${r.reviewHit }</h5>
-				                        </div>
-			                        </div>
-								</div>	
-		                    </div>
-					</c:forEach>					           
+					        	<div>
+					        		<div onclick= "modalDisplay(event)">
+						        		<div class="popup">
+					      					 	<div class="popmenu">
+				  							<div class="blog__item__pic">
+								            	<img src="${r.reviewImg}" alt="No Image">
+					                        </div>
+					                        <div class="blog__item__text">
+					                            <ul>
+					                                <li><i class="fa fa-calendar-o"> ${r.reviewDate}</i></li>
+					                                <li><i class="fa fa-eye hit"> ${r.reviewHit }</i></li>
+					                            </ul>
+					                            <h5><a href="#">${r.reviewTitle }</a></h5>
+					                        </div>
+				                        </div> 
+		                             </div>
+								</div>
+							</div>	
+	                    </div>
+					</c:forEach>	
                 </div>
             </div>
         </div>
@@ -117,7 +118,7 @@
 		for(;parentTrTag.className != 'blog__item'; parentTrTag=parentTrTag.parentElement);
         
 		reviewUp(parentTrTag);
-        parentTrTag.querySelector(".modalWrap").style.display = 'block';
+        
 	}
 	
 	function closeDisplay(event) {
@@ -125,6 +126,7 @@
 		
 		for(;parentTrTag.className != 'blog__item'; parentTrTag=parentTrTag.parentElement);
         parentTrTag.querySelector(".modalWrap").style.display = 'none';
+        
 	}
 	
 	function reviewUp(parentTrTag){
@@ -134,7 +136,6 @@
 		let payload = "reviewId="+reviewId;
 		let url = "ajaxreviewupdate.do";
 		
-		
 		fetch(url,{
 			method: "post",
 			headers: { 'Content-Type' : 'application/x-www-form-urlencoded'},
@@ -143,8 +144,7 @@
 			.then(text => updatehit(text, parentTrTag));
 			
 		  //.then(json => console.log(json));
-		  
-       
+		parentTrTag.querySelector(".modalWrap").style.display = 'block';
 	}
 	
 	function updatehit(text, parentTrTag) {

@@ -60,10 +60,14 @@ public class ReviewInsert extends HttpServlet {
 		vo.setReviewTitle(multi.getParameter("reviewTitle"));	
 		vo.setReviewSubject(multi.getParameter("reviewSubject"));
 		
-		if (dao.reviewInsert(vo) != 0) {
-			request.setAttribute("message", "작성 완료");
-		} else {
-			request.setAttribute("message", "작성 실패");
+		
+		
+		try {
+			if (dao.reviewInsert(vo) != 0) {
+				request.setAttribute("message", "작성 완료");
+			}
+		} catch (Exception e) {
+			request.setAttribute("message", "작성 실패(로그인 후 작성 가능)");		
 		}
 		
 		String ViewName="review/reviewpost";

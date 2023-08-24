@@ -1,4 +1,4 @@
-package co.yedam.mealkit.admin.web;
+package co.yedam.mealkit.review.web;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -15,27 +15,39 @@ import co.yedam.mealkit.review.service.ReviewService;
 import co.yedam.mealkit.review.service.ReviewVO;
 import co.yedam.mealkit.review.serviceImpl.ReviewServiceImpl;
 
-@WebServlet("/managereview.do")
-public class ManageReview extends HttpServlet {
+/**
+ * Servlet implementation class ReviewManagement
+ */
+@WebServlet("/mypagereview.do")
+public class ReviewMyPage extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-
-    public ManageReview() {
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public ReviewMyPage() {
         super();
-        
+        // TODO Auto-generated constructor stub
     }
 
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ReviewService rs = new ReviewServiceImpl();
 		List<ReviewVO> reviews = new ArrayList<>();
 		reviews = rs.reviewSelectList();
 		
+		
 		request.setAttribute("reviews", reviews);
 		
-		String viewName = "admin/review/managereview";
+		String viewName = "mypage/review/mypagereview";
 		ViewResolve.forward(request, response, viewName);
 	}
 
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
