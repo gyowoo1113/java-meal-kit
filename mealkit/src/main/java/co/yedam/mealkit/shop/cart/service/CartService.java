@@ -12,4 +12,5 @@ public interface CartService {
 	int cartInsert(CartVO vo);
 	int cartUpdate(CartVO vo);
 	int cartDelete(CartVO vo);
+	int cartDeleteList(List<Integer> ids);
 }

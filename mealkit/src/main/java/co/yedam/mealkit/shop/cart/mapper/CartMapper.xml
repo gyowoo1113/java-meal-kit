@@ -57,5 +57,13 @@
 		</foreach>
 		AND cart.product_id = product.product_id
 	</select>
+	
+	<delete id="cartDeleteList" parameterType="java.util.List">
+		DELETE FROM cart
+		WHERE cart_id IN
+		<foreach collection="list" item="item" open="(" close=")" separator=",">
+		#{item}
+		</foreach>
+	</delete>
 
 </mapper>
