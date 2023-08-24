@@ -44,12 +44,46 @@
 	font-size: 25px;
 	cursor: pointer;
 }
+
+/* table css */
+.list-content {
+    margin: 8vh auto;
+}
+
+tr,td {
+	text-align:center;
+}
 </style>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
 	<h1>asdsa</h1>
+	<!-- 리뷰 가능한 물품 리스트 출력 및 리뷰 버튼 생성 -->
+		<div class="container">
+		<div class="list-content">
+			<table id="bootstrap-data-table" class="table table-striped table-bordered">
+				<thead>
+					<tr>
+						<th width="50%"></th>
+						<th width="25%">상품이름</th>
+						<th width="25%">리뷰</th>
+					</tr>
+				</thead>
+				<tbody>
+					<c:forEach items="${products}" var="p">
+					<tr>
+						<td><img src="${p.productImg}" width="20%" alt="No Image"></td>
+						<td>${p.productName }</td>
+						<td><input type="button" value="작성" onclick="">
+						</td>
+					</tr>
+					</c:forEach>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	
 	<!-- Shoping Cart Section Begin -->
     <section class="shoping-cart spad">
         <div class="container">
