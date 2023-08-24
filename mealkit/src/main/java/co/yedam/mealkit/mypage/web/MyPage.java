@@ -28,7 +28,7 @@ public class MyPage extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String viewName = "mypage/mypage";
+		String viewName = "mypage/mypage/mypage";
 		ViewResolve.forward(request, response, viewName);
 	}
 

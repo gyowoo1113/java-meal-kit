@@ -80,11 +80,6 @@
 	<div class="sufee-login d-flex align-content-center flex-wrap">
 		<div class="container">
 			<div class="login-content">
-				<div class="login-logo">
-					<a href="index.html"> <img class="align-content"
-						src="template/elaadmin/images/logo.png" alt="">
-					</a>
-				</div>
 				<div class="mypg">
 					<div class="login-form">
 						<form>
@@ -116,7 +111,6 @@
 
 							<button type="submit"
 								class="btn btn-success btn-flat m-b-30 m-t-30">회 원 가 입</button>
-							<div class="social-login-content"></div>
 							<div class="register-link m-t-15 text-center">
 								<p></p>
 							</div>
