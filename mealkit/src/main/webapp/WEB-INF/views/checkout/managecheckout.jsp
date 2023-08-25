@@ -27,7 +27,7 @@
                                    <th>판매개수</th>
                                    <th>주문날짜</th>
                                    <th>판매금액</th>
-                                   <th>결제상태</th>
+                                   <th>결제/배송</th>
                                </tr>
                            </thead>
                            <tbody id = "checkout_body">
@@ -68,9 +68,30 @@ function orderView(data,index){
     if (data.ordarPayment ==='FALSE'){
     	list += `결제대기중`;
     } else {
-    	list += `결제완료`;
+    	if (data.shipCheck === 'READY'){
+    		list += `배송준비중`;
+    	} else if (data.shipCheck ==='ING'){
+    		list += `배송중`;
+    	} else if (data.shipCheck ==='TRUE'){
+    		list += `배송완료`;
+    	} else {
+    		list += `결제완료`;
+    	}
     }
-    list += `</td></tr>`;
+    list += `</td>`;
+    
+    if (data.ordarPayment === 'FALSE'){
+    	list += `<td></td></tr>`;
+    } else{
+    	list += `<td>
+    		<select name="shipPayment">
+    			<option value="배송준비중">배송준비중</option>
+    			<option value="배송중">배송중</option>
+    			<option value="배송완료">배송완료</option>
+    		</select>
+    	<input type="button" value="수정"></button></td></tr>`;
+    }
+	
 	return list;
 }
 </script>
