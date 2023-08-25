@@ -15,7 +15,7 @@
 				<ul class="nav navbar-nav">
 					<li><a href="managemember.do"> <i	class="menu-icon ti-email"></i>회원관리
 					</a></li>
-					<li><a href="#"> <i	class="menu-icon ti-email"></i>판매관리
+					<li><a href="managecheckout.do"> <i	class="menu-icon ti-email"></i>판매관리
 					</a></li>
 					<li><a href="manageproduct.do"> <i class="menu-icon ti-email"></i>제품관리
 					</a></li>
