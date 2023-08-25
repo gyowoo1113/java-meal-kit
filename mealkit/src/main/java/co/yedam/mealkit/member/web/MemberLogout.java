@@ -1,6 +1,8 @@
 package co.yedam.mealkit.member.web;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,6 +12,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import co.yedam.mealkit.common.ViewResolve;
+import co.yedam.mealkit.product.service.ProductService;
+import co.yedam.mealkit.product.service.ProductVO;
+import co.yedam.mealkit.product.serviceImpl.ProductServiceImpl;
 
 /**
  * Servlet implementation class MemberLogout
@@ -33,9 +38,16 @@ public class MemberLogout extends HttpServlet {
 		HttpSession session = request.getSession();
 
 		String name = (String) session.getAttribute("name");
-		session.invalidate();
+		String message = null;
 		
-		String viewName = "home/home";
+		if(name == (String) session.getAttribute("name")) {
+		session.invalidate();
+		message = "로그아웃이 정상적으로 완료되었습니다.";
+		
+		}
+		request.setAttribute("message", message);
+		
+		String viewName = "member/membermessage";
 		ViewResolve.forward(request, response, viewName);
 	}
 

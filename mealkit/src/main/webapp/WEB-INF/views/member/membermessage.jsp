@@ -14,12 +14,18 @@
         if (message !== null && message !== "") {
             alert(message);
             
+
             // 로그인 성공하면 홈으로 이동
             
             if (message.includes("로그인이 정상적으로 성공했습니다.")) {
                 window.location.href = 'home.do';
             }        
          
+
+            if (message.includes("로그인이 정상적으로 성공했습니다.")) {
+                window.location.href = 'home.do';
+            }
+
          // 실패 메시지일 경우 로그인 페이지로 이동
             if (message.includes("아이디 또는 비밀번호가 맞지 않습니다.")) {
                 window.location.href = 'loginform.do';
@@ -47,10 +53,9 @@
             if (message.includes("인증번호가 정상적으로 전송되었습니다.")){
                	window.location.href = 'searchpasswordform.do';
                } 
-            if (message.includes("아이디 및 이메일이 존재하지 않습니다.")){
-               	window.location.href = 'searchpasswordform.do';
+            if (message.includes("로그아웃이 정상적으로 완료되었습니다.")){
+               	window.location.href = 'home.do';
                } 
-         	
         }
         
     </script>
