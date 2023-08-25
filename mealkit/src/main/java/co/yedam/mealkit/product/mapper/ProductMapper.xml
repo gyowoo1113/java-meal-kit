@@ -23,7 +23,7 @@
     		
 		</selectKey>
 		INSERT INTO product
-		VALUES (#{productId},#{productName},#{productPrice},#{productComment},SYSDATE,#{categoryId},#{productImg},#{productStock})
+		VALUES (#{productId},#{productName},#{productPrice},#{productComment},SYSDATE,#{categoryId},#{productImg},#{productStock},#{productView})
 	</insert>
 	
 	<update id="productUpdate" parameterType="co.yedam.mealkit.product.service.ProductVO">
@@ -33,7 +33,8 @@
 			<if test="productPrice != 0">PRODUCT_PRICE = #{productPrice},</if>
 			<if test="productComment != null">PRODUCT_COMMENT = #{productComment},</if>
 			<if test="productImg != null">PRODUCT_IMG = #{productImg},</if>
-			<if test="productStock != 0">PRODUCT_STOCK = #{productStock}</if>
+			<if test="productStock != 0">PRODUCT_STOCK = #{productStock},</if>
+			<if test="productView != null">PRODUCT_VIEW = #{productView}</if>
 		</set>
 		WHERE PRODUCT_ID = #{productId}
 	</update>

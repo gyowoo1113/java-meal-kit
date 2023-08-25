@@ -52,7 +52,8 @@ public class UpdateProduct extends HttpServlet {
 		vo.setProductName(multi.getParameter("productName"));
 		vo.setProductComment(multi.getParameter("productComment"));
 		vo.setProductPrice(Integer.parseInt(multi.getParameter("productPrice")));
-		
+		vo.setProductView(multi.getParameter("radios"));
+	
 		int n = dao.productUpdate(vo);
 		
 		if( n == 1) {

@@ -67,8 +67,8 @@
 						<div class="product__details__pic">
 							<div class="product__details__pic__item">
 								<label> <img id="productImg"
-									src="img/${product.productImg }" width=540
-									height=560 alt="이미지" onclick="changeImg()">
+									src="img/${product.productImg }" width=540 height=560 alt="이미지"
+									onclick="changeImg()">
 								</label> <input type="file" id="file" name="file"
 									onchange="readURL(this)" style="display: none;">
 
@@ -88,8 +88,24 @@
 
 							<textarea name="productComment" id="productComment" rows="9"
 								class="form-control">${product.productComment}</textarea>
-							<hr>
+							<br>
 
+							<div class="form-check">
+								<div class="radio">
+									<input type="radio" id="radio1" name="radios" value="ON"
+										class="form-check-input"
+										${product.productView == 'ON' ? 'checked' : ''}> <label
+										for="radio1" class="form-check-label">ON</label>
+								</div>
+
+								<div class="radio">
+									<input type="radio" id="radio2" name="radios" value="OFF"
+										class="form-check-input"
+										${product.productView == 'OFF' ? 'checked' : ''}> <label
+										for="radio2" class="form-check-label">OFF</label>
+								</div>
+							</div>
+							<hr>
 
 							<button type="submit" class="primary-btn">수정</button>
 							<button type="button" class="primary-btn" onclick="product()">삭제</button>
