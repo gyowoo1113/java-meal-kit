@@ -59,7 +59,8 @@ function createOrderList(){
 
 function orderView(data,index){
 	var list = ``;
-	list += `<tr><td>\${data.ordarId}</td>
+	list += `<tr id="` + index + `">`;
+	list += `<td>\${data.ordarId}</td>
 		<td>\${data.memberId}</td>
         <td>\${data.productId}</td>
         <td>\${data.productName}</td>
@@ -123,6 +124,15 @@ function doUpdateShipCheck(idx,parentTrTag){
 }
 
 function updateShipHTML(newText, ordarId){
+	var tbody = document.getElementById("checkout_body");
+	var trs = tbody.querySelectorAll("tr");
+	
+	for (var _tr of trs){
+		if (_tr.children[0].innerHTML != ordarId) {
+			continue;
+		}
+		_tr.children[7].innerHTML = newText;
+	}
 }
 </script>
 </html>
