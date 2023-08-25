@@ -54,12 +54,7 @@
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <div class="breadcrumb__text">
-                        <h2>Vegetable’s Package</h2>
-                        <div class="breadcrumb__option">
-                            <a href="./index.html">Home</a>
-                            <a href="./index.html">Vegetables</a>
-                            <span>Vegetable’s Package</span>
-                        </div>
+                        <h2>상품 : ${product.productName }</h2>
                     </div>
                 </div>
             </div>
@@ -92,7 +87,6 @@
                             </div>
                         </div>
                         <a href="#" class="primary-btn" onclick="insertToCart()">ADD TO CARD</a>
-                        <a href="#" class="heart-icon"><span class="icon_heart_alt"></span></a>
                         <ul>
                             <li><b>Availability</b> <span>In Stock</span></li>
                         </ul>

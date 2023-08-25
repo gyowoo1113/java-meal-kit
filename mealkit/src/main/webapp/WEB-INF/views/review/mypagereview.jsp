@@ -58,7 +58,6 @@ tr,td {
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>asdsa</h1>
 	<!-- 리뷰 가능한 물품 리스트 출력 및 리뷰 버튼 생성 -->
 		<div class="container">
 		<div class="list-content">

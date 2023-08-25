@@ -77,7 +77,9 @@ public class ReviewMyPage extends HttpServlet {
 		
 		OrderDetailService detailDAO = new OrderDetailServiceImpl();
 		List<Map<String,Object>> products = new ArrayList<>();
-		products = detailDAO.orderDetailProductList(ids);
+		if (ids.isEmpty() == false) {
+			products = detailDAO.orderDetailProductList(ids);
+		}
 		request.setAttribute("products", products);
 	}
 

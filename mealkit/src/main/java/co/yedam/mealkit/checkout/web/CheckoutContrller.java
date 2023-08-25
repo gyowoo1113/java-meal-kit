@@ -31,9 +31,15 @@ public class CheckoutContrller extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		setCartList(request);
-		setAddressList(request);
-		String viewName = "checkout/checkout";
+		int listNum = Integer.valueOf(request.getParameter("list_num"));
+		String viewName = "checkout/checkoutresult";
+		if (listNum != 0) {
+			setCartList(request,listNum);
+			setAddressList(request);
+			viewName = "checkout/checkout";
+		} else {
+			request.setAttribute("message", "주문실패: 장바구니에 물건을 담아주세요.");
+		}
 		ViewResolve.forward(request, response, viewName);
 	}
 
@@ -41,9 +47,7 @@ public class CheckoutContrller extends HttpServlet {
 		doGet(request, response);
 	}
 	
-	protected void setCartList(HttpServletRequest request) throws JsonProcessingException {
-		int listNum = Integer.valueOf(request.getParameter("list_num"));
-		
+	protected void setCartList(HttpServletRequest request, int listNum) throws JsonProcessingException {		
 		List<Integer> ids = new ArrayList<Integer>();
 		for (int i=0; i<listNum; ++i) {
 			String name = "carts[" + i + "].cartId";
