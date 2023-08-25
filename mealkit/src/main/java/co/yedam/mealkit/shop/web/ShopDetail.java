@@ -27,7 +27,9 @@ public class ShopDetail extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int productId = Integer.valueOf(request.getParameter("productId"));		
+		
+		int productId = Integer.valueOf(request.getParameter("productId"));	
+		
 		setProduct(request,productId);
 		setProductReviews(request,productId);
 

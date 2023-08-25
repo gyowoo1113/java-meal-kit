@@ -14,6 +14,10 @@
         if (message !== null && message !== "") {
             alert(message);
             
+            if (message.includes("로그인이 정상적으로 성공했습니다.")) {
+                window.location.href = 'loginform.do';
+            }
+            
          // 실패 메시지일 경우 로그인 페이지로 이동
             if (message.includes("아이디 또는 비밀번호가 맞지 않습니다.")) {
                 window.location.href = 'loginform.do';

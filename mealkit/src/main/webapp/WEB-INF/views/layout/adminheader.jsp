@@ -19,7 +19,7 @@
 	<header id="header" class="header">
 		<div class="top-left">
 			<div class="navbar-header">
-				<a class="navbar-brand" href="admin.do"><img
+				<a class="navbar-brand" href="managemember.do"><img
 					src="template/elaadmin/images/logo.png" alt="Logo"></a> <a
 					class="navbar-brand hidden" href="./"><img
 					src="template/elaadmin/images/logo2.png" alt="Logo"></a> <a
