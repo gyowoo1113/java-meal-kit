@@ -11,6 +11,13 @@
 		ORDER BY PRODUCT_STOCK ASC
 	</select>
 	
+	<select id="productSelectList3" resultType="co.yedam.mealkit.product.service.ProductVO">
+			SELECT * 
+			FROM PRODUCT
+			WHERE PRODUCT_VIEW = 'ON'
+	
+	</select>
+	
 	<select id="productSearchList" resultType="co.yedam.mealkit.product.service.ProductVO">
 		SELECT * FROM PRODUCT JOIN CATEGORY USING (CATEGORY_ID)
 		<if test="key == 'category'">WHERE CATEGORY_NAME LIKE '%' || #{val} || '%'</if>
