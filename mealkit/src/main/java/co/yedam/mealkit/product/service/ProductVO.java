@@ -15,4 +15,5 @@ public class ProductVO {
 	private int categoryId;
 	private String productImg;
 	private int productStock;
+	private String productView;
 }

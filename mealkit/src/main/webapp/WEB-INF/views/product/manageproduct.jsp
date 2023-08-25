@@ -109,17 +109,18 @@
 											<div class="section-title">
 												<h2>밀키트</h2>
 											</div>
-
-
-
 											<div class="featured__controls">
 												<ul>
-											
+										
 													<li class="active" data-filter="*">전메뉴</li>
-													<li data-filter=".oranges">과일류</li>
-													<li data-filter=".fresh-meat">육류</li>
-													<li data-filter=".vegetables">3</li>
-													<li data-filter=".fastfood">4</li>
+													<!-- <li data-filter="1">찌개</li> 
+														<li data-filter="2">국</li>-->
+													<li data-filter="1"><a href="#" id="in" data-value="1"
+														onclick="select('1')">찌개</a></li>
+												
+													<li data-filter="2"><a href="#" id="in" data-value="2"
+														onclick="select('2')">국</a></li>
+													
 												</ul>
 												<select style="height: 50px" name="selecto" id="dline">
 													<option value="1">조회순</option>
@@ -144,8 +145,7 @@
 														<img src="img/${p.productImg }" height=270 width=270>
 														<ul class="featured__item__pic__hover">
 															<li><a href="#"><i class="fa fa-heart"></i></a></li>
-															<li><a href="#"><i class="fa fa-retweet"></i></a></li>
-															<li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+															
 														</ul>
 													</div>
 													<div class="featured__item__text">
@@ -199,6 +199,29 @@
 		var frm = document.getElementById("detailform");
 		frm.querySelector("#productId").value = parentTag.id;
 		document.getElementById("detailform").submit();
+	}
+	
+	function select(type){
+		let linkElement;
+		
+		if(type == '1'){
+			linkElement = document.getElementById("1");
+		}else{
+			linkElement = document.getElementById("2");
+		}
+
+		
+		let dataValue = linkElement.getAttribute("data-value");
+		
+		let url = "ajaxstockselect.do";
+		fetch(url,{ 
+			method:"POST",
+			headers: {
+				"Content-Type":"application/x-www-form-urlencoded",
+			},
+			body: dataValue
+		}).then(response => response.json())
+		  .then(json => htmpConevert(json));
 	}
 </script>
 </html>
