@@ -52,7 +52,7 @@ public class MemberLogin extends HttpServlet {
 			session.setAttribute("name", vo.getMemberName());
 			session.setAttribute("email", vo.getMemberEmail());
 			session.setAttribute("grade", vo.getMemberGrade());
-			message = vo.getMemberName() + "님 환영합니다";
+			message = "로그인이 정상적으로 성공했습니다.";
 		} else {
 			message = "아이디 또는 비밀번호가 맞지 않습니다.";
 			

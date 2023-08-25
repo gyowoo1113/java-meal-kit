@@ -44,7 +44,7 @@
 				<div class="login-form">
 
 
-					<form id="frm" action="home.do" method="post">
+					<form id="frm" action="memberlogin.do" method="post">
 						<div class="form-group">
 							<label>아이디</label> <input type="text" class="form-control"
 								placeholder="아이디 입력" id="memberId" name="memberId">

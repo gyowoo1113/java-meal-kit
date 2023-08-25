@@ -15,7 +15,7 @@
             alert(message);
             
             if (message.includes("로그인이 정상적으로 성공했습니다.")) {
-                window.location.href = 'loginform.do';
+                window.location.href = 'home.do';
             }
             
          // 실패 메시지일 경우 로그인 페이지로 이동
