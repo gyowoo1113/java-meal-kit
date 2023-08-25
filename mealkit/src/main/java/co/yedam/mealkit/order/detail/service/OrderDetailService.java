@@ -7,6 +7,9 @@ public interface OrderDetailService {
 	List<OrderDetailVO> orderDetailSelectList();
 	List<OrderDetailVO> orderDetailSelectList(String orderCode, int productId);
 	List<Map<String, Object>> orderDetailGroupList(List<Integer> ids);
+	List<Map<String, Object>> orderDetailProductList(List<Integer> ids);
+	List<Map<String, Object>> orderDetailSelectListAll();
+	List<Map<String, Object>> orderDetailCountList();
 	int orderDetailInsert(OrderDetailVO vo);
 	int orderDetailUpdate(OrderDetailVO vo);
 	int orderDetailDelete(OrderDetailVO vo);

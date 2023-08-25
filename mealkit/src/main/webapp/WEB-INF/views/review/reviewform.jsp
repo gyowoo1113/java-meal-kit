@@ -4,10 +4,6 @@
 <!DOCTYPE html>
 <html>
 <style>
-	.btnWrap {
-  		width: 1000px;
- 		margin: 300px auto;
-	}
 	.popupBtn {
   		width: 150px;
   		height: 50px;
@@ -22,10 +18,10 @@
   		width: 100%; /* Full width */
   		height: 100%; /* Full height */
   		overflow: auto; /* Enable scroll if needed */
-  		background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  		background-color: rgba(0,0,0,0.2); /* Black w/ opacity */
   		display: none;
 	}
-	.modalBody {
+	.modalBody { /* 팝업창 */
   		width: 700px;
   		padding: 50px 50px;
   		margin: 0 auto;
@@ -38,6 +34,25 @@
   		color: #777;
   		font-size:25px;
   		cursor: pointer;
+  		margin-bottom: 30px;
+	}
+	.center2 {
+		float: left;
+		width: 30%;
+		margin-left: 30px;
+		margin-bottom: 60px;
+	}
+	.sidespace{
+		padding-left: 20px;
+	}
+	
+	.imgalt alt {
+		width: 200px;
+		height: 240px;
+	}
+	.sizewidth{
+		width: 1000px;
+		height: 1000px;
 	}
 </style>
 <head>
@@ -46,51 +61,51 @@
 </head>
 <body>
  <!-- Related Blog Section Begin -->
-    <section class="related-blog spad">
-        <div class="container">
-            <div>
-                <div class="col-lg-12">
-                    <div class="section-title related-blog-title">
-                        <h2>베스트 리뷰</h2>
-                    </div>
-                </div>
-            </div>
-            <div class="marginauto">
-                <div>
-                	<c:forEach items="${reviews}" var="r">
-		                    <div class="blog__item" id="${r.reviewId}">
-		                    	<div class="modalWrap">
-		    						<div class="modalBody">
-				                    	<div class="popup">
-				      					 	<div class="popmenu">
-				      					 		<span class="closeBtn" onclick="closeDisplay(event)">X</span>
-						                        <div class="blog__item__pic">
-						                            <img src="${r.reviewImg}" alt="No Image">
-						                        </div>
-						                        <div class="blog__item__text">
-						                        	<ul>
-						                                <li style="float:right"><i class="fa fa-user"> ${r.memberId }</i></li>
-						                            </ul>
-						                            <ul>
-						                                <li><i class="fa fa-calendar-o"></i> ${r.reviewDate}</li>
-						                                <li><i class="fa fa-eye hit"> ${r.reviewHit }</i></li>
-						                            </ul>
-						                            <h5><a href="#">${r.reviewTitle }</a></h5>
-						                            <p>${r.reviewSubject }</p>
-						                            <input type="hidden" id="memberId" name="memberId" value="${id}">
-						                        </div>
-							            	</div>
-					        			</div>
-					        		</div>
-								</div>
-					        	<div>
-					        		<div onclick= "modalDisplay(event)">
-						        		<div class="popup">
-					      					 	<div class="popmenu">
-				  							<div class="blog__item__pic">
-								            	<img src="${r.reviewImg}" alt="No Image">
+   <section class="related-blog spad">
+       <div class="container">
+           <div>
+               <div class="col-lg-12">
+                   <div class="section-title related-blog-title">
+                       <h2>베스트 리뷰</h2>
+                   </div>
+               	</div>
+           	</div>
+           	<div class="marginauto">
+               	<div>
+             		<c:forEach items="${reviews}" var="r">
+	       				<div class="blog__item" id="${r.reviewId}">
+		                   	<div class="modalWrap">
+		   						<div class="modalBody">
+			                    	<div class="popup">
+			      					 	<div class="popmenu">
+			      					 		<span class="closeBtn" onclick="closeDisplay(event)">X</span>
+					                        <div class="blog__item__pic">
+					                            <img src="${r.reviewImg}" onerror="this.onerror=null; this.src='img/noimage.jpg'">
 					                        </div>
-					                        <div class="blog__item__text">
+					                        <div class="blog__item__text  sidespace">
+					                        	<ul>
+					                                <li style="float:right"><i class="fa fa-user"> ${r.memberId }</i></li>
+					                            </ul>
+					                            <ul>
+					                                <li><i class="fa fa-calendar-o"></i> ${r.reviewDate}</li>
+					                                <li><i class="fa fa-eye hit"> ${r.reviewHit }</i></li>
+					                            </ul>
+					                            <h5><a href="#">${r.reviewTitle }</a></h5>
+					                            <p>${r.reviewSubject }</p>
+					                            <input type="hidden" id="memberId" name="memberId" value="${id}">
+					                        </div>
+						            	</div>
+				        			</div>
+				        		</div>
+							</div>
+				        	<div>
+				        		<div onclick= "modalDisplay(event)">
+					        		<div class="popup">
+		      					 		<div class="popmenu center2">
+				  							<div class="blog__item__pic imgalt">
+								            	<img src="${r.reviewImg}" onerror="this.onerror=null; this.src='img/noimage.jpg'"  width="200px" height="280px">
+					                        </div>
+					                        <div class="blog__item__text  sidespace">
 					                            <ul>
 					                                <li><i class="fa fa-calendar-o"> ${r.reviewDate}</i></li>
 					                                <li><i class="fa fa-eye hit"> ${r.reviewHit }</i></li>
@@ -101,7 +116,7 @@
 		                             </div>
 								</div>
 							</div>	
-	                    </div>
+						</div>
 					</c:forEach>	
                 </div>
             </div>

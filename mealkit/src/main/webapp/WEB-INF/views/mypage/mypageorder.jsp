@@ -23,7 +23,7 @@ tr,td {
 						<th width="20%">주문일</th>
 						<th width="20%">주문번호</th>
 						<th width="40%">주문상품</th>
-						<th width="20%">결제/배송</th>
+						<th width="15%">결제/배송</th>
 					</tr>
 				</thead>
 				<tbody id="order_body">
@@ -55,12 +55,23 @@ function orderView(data,index,detail){
 	if (data.ordarPayment === 'FALSE'){
 		list += `<td><input type="button" value="결제" onclick="doPayment(event)"></td>`;
 	} else {
-		list += `<td>결제완료</td>`;
+		list += `<td>`;
+    	if (data.shipCheck === 'READY'){
+    		list += `배송준비중`;
+    	} else if (data.shipCheck ==='ING'){
+    		list += `배송중`;
+    	} else if (data.shipCheck ==='TRUE'){
+    		list += `배송완료`;
+    	} else {
+    		list += `결제완료`;
+    	}
+    	list += `</td>`;
 	}
 	return list;
 }
 
 function doPayment(event){
+	var detail = <%= request.getAttribute("detail") %>;
 	var parentTrTag = event.target;
     for(;parentTrTag.tagName != 'TR'; parentTrTag=parentTrTag.parentElement);
     
@@ -72,7 +83,7 @@ function doPayment(event){
 		pg : 'kakaopay',
 		pay_method : 'card',
 		merchant_uid : 'merchant_' + new Date().getTime(),   //주문번호
-		name : 'TEST',                                  	 //상품명
+		name : detail[parentTrTag.id],                                  	 //상품명
 		amount : 1,                    						 //가격
 		//customer_uid : buyer_name + new Date().getTime(),  //해당 파라미터값이 있어야 빌링 키 발급 시도
 		buyer_email : '${email}',             				 //구매자 이메일
@@ -83,10 +94,13 @@ function doPayment(event){
 	},function(data){
 		if(data.success){
 			var msg = "결제 완료";
-            msg += '고유ID : ' + data.imp_uid;        
-            msg += '// 상점 거래ID : ' + data.merchant_uid;
-            msg += '// 결제 금액 : ' + data.paid_amount;
-            msg += '// 카드 승인번호 : ' + data.apply_num;
+    		let payload = "orderId=" + parentTrTag.id;
+    		let url = "ajaxorderupdate.do";
+    		fetch(url,{
+    			method: "post",
+    			headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    			body: payload
+    		}).then(updatePayment(parentTrTag));
         }else{
         	var msg = data.error_msg;
         	alertIcon = 'error'
@@ -96,9 +110,12 @@ function doPayment(event){
             icon: alertIcon,
             text: msg,
         });
-
 	});
 	// --------------------------------------- 결제 end
+	
+	function updatePayment(parentTrTag){
+		parentTrTag.children[3].innerHTML = `결제완료`;
+	}
 }
 
 </script>

@@ -39,9 +39,9 @@
 			<div class="row m-0">
 				<div class="col-sm-4">
 					<div class="page-header float-left">
-						<div class="page-title">
-							<h1>재고관리</h1>
-						</div>
+						<h1 style="font-size: 150%">
+							<strong>재고관리</strong>
+						</h1>
 					</div>
 				</div>
 			</div>
@@ -63,9 +63,9 @@
 									<div class="page-title">
 										<ol class="breadcrumb text-right">
 											<li><a href="#" id="in" data-value="in"
-												onclick="select('in')">IN</a></li>
+												onclick="select('in')"><strong>IN</strong></a></li>
 											<li><a href="#" id="out" data-value="out"
-												onclick="select('out')">OUT</a></li>
+												onclick="select('out')"><strong>OUT</strong></a></li>
 
 										</ol>
 									</div>
@@ -118,7 +118,7 @@
 								<div class="page-header float-right"></div>
 							</div>
 							<div>
-								<table id="bootstrap-data-table"
+								<table id="producttable"
 									class="table table-striped table-bordered">
 									<thead>
 										<tr>
@@ -130,10 +130,9 @@
 										</tr>
 									</thead>
 
-									<tbody>
+									<tbody id="productlist">
 										<c:forEach items="${products}" var="p">
-											<tr 
-												onclick="selectProduct(${p.productId})">
+											<tr onclick="selectProduct(${p.productId})">
 												<td>${p.productId}</td>
 												<td>${p.productName}</td>
 												<td>${p.productPrice}</td>
@@ -154,6 +153,7 @@
 	<div class="content">
 		<div class="animated fadeIn">
 			<div class="row">
+				<div class="col-lg-3"></div>
 				<div class="col-lg-6">
 					<div class="card">
 						<div class="card-header">
@@ -195,8 +195,7 @@
 												<div class="form-group">
 													<label for="cc-payment" class="control-label mb-1">수량</label>
 													<input id="stockCount" name="stockCount" type="number"
-														class="form-control" aria-required="true"  required="required"
-														aria-invalid="false">
+														class="form-control" required="required">
 												</div>
 
 											</div>
@@ -204,34 +203,37 @@
 										</div>
 										<div class="form-group">
 											<label for="cc-payment" class="control-label mb-1">제품코드</label>
-											<input id="productCode" name="productCode" type="number" readonly="readonly"
-												class="form-control" >
+											<input id="productId" name="productId" type="number"
+												readonly="readonly" class="form-control">
 										</div>
 										<div class="form-group">
 											<label for="cc-payment" class="control-label mb-1">이름</label>
-											<input id="productName" name="productName" type="text" readonly="readonly"
-												class="form-control">
+											<input id="productName" name="productName" type="text"
+												readonly="readonly" class="form-control">
 										</div>
 										<div class="form-group">
 											<label for="cc-payment" class="control-label mb-1">가격</label>
-											<input id="productPrice" name="productPrice" type="text" readonly="readonly"
-												class="form-control">
+											<input id="productPrice" name="productPrice" type="text"
+												readonly="readonly" class="form-control">
 										</div>
 										<div class="form-group">
 											<label for="cc-payment" class="control-label mb-1">제품생성날짜</label>
-											<input id="productDate" name="productDate" type="date" readonly="readonly"
-												class="form-control">
+											<input id="productDate" name="productDate" type="date"
+												readonly="readonly" class="form-control">
 										</div>
 										<div class="form-group">
 											<label for="cc-payment" class="control-label mb-1">제품재고</label>
-											<input id="productStock" name="productStock" type="number" readonly="readonly"
-												class="form-control">
+											<input id="productStock" name="productStock" type="number"
+												readonly="readonly" class="form-control">
 										</div>
 
 										<div>
-											<button id="button" type="button" class="btn btn-lg btn-info btn-block"
-												onclick = "insertStock()">슈웅
-											</button>
+											<button id="button" type="button"
+												class="btn btn-lg btn-info btn-block"
+												onclick="insertStock()">슈웅</button>
+										</div>
+										<div>
+											<input type="hidden" id="productId" name="productId">
 										</div>
 									</form>
 								</div>
@@ -243,7 +245,7 @@
 
 				</div>
 
-				<input type="hidden" id="productId" name="productId">
+
 			</div>
 		</div>
 	</div>
@@ -276,22 +278,20 @@
 	}
 	
 	function htmpConevert(datas){
-	
+		console.log(datas);
 		document.querySelector('tbody').remove();
 		const tbody = document.createElement('tbody');
 		
 		tbody.innerHTML = datas.map(data => htmlView(data)).join(''); 
-	
 		document.querySelector('#bootstrap-data-table').appendChild(tbody);
-	
+		
 	}
 	
 	function htmlView(data){
 		
-		console.log(data);
 		return `
 		
-		<tr>
+		<tr >
 			<td >\${data.productId}</td>
 			<td >\${data.productName}</td>
 			<td >\${data.stockType}</td>
@@ -300,9 +300,10 @@
 		</tr>
 			`
 	}
+
 	
 	function selectProduct(n){
-		
+		console.log("n값" + n);
 		document.getElementById("productId").value = n;
 		let productId = document.getElementById("productId").value;
 	
@@ -319,7 +320,8 @@
 		
 	}
 	function set(data){
-		document.getElementById("productCode").value = data.productId;
+		console.log("set부분 : " + data.productId);
+		document.getElementById("productId").value = data.productId;
 		document.getElementById("productName").value = data.productName;
 		document.getElementById("productPrice").value = data.productPrice;
 		document.getElementById("productDate").value = data.productDate;
@@ -327,11 +329,13 @@
 	}
 	
  	function insertStock(){
-		
-		let productCode = document.getElementById("productCode").value;
+ 		
+ 		let productStock = document.getElementById("productStock").value;
+		let productId = document.getElementById("productId").value;
 		//let radios = document.getElementById("radio1").value;  
 		let stockCount = document.getElementById("stockCount").value;
 		
+		console.log("재고" + productStock + "코드" + productId + "수량" + stockCount);
 		let radioButtons = document.getElementsByName("radios");
 		let radios;
 		for (let i = 0; i < radioButtons.length; i++) {
@@ -342,11 +346,11 @@
 	    }
 		
 		let formData = new URLSearchParams();
-		formData.append("productCode", productCode);
+		formData.append("productId", productId);
 		formData.append("radios", radios);
 		formData.append("stockCount", stockCount);
-		
-		console.log(productCode + radios + stockCount );
+		formData.append("productStock", productStock);
+		console.log(productId + radios + stockCount );
 		let url = "ajaxstockinsert.do";
 		fetch(url,{ 
 			method:"POST",
@@ -355,11 +359,49 @@
 			},
 			body: formData.toString()
 		}).then(response => response.json())
-		  .then(json => htmpConevert(json));
-	} 
+		  .then(json => htmpConevert2(json));
+	
+	} 	
 
-	
-	
+ 		function htmpConevert2(datas){
+ 		
+ 			
+ 			if(datas['message'] != undefined){
+ 				window.alert(datas['message']);
+ 			}
+ 			document.querySelector('tbody').remove();
+ 			const tbody = document.createElement('tbody');
+ 			
+ 			tbody.innerHTML = datas['stocks'].map(data => htmlView(data)).join(''); 
+ 			document.querySelector('#bootstrap-data-table').appendChild(tbody); 
+ 			
+ 			
+ 			document.querySelector('#productlist').remove();
+ 			const tbody2 = document.createElement('tbody');
+ 			tbody2.id = 'productlist';
+ 			
+ 			tbody2.innerHTML = datas['products'].map(data => htmlView2(data)).join(''); 
+ 			document.querySelector('#producttable').appendChild(tbody2);
+		
+		
+	}
+ 		function htmlView2(data){
+ 			
+ 			return `
+ 			
+ 			<tr onclick="selectProduct(\${data.productId})">
+ 				<td >\${data.productId}</td>
+ 				<td >\${data.productName}</td>
+ 				<td >\${data.productPrice}</td>
+ 				<td >\${data.productDate}</td>
+ 				<td >\${data.productStock}</td>
+ 			</tr>
+ 				`
+ 		}
+ 	
+ 		
+ 		
 </script>
+
 </body>
 </html>

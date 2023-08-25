@@ -38,6 +38,11 @@ public class OrdarServiceImpl implements OrdarService {
 	public int ordarUpdate(OrdarVO vo) {
 		return map.ordarUpdate(vo);
 	}
+	
+	@Override
+	public int ordarShipUpdate(OrdarVO vo) {
+		return map.ordarShipUpdate(vo);
+	}
 
 	@Override
 	public int ordarDelete(OrdarVO vo) {

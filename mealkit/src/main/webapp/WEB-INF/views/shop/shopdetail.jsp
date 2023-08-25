@@ -9,12 +9,6 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
-	.btnWrap {
-  		width: 1000px;
- 		margin: 300px auto;
- 		
- 		
-	}
 	.popupBtn {
   		width: 150px;
   		height: 50px;
@@ -29,24 +23,27 @@
   		width: 100%; /* Full width */
   		height: 100%; /* Full height */
   		overflow: auto; /* Enable scroll if needed */
-  		background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  		background-color: rgba(0,0,0,0.2); /* Black w/ opacity */
   		display: none;
 	}
-
-	.modalBody {
+	.modalBody { /* 팝업창 */
   		width: 700px;
   		padding: 50px 50px;
   		margin: 0 auto;
   		border: 1px solid #777;
   		background-color: #fff;
 	}
-
 	.closeBtn {
   		float:right;
   		font-weight: bold;
   		color: #777;
   		font-size:25px;
   		cursor: pointer;
+  		margin-bottom: 30px;
+	}
+	
+	.center1 {
+		margin: 0 auto;
 	}
 </style>
 </head>
@@ -77,7 +74,7 @@
                 <div class="col-lg-6 col-md-6">
                     <div class="product__details__pic">
                         <div class="product__details__pic__item">
-                            <img class="product__details__pic__item--large" src="${product.productImg }" 
+                            <img class="product__details__pic__item--large" src="img/${product.productImg }" 
                             width=540 height=560 alt="">
                         </div>
                     </div>
@@ -112,7 +109,7 @@
                     </div>
                 </div>
                 <!-- Shoping Cart Section Begin -->
-			    <section class="shoping-cart spad">
+			    <section class="shoping-cart spad center1">
 			        <div class="container">
 			        	<c:forEach items="${reviews}" var="r">
 				            <div class="row">
@@ -124,7 +121,7 @@
 				      					 			<div class="popmenu">
 						      					 		<span class="closeBtn" onclick="closeDisplay(event)">X</span>
 								                        <div class="blog__item__pic">
-								                            <img src="${r.reviewImg}" alt="">
+								                            <img src="${r.reviewImg}" onerror="this.onerror=null; this.src='img/noimage.jpg'">
 								                        </div>
 								                        <div class="blog__item__text">
 								                        	<ul>
@@ -134,7 +131,7 @@
 								                                <li><i class="fa fa-calendar-o"></i> ${r.reviewDate}</li>
 								                                <li><i class="fa fa-eye hit"> ${r.reviewHit }</i></li>
 								                            </ul>
-								                            <h5><a href="#">${r.reviewTitle }</a></h5>
+								                            <h5>${r.reviewTitle }</h5>
 								                            <p>${r.reviewSubject }</p>
 								                            <input type="hidden" id="memberId" name="memberId" value="${id}">
 								                        </div>
@@ -153,11 +150,11 @@
 					                           				<tbody>
 								                                <tr>
 								                                    <td class="shoping__cart__item">
-								                                        <img src="${r.reviewImg}" alt="" width="100px" height="100px">
+								                                        <img src="${r.reviewImg}" onerror="this.onerror=null; this.src='img/noimage.jpg'" width="100px" height="100px" style="margin-right: 50px">
 								                                        <h5>${r.reviewTitle }</h5>
 								                                    </td>
-								                                    <td class="shoping__cart__price">
-								                                         ${r.reviewDate}
+								                                    <td class="shoping__cart__price" style="width: 200px">
+								                                         <i class="fa fa-calendar-o">${r.reviewDate}</i>
 								                                    </td>
 								                                    <td class="shoping__cart__item__close">
 								                                        <i class="fa fa-eye hit"> ${r.reviewHit }</i>

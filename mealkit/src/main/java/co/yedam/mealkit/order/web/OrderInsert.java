@@ -39,10 +39,16 @@ public class OrderInsert extends HttpServlet {
 		String memberId = (String) session.getAttribute("id");
 		int addressId = getAddressId(request,memberId);
 		
+		String message="주문성공: 마이페이지에서 결제해주세요.";
+		if (addressId == 0) {
+			message="주문실패: 다시 주문해주세요.";
+		}
+		request.setAttribute("message", message);
+		
 		orderInsert(memberId,addressId);
 		setOrderDetail(request);
 		
-		String viewName = "home/home";
+		String viewName = "checkout/checkoutresult";
 		ViewResolve.forward(request, response, viewName);
 	}
 

@@ -28,9 +28,9 @@ public class ManageProduct extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		ProductService ps = new ProductServiceImpl();
+		ProductService dao = new ProductServiceImpl();
 		List<ProductVO> products = new ArrayList<>();
-		products = ps.productSelectList();
+		products = dao.productSelectList();
 
 		request.setAttribute("products", products);
 		

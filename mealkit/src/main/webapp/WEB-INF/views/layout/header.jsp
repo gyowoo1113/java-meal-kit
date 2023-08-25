@@ -73,15 +73,17 @@
 							<c:if test="${not empty id }">
 							<li><a href="mypage.do">마이페이지</a>
 							</c:if>
-							<li><a href="admin.do">관리</a></li>
+							<c:if test="${grade eq 'ADMIN' }">
+							<li><a href="managemember.do">관리</a></li>
+							</c:if>
 						</ul>
 					</nav>
 				</div>
 				<div class="col-lg-3">
 					<div class="header__cart">
-						<ul>
-							<li><a href="reviewpost.do"><i class="fa fa-heart"></i> <span>1</span></a></li>
-						</ul>
+					  	<ul>
+					    <li><a href="shoppingcart.do"><i class="fa fa-shopping-bag"></i></a></li>
+					    </ul>
 					</div>
 				</div>
 			</div>

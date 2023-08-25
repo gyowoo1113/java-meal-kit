@@ -31,7 +31,7 @@ public class InsertProduct extends HttpServlet {
 		ProductService dao = new ProductServiceImpl();
 		ProductVO vo = new ProductVO();
 
-		String saveDir = getServletContext().getRealPath("attech/product");
+		String saveDir = getServletContext().getRealPath("img/");
 		int sizeLimit = 100 * 1024 * 1024;
 
 		MultipartRequest multi = new MultipartRequest(request, saveDir, sizeLimit, "utf-8",

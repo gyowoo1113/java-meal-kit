@@ -3,6 +3,7 @@ package co.yedam.mealkit.shop.web;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -35,10 +36,15 @@ public class ShopMenuform extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ProductService ps = new ProductServiceImpl();
-		List<ProductVO> products = new ArrayList<>();
-		products = ps.productSelectList();
+		List<Map<String, Object>> products = new ArrayList<>();
+		
+		String key = request.getParameter("key");
+		String val = request.getParameter("val");
+		
+		products = ps.productSearchList(key, val);
 
 		request.setAttribute("products", products);
+		
 		String viewName = "shop/shopmenuform";
 		ViewResolve.forward(request, response, viewName);
 	}

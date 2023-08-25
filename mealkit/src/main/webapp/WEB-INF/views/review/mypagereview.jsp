@@ -44,51 +44,79 @@
 	font-size: 25px;
 	cursor: pointer;
 }
+
+/* table css */
+.list-content {
+    margin: 8vh auto;
+}
+
+tr,td {
+	text-align:center;
+}
 </style>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
 	<h1>asdsa</h1>
+	<!-- 리뷰 가능한 물품 리스트 출력 및 리뷰 버튼 생성 -->
+		<div class="container">
+		<div class="list-content">
+			<table id="bootstrap-data-table" class="table table-striped table-bordered">
+				<thead>
+					<tr>
+						<th width="50%"></th>
+						<th width="25%">상품이름</th>
+						<th width="25%">리뷰</th>
+					</tr>
+				</thead>
+				<tbody>
+					<c:forEach items="${products}" var="p">
+					<tr>
+						<td><img src="${p.productImg}" width="20%" alt="No Image"></td>
+						<td>${p.productName }</td>
+						<td><input type="button" value="작성" onclick="moveReviewInsert(event)" id="${p.productId}">
+						</td>
+					</tr>
+					</c:forEach>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	
 	<!-- Shoping Cart Section Begin -->
-    <section class="shoping-cart spad">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="shoping__cart__table">
-                        <table>
-                        	<thead>
-                                
-                            </thead>
-				        	<c:forEach items="${reviews}" var="r">
-	                            <tbody>
-	                                <tr>
-	                                    <td class="shoping__cart__item">
-	                                        <img src="${r.reviewImg}" alt="No Image" width="100px" height="100px">
-	                                    </td>
-	                                    <td class="shoping__cart__item">
-	                                        <h4>${r.reviewTitle }</h4>
-	                                    </td>
-	                                    <td class="shoping__cart__item">
-	                                        <p>${r.reviewSubject }</p>
-	                                    </td>
-	                                    <td class="shoping__cart__price">
-	                                         ${r.reviewDate}
-	                                    </td>
-	                                    <td class="shoping__cart__item__close">
-	                                        <i class="fa fa-eye hit"> ${r.reviewHit }</i>
-	                                        <input type="hidden" id="memberId" name="memberId" value="${id}">
-	                                    </td>
-	                                </tr>
-	               				</tbody>
-               				</c:forEach>
-                        </table>
+    <div class="content">
+            <div class="animated fadeIn">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <table id="bootstrap-data-table" class="table table-striped table-bordered">
+                                    <tbody>
+										<c:forEach items="${reviews}" var="r">
+	                                        <tr>
+	                                            <td>
+	                                            	<img src="${r.reviewImg}" onerror="this.onerror=null; this.src='img/noimage.jpg'" width="200px" height="100px">
+	                                            </td>
+	                                            <td>${r.reviewTitle }</td>
+	                                            <td>${r.reviewSubject }</td>
+	                                            <td>${r.reviewDate }</td>
+	                                            <td>${r.reviewHit }</td>
+	                                        </tr>
+										</c:forEach>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
                     </div>
+
                 </div>
-            </div>
-        </div>
-    </section>
+            </div><!-- .animated -->
+        </div><!-- .content -->
     <!-- Shoping Cart Section End -->
+    <form action="reviewpost.do" method="post" id="frm">
+    	<input type="hidden" name="productId" id="productId" value="">
+    </form>
 </body>
 <script type="text/javascript">
 function modalDisplay(event) {
@@ -130,6 +158,11 @@ function reviewUp(parentTrTag){
 
 function updatehit(text, parentTrTag) {
 	 parentTrTag.querySelector(".hit").innerHTML=text;
+}
+
+function moveReviewInsert(event){
+	document.getElementById("productId").value = event.target.id;
+	document.getElementById("frm").submit();
 }
 </script>
 </html>

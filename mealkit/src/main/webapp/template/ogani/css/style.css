@@ -2614,8 +2614,9 @@ ol {
 
 .footer {
 	background: #F3F6FA;
-	padding-top: 70px;
 	padding-bottom: 0;
+	clear: both;
+	padding-top:11px;
 }
 
 .footer__about {
@@ -2725,7 +2726,6 @@ ol {
 }
 
 .footer__copyright {
-	border-top: 1px solid #ebebeb;
 	padding: 15px 0;
 	overflow: hidden;
 	margin-top: 20px;

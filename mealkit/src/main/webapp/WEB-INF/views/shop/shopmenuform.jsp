@@ -82,13 +82,12 @@
 				</div>
 			</div>
 
-
 			<div class="row featured__filter">
 				<c:forEach items="${products}" var="p">
 					<div class="col-lg-3 col-md-4 col-sm-6 mix fresh-meat vegetables joindt">
 						<div class="featured__item" onclick="moveShopDetail(event)" id="${p.productId}">
 							<div class="featured__item__pic set-bg">
-								<img src="${p.productImg }" height=270 width=270>
+								<img src="img/${p.productImg }" height=270 width=270>
 								<ul class="featured__item__pic__hover">
 									<li><a href="#"><i class="fa fa-heart"></i></a></li>
 									<li><a href="#"><i class="fa fa-retweet"></i></a></li>
