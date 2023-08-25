@@ -75,7 +75,7 @@ tr,td {
 					<tr>
 						<td><img src="${p.productImg}" width="20%" alt="No Image"></td>
 						<td>${p.productName }</td>
-						<td><input type="button" value="작성" onclick="moveReviewInsert(event)"  id="${p.productId}">
+						<td><input type="button" value="작성" onclick="moveReviewInsert(event)" id="${p.productId}">
 						</td>
 					</tr>
 					</c:forEach>
@@ -96,7 +96,7 @@ tr,td {
 										<c:forEach items="${reviews}" var="r">
 	                                        <tr>
 	                                            <td>
-	                                            	<img src="${r.reviewImg}" alt="No Image" width="200px" height="100px">
+	                                            	<img src="${r.reviewImg}" onerror="this.onerror=null; this.src='img/noimage.jpg'" width="200px" height="100px">
 	                                            </td>
 	                                            <td>${r.reviewTitle }</td>
 	                                            <td>${r.reviewSubject }</td>
@@ -114,8 +114,8 @@ tr,td {
             </div><!-- .animated -->
         </div><!-- .content -->
     <!-- Shoping Cart Section End -->
-    <form action="reviewinsert.do" method="post" id="frm">
-    	<input type="hidden" name="productId" id="productId">
+    <form action="reviewpost.do" method="post" id="frm">
+    	<input type="hidden" name="productId" id="productId" value="">
     </form>
 </body>
 <script type="text/javascript">

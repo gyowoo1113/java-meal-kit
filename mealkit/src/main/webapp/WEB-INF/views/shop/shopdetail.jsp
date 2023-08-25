@@ -9,12 +9,6 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
-	.btnWrap {
-  		width: 1000px;
- 		margin: 300px auto;
- 		
- 		
-	}
 	.popupBtn {
   		width: 150px;
   		height: 50px;
@@ -29,28 +23,27 @@
   		width: 100%; /* Full width */
   		height: 100%; /* Full height */
   		overflow: auto; /* Enable scroll if needed */
-  		background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  		background-color: rgba(0,0,0,0.2); /* Black w/ opacity */
   		display: none;
 	}
-
-	.modalBody {
+	.modalBody { /* 팝업창 */
   		width: 700px;
   		padding: 50px 50px;
   		margin: 0 auto;
   		border: 1px solid #777;
   		background-color: #fff;
 	}
-
 	.closeBtn {
   		float:right;
   		font-weight: bold;
   		color: #777;
   		font-size:25px;
   		cursor: pointer;
+  		margin-bottom: 30px;
 	}
 	
 	.center1 {
-		margin-left: 20px;
+		margin: 0 auto;
 	}
 </style>
 </head>
@@ -116,8 +109,8 @@
                     </div>
                 </div>
                 <!-- Shoping Cart Section Begin -->
-			    <section class="shoping-cart spad">
-			        <div class="container  center1">
+			    <section class="shoping-cart spad center1">
+			        <div class="container">
 			        	<c:forEach items="${reviews}" var="r">
 				            <div class="row">
 				                <div class="col-lg-12">
@@ -128,7 +121,7 @@
 				      					 			<div class="popmenu">
 						      					 		<span class="closeBtn" onclick="closeDisplay(event)">X</span>
 								                        <div class="blog__item__pic">
-								                            <img src="${r.reviewImg}" alt="">
+								                            <img src="${r.reviewImg}" onerror="this.onerror=null; this.src='img/noimage.jpg'">
 								                        </div>
 								                        <div class="blog__item__text">
 								                        	<ul>
@@ -157,7 +150,7 @@
 					                           				<tbody>
 								                                <tr>
 								                                    <td class="shoping__cart__item">
-								                                        <img src="${r.reviewImg}" alt="" width="100px" height="100px" style="margin-right: 50px">
+								                                        <img src="${r.reviewImg}" onerror="this.onerror=null; this.src='img/noimage.jpg'" width="100px" height="100px" style="margin-right: 50px">
 								                                        <h5>${r.reviewTitle }</h5>
 								                                    </td>
 								                                    <td class="shoping__cart__price" style="width: 200px">

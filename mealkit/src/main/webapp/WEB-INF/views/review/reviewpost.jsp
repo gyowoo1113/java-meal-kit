@@ -39,9 +39,9 @@
                             <div class="checkout__input">
                                 <p>사진<span>*</span></p>
                                 <input type="file" id="file" name="file" class="checkout__input__add" style="border:none">
+                                <input type="hidden" id="productId" name="productId" value="${productId}">
                             </div>
                         	<div>
-
 								<input type="submit" value="작성">&nbsp;&nbsp;&nbsp;
 								<input type="reset" value="취소">
 							</div>

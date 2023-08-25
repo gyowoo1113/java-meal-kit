@@ -1,6 +1,7 @@
 package co.yedam.mealkit.product.serviceImpl;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
@@ -17,7 +18,18 @@ public class ProductServiceImpl implements ProductService {
 	public List<ProductVO> productSelectList() {
 		return map.productSelectList();
 	}
-
+	
+	@Override
+	public List<ProductVO> productSelectList2() {
+		
+		return map.productSelectList2();
+	}
+	
+	@Override
+	public List<Map<String, Object>> productSearchList(String key, String val) {
+		return map.productSearchList(key, val);
+	}
+	
 	@Override
 	public ProductVO productSelect(ProductVO vo) {
 		return map.productSelect(vo);
@@ -38,10 +50,8 @@ public class ProductServiceImpl implements ProductService {
 		return map.productDelete(vo);
 	}
 
-	@Override
-	public List<ProductVO> productSelectList2() {
-		
-		return map.productSelectList2();
-	}
+	
+
+
 
 }

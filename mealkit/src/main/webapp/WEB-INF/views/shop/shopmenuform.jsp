@@ -82,7 +82,6 @@
 				</div>
 			</div>
 
-
 			<div class="row featured__filter">
 				<c:forEach items="${products}" var="p">
 					<div class="col-lg-3 col-md-4 col-sm-6 mix fresh-meat vegetables joindt">
