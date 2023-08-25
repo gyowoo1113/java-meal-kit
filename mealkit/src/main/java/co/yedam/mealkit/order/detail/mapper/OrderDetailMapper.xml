@@ -44,4 +44,20 @@
 		#{item}
 		</foreach>
 	</select>
+	
+		
+	<select id="orderDetailSelectListAll" resultType="co.yedam.mealkit.common.CamelHashMap">
+		SELECT order_detail.order_detail_count, product.product_price,product.product_id, ordar.ordar_id,
+		ordar.ship_check, ordar.member_id, ordar.ordar_date,product.product_name,ordar.ordar_payment
+		FROM order_detail LEFT JOIN ordar ON(ordar.ordar_id = order_detail.order_id)
+		                         LEFT JOIN product ON(order_detail.product_id = product.product_id)
+		ORDER BY order_detail.order_id DESC
+	</select>
+	
+	<select id="orderDetailCountList" resultType="co.yedam.mealkit.common.CamelHashMap">
+		SELECT order_id, COUNT(*) AS order_count
+		FROM order_detail
+		GROUP BY order_id
+		ORDER BY order_id DESC
+	</select>
 </mapper>

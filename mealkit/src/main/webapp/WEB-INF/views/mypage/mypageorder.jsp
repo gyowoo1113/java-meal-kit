@@ -55,7 +55,17 @@ function orderView(data,index,detail){
 	if (data.ordarPayment === 'FALSE'){
 		list += `<td><input type="button" value="결제" onclick="doPayment(event)"></td>`;
 	} else {
-		list += `<td>결제완료</td>`;
+		list += `<td>`;
+    	if (data.shipCheck === 'READY'){
+    		list += `배송준비중`;
+    	} else if (data.shipCheck ==='ING'){
+    		list += `배송중`;
+    	} else if (data.shipCheck ==='TRUE'){
+    		list += `배송완료`;
+    	} else {
+    		list += `결제완료`;
+    	}
+    	list += `</td>`;
 	}
 	return list;
 }
