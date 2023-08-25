@@ -163,7 +163,10 @@
 	}
 	
 	function updatehit(text, parentTrTag) {
-		 parentTrTag.querySelector(".hit").innerHTML=text;
+		 var selects = parentTrTag.querySelectorAll(".hit");
+		 for (var hitTag of selects){
+			 hitTag.innerHTML = text;
+		 }
 	}
 </script>
 </html>
