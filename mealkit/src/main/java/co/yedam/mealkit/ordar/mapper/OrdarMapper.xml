@@ -24,4 +24,9 @@
 		UPDATE ordar SET ordar_payment = 'TRUE'
 		WHERE ordar_id = #{ordarId}
 	</update>
+	
+	<update id="ordarShipUpdate" parameterType="co.yedam.mealkit.ordar.service.OrdarVO">
+		UPDATE ordar SET ship_check = #{shipCheck}
+		WHERE ordar_id = #{ordarId}
+	</update>
 </mapper>
