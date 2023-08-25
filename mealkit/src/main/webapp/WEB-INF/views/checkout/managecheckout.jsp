@@ -7,6 +7,11 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
+<style>
+th, td {
+  text-align: center;
+}
+</style>
 <body>
  <div class="content">
    <div class="animated fadeIn">
@@ -47,9 +52,7 @@ window.onload = function(){
 }
 
 function createOrderList(){
-	//console.log(ordars);
 	var order = <%= request.getAttribute("ordars") %>;
-	//console.log(order);
 	var tbody = document.getElementById("checkout_body");
 	tbody.innerHTML = order.map((data,index)=> orderView(data,index)).join('');
 }
@@ -120,7 +123,6 @@ function doUpdateShipCheck(idx,parentTrTag){
 }
 
 function updateShipHTML(newText, ordarId){
-	console.log(newText + " " + ordarId);
 }
 </script>
 </html>
