@@ -84,15 +84,43 @@ function orderView(data,index){
     	list += `<td></td></tr>`;
     } else{
     	list += `<td>
-    		<select name="shipPayment">
-    			<option value="배송준비중">배송준비중</option>
-    			<option value="배송중">배송중</option>
-    			<option value="배송완료">배송완료</option>
+    		<select name="shipPayment" className="shipPayment">
+    			<option value="READY">배송준비중</option>
+    			<option value="ING">배송중</option>
+    			<option value="TRUE">배송완료</option>
     		</select>
-    	<input type="button" value="수정"></button></td></tr>`;
+    	<input type="button" value="수정" onclick="updateShip(event)"></button></td></tr>`;
     }
 	
 	return list;
+}
+
+// ------------------------------------------------- 배송정보 Update
+function updateShip(event){
+	var parentTrTag = event.target;
+    for(;parentTrTag.tagName != 'TR'; parentTrTag=parentTrTag.parentElement);
+    var idx = parentTrTag.id;
+    
+    doUpdateShipCheck(idx,parentTrTag);
+}
+
+function doUpdateShipCheck(idx,parentTrTag){
+	var order = <%= request.getAttribute("ordars") %>;
+	var ordarId = order[idx].ordarId;
+	var selectTag = parentTrTag.querySelector('select');
+	var option = selectTag.options[selectTag.selectedIndex];
+	
+	let payload = "ordarId=" + ordarId + "&option="+option.value;
+	let url = "ajaxshipcheckupdate.do";
+	fetch(url,{
+		method: "post",
+		headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+		body: payload
+	}).then(updateShipHTML(option.text,ordarId));
+}
+
+function updateShipHTML(newText, ordarId){
+	console.log(newText + " " + ordarId);
 }
 </script>
 </html>
