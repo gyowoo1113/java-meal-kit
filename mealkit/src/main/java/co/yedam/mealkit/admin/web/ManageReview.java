@@ -11,13 +11,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import co.yedam.mealkit.common.ViewResolve;
-<<<<<<< HEAD
 import co.yedam.mealkit.review.service.ReviewService;
 import co.yedam.mealkit.review.service.ReviewVO;
 import co.yedam.mealkit.review.serviceImpl.ReviewServiceImpl;
-=======
-
->>>>>>> origin/dc
 
 @WebServlet("/managereview.do")
 public class ManageReview extends HttpServlet {
@@ -34,11 +30,8 @@ public class ManageReview extends HttpServlet {
 		List<ReviewVO> reviews = new ArrayList<>();
 		reviews = rs.reviewSelectList();
 		
-<<<<<<< HEAD
 		request.setAttribute("reviews", reviews);
 		
-=======
->>>>>>> origin/dc
 		String viewName = "admin/review/managereview";
 		ViewResolve.forward(request, response, viewName);
 	}
