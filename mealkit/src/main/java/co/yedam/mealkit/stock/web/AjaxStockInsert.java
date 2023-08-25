@@ -34,22 +34,15 @@ public class AjaxStockInsert extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
+		
+		Map<String, Object> dataMap = new HashMap<>();
 		StockService dao = new StockServiceImple();
 		StockVO vo = new StockVO();
 
 		vo.setStockType(request.getParameter("radios"));
-		vo.setProductId(Integer.parseInt(request.getParameter("productCode")));
+		vo.setProductId(Integer.parseInt(request.getParameter("productId")));
 		vo.setStockCount(Integer.parseInt(request.getParameter("stockCount")));
 		
-		dao.insertStock(vo);
-
-		//////////////// 수불대장 ajax 
-
-		List<StockVO> stocks = new ArrayList<>();
-		stocks = dao.stockSelectList();
-		request.setAttribute("stocks", stocks);
-	
 		
 		///////////////  Product 테이블에 STOCK_COUNT를 Product_stock Insert (재고 유형이 IN/OUT 따라 +/-) -> 리스트 넘기기
 		ProductService dao2 = new ProductServiceImpl();
@@ -57,55 +50,86 @@ public class AjaxStockInsert extends HttpServlet {
 		
 		int stockCount = Integer.parseInt(request.getParameter("stockCount"));
 		int productStock = Integer.parseInt(request.getParameter("productStock"));
-	
+
 		System.out.println(request.getParameter("radios"));
 		System.out.println("입출고 갯수"+stockCount );
 		System.out.println("제품재고" + productStock );
-		if(request.getParameter("radios").equals("in")) {
-			productStock += stockCount;
-		}
-		else {
-			if(productStock >= stockCount) {
-				productStock -= stockCount;
+		
+	/*
+		if(productStock <= stockCount) {// 코드문제
+			System.out.println("에러 출고 개수 안됨");
+			request.setAttribute("message", "개수가 적어용");
+			dataMap.put("message", "재고 부족");
+		}else {
+			if(request.getParameter("radios").equals("in")) {
+				productStock += stockCount;
 			}
 			else {
-				System.out.println("출고수량 부족 !");
+				productStock -= stockCount;
 			}
+			vo2.setProductId(Integer.parseInt(request.getParameter("productId")));
+			vo2.setProductStock(productStock);
+			
+			int n = dao2.productUpdate(vo2);
+			if( n == 1) {
+				System.out.println("업뎃 성공");
+			}
+			else {
+				System.out.println("업뎃 실패");
+			
+			}
+			dao.insertStock(vo);  //product table이 업데이트 되어야 stock table 동작해야함
+		}*/
+		////////////////////////////////////////////////////
+		if(request.getParameter("radios").equals("in")){
+			productStock += stockCount;
+			vo2.setProductId(Integer.parseInt(request.getParameter("productId")));
+			vo2.setProductStock(productStock);
+			dao2.productUpdate(vo2);
+			dao.insertStock(vo);
+		}else{ //out 상황
+			if(stockCount>productStock) {
+				System.out.println("에러 출고 개수 안됨");
+				request.setAttribute("message", "재고 부족");
+				dataMap.put("message", "재고 부족");
+			}
+			else {
+				productStock -= stockCount;
+				vo2.setProductId(Integer.parseInt(request.getParameter("productId")));
+				vo2.setProductStock(productStock);
+				dao2.productUpdate(vo2);
+				dao.insertStock(vo);
+			}
+			
 		}
 		
-		vo2.setProductId(Integer.parseInt(request.getParameter("productCode")));
-		vo2.setProductStock(productStock);
+
+		//////////////// 수불대장 ajax 
+
+		List<StockVO> stocks = new ArrayList<>();
+		stocks = dao.stockSelectList();
+		request.setAttribute("stocks", stocks);
+		
 	
-		int n = dao2.productUpdate(vo2);
-		
-		if( n == 1) {
-			System.out.println("업뎃 성공");
-		}
-		else {
-			System.out.println("업뎃 실패");
-		}
-		
-		
 		//리스트 넘기기
 		List<ProductVO> products = new ArrayList<>();
 		products= dao2.productSelectList2();
 		request.setAttribute("products", products);
 		
-	
 		ObjectMapper objectMapper = new ObjectMapper(); 
 		
 		objectMapper.registerModule(new JavaTimeModule()); 
 		objectMapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS); 
 		
-		Map<String, Object> dataMap = new HashMap<>();
+		
 		dataMap.put("stocks", stocks);
 		dataMap.put("products", products);
+		
 
 		String data = objectMapper.writeValueAsString(dataMap);
-		//String data2 = objectMapper.writeValueAsString(products);
 		response.setContentType("text/html; charset=UTF-8");
 		response.getWriter().append(data);
-		//response.getWriter().append(data2);
+	
 		return;
 	}
 
