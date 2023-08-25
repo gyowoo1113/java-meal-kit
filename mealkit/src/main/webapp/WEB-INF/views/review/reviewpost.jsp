@@ -14,9 +14,6 @@
                 <div class="col-lg-12">
                     <h6> 베스트 리뷰 되시면 사은품 있습니다 </h6>
                 </div>
-                <div class="col-lg-12">
-                    <h1> ${message } </h1>
-                </div>
             </div>
             <div class="checkout__form">
                 <h4>리뷰 작성</h4>
@@ -42,7 +39,7 @@
                                 <input type="hidden" id="productId" name="productId" value="${productId}">
                             </div>
                         	<div>
-								<input type="submit" value="작성">&nbsp;&nbsp;&nbsp;
+								<input type="submit" value="작성" onclick="showToast()">&nbsp;&nbsp;&nbsp;
 								<input type="reset" value="취소">
 							</div>
                    	 	</div>
@@ -53,5 +50,24 @@
     </section>
     <!-- Checkout Section End -->
 </body>
+<script type="text/javascript">
+function showToast(){
+    const Toast = Swal.mixin({
+        toast: false,
+        position: 'center-center',
+        showConfirmButton: false,
+        timer: 1000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+        }
+    })
 
+    Toast.fire({
+        icon: "sucess",
+        title: "잠시만 기다려주세요~!"
+    })
+}
+</script>
 </html>

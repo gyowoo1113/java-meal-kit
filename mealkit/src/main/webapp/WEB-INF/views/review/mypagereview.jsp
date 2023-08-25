@@ -64,16 +64,21 @@ tr,td {
 			<table id="bootstrap-data-table" class="table table-striped table-bordered">
 				<thead>
 					<tr>
-						<th width="50%"></th>
+						<th colspan="4">리뷰작성</th>
+					</tr>
+					<tr>
+						<th width="50%">제품사진</th>
 						<th width="25%">상품이름</th>
+						<th width="25%">상품가격</th>
 						<th width="25%">리뷰</th>
 					</tr>
 				</thead>
 				<tbody>
 					<c:forEach items="${products}" var="p">
 					<tr>
-						<td><img src="${p.productImg}" width="20%" alt="No Image"></td>
+						<td><img src="img/${p.productImg}" width="20%"  onerror="this.onerror=null; this.src='img/noimage.jpg'"></td>
 						<td>${p.productName }</td>
+						<td>${p.productPrice }</td>
 						<td><input type="button" value="작성" onclick="moveReviewInsert(event)" id="${p.productId}">
 						</td>
 					</tr>
@@ -84,34 +89,37 @@ tr,td {
 	</div>
 	
 	<!-- Shoping Cart Section Begin -->
-    <div class="content">
-            <div class="animated fadeIn">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="card">
-                            <div class="card-body">
-                                <table id="bootstrap-data-table" class="table table-striped table-bordered">
-                                    <tbody>
-										<c:forEach items="${reviews}" var="r">
-	                                        <tr>
-	                                            <td>
-	                                            	<img src="${r.reviewImg}" onerror="this.onerror=null; this.src='img/noimage.jpg'" width="200px" height="100px">
-	                                            </td>
-	                                            <td>${r.reviewTitle }</td>
-	                                            <td>${r.reviewSubject }</td>
-	                                            <td>${r.reviewDate }</td>
-	                                            <td>${r.reviewHit }</td>
-	                                        </tr>
-										</c:forEach>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div><!-- .animated -->
-        </div><!-- .content -->
+    <div class="container">
+		<div class="animated fadeIn">
+           	<table id="bootstrap-data-table" class="table table-striped table-bordered">
+           		<thead>
+       				<tr>	
+	                    <td colspan="5">리뷰내역</td>
+                	</tr>
+                  	<tr>
+		                 <td>이미지</td>
+		                 <td>제목</td>
+		                 <td>내용</td>
+		                 <td>리뷰날짜</td>
+		                 <td>조회수</td>
+                  	</tr>
+           		</thead>
+               	<tbody>
+					<c:forEach items="${reviews}" var="r">
+                       <tr>
+                           <td>
+                           	<img src="${r.reviewImg}" onerror="this.onerror=null; this.src='img/noimage.jpg'" width="200px" height="100px">
+                           </td>
+                           <td>${r.reviewTitle }</td>
+                           <td>${r.reviewSubject }</td>
+                           <td>${r.reviewDate }</td>
+                           <td>${r.reviewHit }</td>
+                       </tr>
+					</c:forEach>
+           		</tbody>		
+        	</table>	
+    	</div>					
+    </div><!-- .content -->
     <!-- Shoping Cart Section End -->
     <form action="reviewpost.do" method="post" id="frm">
     	<input type="hidden" name="productId" id="productId" value="">
