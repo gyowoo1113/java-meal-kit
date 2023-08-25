@@ -55,22 +55,19 @@ public class ReviewInsert extends HttpServlet {
 		}
 		
 		vo.setMemberId(multi.getParameter("memberId"));
-		vo.setProductId(1);
-		
+		vo.setProductId(Integer.valueOf(multi.getParameter("productId")));
 		vo.setReviewTitle(multi.getParameter("reviewTitle"));	
 		vo.setReviewSubject(multi.getParameter("reviewSubject"));
-		
-		
+			
 		
 		try {
-			if (dao.reviewInsert(vo) != 0) {
-				request.setAttribute("message", "작성 완료");
-			}
+			if (dao.reviewInsert(vo) != 0) 
+				request.setAttribute("message", "작성 완료되었습니다.");
 		} catch (Exception e) {
-			request.setAttribute("message", "작성 실패(로그인 후 작성 가능)");		
+			request.setAttribute("message", "여백으론 작성이 되지 않습니다.");		
 		}
-		
-		String ViewName="review/reviewpost";
+			
+		String ViewName="mypage/review/reviewmessage";
 		ViewResolve.forward(request, response, ViewName);
 	}
 

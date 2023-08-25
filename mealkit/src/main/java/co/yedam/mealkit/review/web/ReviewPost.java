@@ -29,8 +29,9 @@ public class ReviewPost extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setAttribute("productId", request.getParameter("productId"));
 		
-		String ViewName="review/reviewpost";
+		String ViewName="mypage/review/reviewpost";
 		ViewResolve.forward(request, response, ViewName);
 	}
 

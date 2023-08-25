@@ -55,7 +55,6 @@ public class ReviewMyPage extends HttpServlet {
 		setProductList(request,memberId);
 		
 		request.setAttribute("reviews", reviews);
-
 		String viewName = "mypage/review/mypagereview";
 		ViewResolve.forward(request, response, viewName);
 	}

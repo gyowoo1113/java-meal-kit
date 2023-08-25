@@ -26,9 +26,8 @@
 	<insert id="reviewInsert" parameterType="co.yedam.mealkit.review.service.ReviewVO">
 		<selectKey resultType="int" keyProperty="reviewId" order="BEFORE">
 			SELECT CASE WHEN MAX(REVIEW_ID) IS NULL THEN 1
-			ELSE MAX(REVIEW_ID) + 1 END AS reviewId FROM REVIEW
+			ELSE MAX(REVIEW_ID) + 1 END AS reviewId FROM REVIEW 
 		</selectKey>
-		
 		INSERT INTO REVIEW (REVIEW_ID, REVIEW_TITLE, REVIEW_SUBJECT, REVIEW_IMG, MEMBER_ID, PRODUCT_ID)
 		VALUES (#{reviewId}, #{reviewTitle}, #{reviewSubject}, #{reviewImg}, #{memberId}, #{productId})
 	</insert>
