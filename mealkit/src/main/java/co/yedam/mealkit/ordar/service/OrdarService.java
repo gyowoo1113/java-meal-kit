@@ -9,6 +9,7 @@ public interface OrdarService {
 	OrdarVO ordarSelect(OrdarVO vo);
 	int ordarInsert(OrdarVO vo);
 	int ordarUpdate(OrdarVO vo);
+	int ordarShipUpdate(OrdarVO vo);
 	int ordarDelete(OrdarVO vo);
 	int ordarIdMax();
 }

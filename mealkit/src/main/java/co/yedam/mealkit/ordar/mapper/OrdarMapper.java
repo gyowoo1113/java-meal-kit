@@ -12,5 +12,6 @@ public interface OrdarMapper {
 	int ordarInsert(OrdarVO vo);
 	int ordarUpdate(OrdarVO vo);
 	int ordarDelete(OrdarVO vo);
+	int ordarShipUpdate(OrdarVO vo);
 	int ordarIdMax();
 }
