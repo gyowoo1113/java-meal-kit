@@ -38,17 +38,21 @@ public class MemberUpdateGrade extends HttpServlet {
 		
 		vo.setMemberId(request.getParameter("memberId"));
 		vo.setMemberGrade(request.getParameter("memberGrade"));
-
+		
+		String message = null;
+		
 		int n = dao.memberUpdateVer2(vo);
 		
 		if (n != 0) {
 			HttpSession session = request.getSession();
 			session.setAttribute("memberId", vo.getMemberId());
 			session.setAttribute("memberGrade", vo.getMemberGrade());
-			request.setAttribute("message", "등급변경이 완료되었습니다.");
+			message = "등급변경이 완료되었습니다.";
 		} else {
-			request.setAttribute("message", "등급변경이 실패했습니다.");
+			message = "등급변경이 실패했습니다.";
 		}
+		
+		request.setAttribute("message", message);
 		
 		String viewName = "member/membermessage";
 		ViewResolve.forward(request, response, viewName);

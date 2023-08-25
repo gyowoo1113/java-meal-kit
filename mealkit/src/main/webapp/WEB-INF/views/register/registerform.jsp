@@ -173,9 +173,28 @@
 	    if (password != passcheck) {
 	        alert("패스워드가 일치하지 않습니다.");
 	        return false;
-	    } else{
+	    }else{
 		    return true;
-	    	}
+    	} 
+	    
+	    
+	  /*   if (memberPassword.trim() === "") {
+            alert("비밀번호를 입력하세요.");
+            return false;
+        }
+	    if (passwordCheck.trim() === "") {
+            alert("비밀번호를 확인해주세요.");
+            return false;
+        }
+	    if (memberName.trim() === "") {
+            alert("이름을 입력하세요.");
+            return false;
+        }
+	    if (memberEmail.trim() === "") {
+            alert("이메일을 입력하세요.");
+            return false;
+        } */
+	    
 	    
 	}
 	
