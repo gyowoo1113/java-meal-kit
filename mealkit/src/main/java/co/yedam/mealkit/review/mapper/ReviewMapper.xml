@@ -4,32 +4,30 @@
 
 	<select id="reviewSelectList" resultType="co.yedam.mealkit.common.CamelHashMap">
 		SELECT * FROM REVIEW 
-		<if test="key == 'id'">WHERE MEMBER_ID LIKE '%' || #{val} || '%'</if>
-		<if test="key == 'title'">WHERE REVIEW_TITLE LIKE '%' || #{val} || '%'</if>
-		<if test="key == 'subject'">WHERE REVIEW_SUBJECT LIKE '%' || #{val} || '%'</if>
-		ORDER BY REVIEW_ID
+		ORDER BY REVIEW_ID, REVIEW_HIT DESC
 	</select>
 	
 	<select id="reviewSelect" resultType="co.yedam.mealkit.review.service.ReviewVO">
-		SELECT * FROM REVIEW WHERE REVIEW_ID = ${reviewId} 
+		SELECT *
+		FROM REVIEW WHERE REVIEW_ID = ${reviewId} 
 	</select>
 		
 	<select id="reviewSelectProduct" resultType="co.yedam.mealkit.review.service.ReviewVO">
 		SELECT * FROM REVIEW WHERE PRODUCT_ID = ${productId}
-		ORDER BY REVIEW_ID
+		ORDER BY REVIEW_HIT DESC
 	</select>
 	
 	<select id="reviewSelectBestReview" resultType="co.yedam.mealkit.review.service.ReviewVO">
-		SELECT * FROM REVIEW WHERE REVIEW_HIT >= 10
+		SELECT *
+		FROM REVIEW WHERE REVIEW_HIT >= 10
 		ORDER BY REVIEW_HIT DESC
 	</select>
 	
 	<insert id="reviewInsert" parameterType="co.yedam.mealkit.review.service.ReviewVO">
 		<selectKey resultType="int" keyProperty="reviewId" order="BEFORE">
 			SELECT CASE WHEN MAX(REVIEW_ID) IS NULL THEN 1
-			ELSE MAX(REVIEW_ID) + 1 END AS reviewId FROM REVIEW
+			ELSE MAX(REVIEW_ID) + 1 END AS reviewId FROM REVIEW 
 		</selectKey>
-		
 		INSERT INTO REVIEW (REVIEW_ID, REVIEW_TITLE, REVIEW_SUBJECT, REVIEW_IMG, MEMBER_ID, PRODUCT_ID)
 		VALUES (#{reviewId}, #{reviewTitle}, #{reviewSubject}, #{reviewImg}, #{memberId}, #{productId})
 	</insert>

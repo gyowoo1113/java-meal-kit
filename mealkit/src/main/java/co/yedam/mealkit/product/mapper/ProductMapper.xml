@@ -10,7 +10,14 @@
 		FROM PRODUCT
 		ORDER BY PRODUCT_STOCK ASC
 	</select>
-
+	
+	<select id="productSearchList" resultType="co.yedam.mealkit.product.service.ProductVO">
+		SELECT * FROM PRODUCT JOIN CATEGORY USING (CATEGORY_ID)
+		<if test="key == 'category'">WHERE CATEGORY_NAME LIKE '%' || #{val} || '%'</if>
+		<if test="key == 'name'">WHERE PRODUCT_NAME LIKE '%' || #{val} || '%'</if>
+		<if test="key == 'comment'">WHERE PRODUCT_COMMENT LIKE '%' || #{val} || '%'</if>
+	</select>
+	
 	<select id="productSelect" resultType="co.yedam.mealkit.product.service.ProductVO">
 		SELECT * FROM PRODUCT WHERE PRODUCT_ID = #{productId}
 	</select>
@@ -19,8 +26,6 @@
 		<selectKey resultType="int" keyProperty="productId" order="BEFORE">
 			SELECT CASE WHEN MAX(product_id) IS NULL THEN 1
     					ELSE MAX(product_id)+1 END AS PRODUCTID FROM PRODUCT
-    					
-    		
 		</selectKey>
 		INSERT INTO product
 		VALUES (#{productId},#{productName},#{productPrice},#{productComment},SYSDATE,#{categoryId},#{productImg},#{productStock},#{productView})

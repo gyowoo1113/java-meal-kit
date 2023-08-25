@@ -37,7 +37,6 @@ public class ReviewForm extends HttpServlet {
 		ReviewService dao = new ReviewServiceImpl();
 		ReviewVO reviewVo = new ReviewVO();
 		
-		
 		List<ReviewVO> reviews = new ArrayList<>();
 		reviews = dao.reviewSelectBestReview(reviewVo);
 		request.setAttribute("reviews", reviews);

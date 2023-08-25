@@ -18,6 +18,11 @@ public class OrderDetailServiceImpl implements OrderDetailService {
 	public List<OrderDetailVO> orderDetailSelectList() {
 		return map.orderDetailSelectList();
 	}
+	
+	@Override
+	public List<Map<String, Object>> orderDetailSelectListAll() {
+		return map.orderDetailSelectListAll();
+	}
 
 	@Override
 	public List<OrderDetailVO> orderDetailSelectList(String orderCode, int productId) {
@@ -27,6 +32,16 @@ public class OrderDetailServiceImpl implements OrderDetailService {
 	@Override
 	public List<Map<String, Object>> orderDetailGroupList(List<Integer> ids) {
 		return map.orderDetailGroupList(ids);
+	}
+	
+	@Override
+	public List<Map<String, Object>> orderDetailProductList(List<Integer> ids) {
+		return map.orderDetailProductList(ids);
+	}
+	
+	@Override
+	public List<Map<String, Object>> orderDetailCountList() {
+		return map.orderDetailCountList();
 	}
 
 	@Override

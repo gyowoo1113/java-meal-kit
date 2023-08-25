@@ -15,7 +15,7 @@ public class ReviewServiceImpl implements ReviewService {
 	private SqlSession sqlSession = DataSource.getInstance().openSession(true);
 	private ReviewMapper map = sqlSession.getMapper(ReviewMapper.class);
 	@Override
-	public List<Map<String, Object>> reviewSelectList() {
+	public List<ReviewVO> reviewSelectList() {
 		return map.reviewSelectList();
 	}
 	

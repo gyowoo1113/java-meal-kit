@@ -77,6 +77,7 @@
 														<option value="GOLD">GOLD</option>
 														<option value="PLATINUM">PLATINUM</option>
 														<option value="DIAMOND">DIAMOND</option>
+														<option value="ADMIN">ADMIN</option>
 														<option>----------------</option>
 													</select>
 													<button type="submit">수정</button>

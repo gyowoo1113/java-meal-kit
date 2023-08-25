@@ -12,9 +12,11 @@
        <div class="blog__sidebar__item">
            <h4>Categories</h4>
            <ul>
-               <li><a href="#">회원정보</a></li>
+               <li><a href="mypage.do">회원정보</a></li>
+
                <li><a href="mypageorder.do">주문내역</a></li>
-               <li><a href="#">리뷰관리</a></li>
+               <li><a href="mypagereview.do">리뷰관리</a></li>
+
            </ul>
        </div>
    </div>

@@ -8,6 +8,44 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style>
+	.popupBtn {
+  		width: 150px;
+  		height: 50px;
+ 		padding: 10px 5px;
+	}
+	.modalWrap {
+ 		position: fixed; /* Stay in place */
+  		z-index: 1; /* Sit on top */
+  		padding-top: 100px; /* Location of the box */
+  		left: 0;
+  		top: 0;
+  		width: 100%; /* Full width */
+  		height: 100%; /* Full height */
+  		overflow: auto; /* Enable scroll if needed */
+  		background-color: rgba(0,0,0,0.2); /* Black w/ opacity */
+  		display: none;
+	}
+	.modalBody { /* 팝업창 */
+  		width: 700px;
+  		padding: 50px 50px;
+  		margin: 0 auto;
+  		border: 1px solid #777;
+  		background-color: #fff;
+	}
+	.closeBtn {
+  		float:right;
+  		font-weight: bold;
+  		color: #777;
+  		font-size:25px;
+  		cursor: pointer;
+  		margin-bottom: 30px;
+	}
+	
+	.center1 {
+		margin: 0 auto;
+	}
+</style>
 </head>
 <body>
     <!-- Breadcrumb Section Begin -->
@@ -70,29 +108,72 @@
                         </ul>
                     </div>
                 </div>
-                 <section class="related-blog spad">
+                <!-- Shoping Cart Section Begin -->
+			    <section class="shoping-cart spad center1">
 			        <div class="container">
-				        <div class="row">
-				       		<c:forEach items="${reviews}" var="r">
-					           <div class="col-lg-4 col-md-4 col-sm-6">
-					               <div class="blog__item">
-					                   <div class="blog__item__pic">
-					                       <img src="${r.reviewImg}" alt="${r.reviewImg}">
-					                   </div>
-					                   <div class="blog__item__text">
-					                       <ul>
-					                           <li><i class="fa fa-calendar-o"></i>${r.reviewDate}</li>
-					                           <li><i class="fa fa-comment-o"></i> 5</li>
-					                       </ul>
-					                       <h5><a href="#">${r.reviewTitle}</a></h5>
-					                       <p>${r.reviewSubject }</p>
-					                   </div>
-					               </div>
-					           	</div>
-				           	</c:forEach>
-				         </div>
+			        	<c:forEach items="${reviews}" var="r">
+				            <div class="row">
+				                <div class="col-lg-12">
+				                    <div class="shoping__cart__table"  id="${r.reviewId}">
+				                    	<div class="modalWrap">
+		    								<div class="modalBody">
+				                    			<div class="popup">
+				      					 			<div class="popmenu">
+						      					 		<span class="closeBtn" onclick="closeDisplay(event)">X</span>
+								                        <div class="blog__item__pic">
+								                            <img src="${r.reviewImg}" onerror="this.onerror=null; this.src='img/noimage.jpg'">
+								                        </div>
+								                        <div class="blog__item__text">
+								                        	<ul>
+								                                <li style="float:right"><i class="fa fa-user"> ${r.memberId }</i></li>
+								                            </ul>
+								                            <ul>
+								                                <li><i class="fa fa-calendar-o"></i> ${r.reviewDate}</li>
+								                                <li><i class="fa fa-eye hit"> ${r.reviewHit }</i></li>
+								                            </ul>
+								                            <h5>${r.reviewTitle }</h5>
+								                            <p>${r.reviewSubject }</p>
+								                            <input type="hidden" id="memberId" name="memberId" value="${id}">
+								                        </div>
+									            	</div>
+							        			</div>
+							        		</div>
+										</div>
+			                            <div>
+					        				<div onclick= "modalDisplay(event)">
+						        				<div class="popup">
+				      					 			<div class="popmenu">
+								                        <table>
+								                            <thead>
+								                                
+								                            </thead>
+					                           				<tbody>
+								                                <tr>
+								                                    <td class="shoping__cart__item">
+								                                        <img src="${r.reviewImg}" onerror="this.onerror=null; this.src='img/noimage.jpg'" width="100px" height="100px" style="margin-right: 50px">
+								                                        <h5>${r.reviewTitle }</h5>
+								                                    </td>
+								                                    <td class="shoping__cart__price" style="width: 200px">
+								                                         <i class="fa fa-calendar-o">${r.reviewDate}</i>
+								                                    </td>
+								                                    <td class="shoping__cart__item__close">
+								                                        <i class="fa fa-eye hit"> ${r.reviewHit }</i>
+								                                        <input type="hidden" id="memberId" name="memberId" value="${id}">
+								                                    </td>
+								                                </tr>
+					                           				</tbody>
+								                        </table>
+	                           			       		</div>
+								                </div>
+							                </div>
+							        	</div>
+				                    </div>
+				                </div>
+			                </div>
+			            </c:forEach>
 			        </div>
 			    </section>
+    <!-- Shoping Cart Section End -->
             </div>
         </div>
     </section>
@@ -129,6 +210,47 @@
             icon: data.result,
             title: data.message
         })
+	}
+	
+function modalDisplay(event) {
+		
+		var parentTrTag = event.target;
+		
+		for(;parentTrTag.className != 'shoping__cart__table'; parentTrTag=parentTrTag.parentElement);
+        
+		reviewUp(parentTrTag);
+        parentTrTag.querySelector(".modalWrap").style.display = 'block';
+	}
+	
+	function closeDisplay(event) {
+		var parentTrTag = event.target;
+		
+		for(;parentTrTag.className != 'shoping__cart__table'; parentTrTag=parentTrTag.parentElement);
+        parentTrTag.querySelector(".modalWrap").style.display = 'none';
+	}
+	
+	function reviewUp(parentTrTag){
+		// ajax를 이용해서 검색 결과를 가져오고 화면을 재구성한다.
+		let reviewId = parentTrTag.id; //  
+		
+		let payload = "reviewId="+reviewId;
+		let url = "ajaxreviewupdate.do";
+		
+		
+		fetch(url,{
+			method: "post",
+			headers: { 'Content-Type' : 'application/x-www-form-urlencoded'},
+			body: payload
+		}).then(response => response.text())
+			.then(text => updatehit(text, parentTrTag));
+			
+		  //.then(json => console.log(json));
+		  
+       
+	}
+	
+	function updatehit(text, parentTrTag) {
+		 parentTrTag.querySelector(".hit").innerHTML=text;
 	}
 </script>
 </html>

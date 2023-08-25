@@ -26,13 +26,15 @@
             if (message.includes("회원가입이 정상적으로 완료되었습니다.")) {
                 window.location.href = 'loginform.do'; 
             }
-         // 등급변경 성공 or 실패시 등급수정 페이지로 이동
-         	if (message.includes("등급변경이 완료되었습니다.")){
-         		windows.location.href = 'managemember.do';
-         	}
-            if (message.includes("등급변경이 실패했습니다.")){
-            	windows.location.href = 'managemember.do';
-            }
+            // 등급변경 성공 or 실패시 등급수정 페이지로 이동
+            if (message.includes("등급변경이 완료되었습니다.")) {
+                   window.location.href = 'managemember.do'; 
+               }
+            
+               if (message.includes("등급변경이 실패했습니다.")){
+               	window.location.href = 'managemember.do';
+               }
+  
          	
         }
         
