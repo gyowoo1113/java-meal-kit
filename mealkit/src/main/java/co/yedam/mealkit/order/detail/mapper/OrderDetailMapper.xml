@@ -53,4 +53,11 @@
 		                         LEFT JOIN product ON(order_detail.product_id = product.product_id)
 		ORDER BY order_detail.order_id DESC
 	</select>
+	
+	<select id="orderDetailCountList" resultType="co.yedam.mealkit.common.CamelHashMap">
+		SELECT order_id, COUNT(*) AS order_count
+		FROM order_detail
+		GROUP BY order_id
+		ORDER BY order_id DESC
+	</select>
 </mapper>

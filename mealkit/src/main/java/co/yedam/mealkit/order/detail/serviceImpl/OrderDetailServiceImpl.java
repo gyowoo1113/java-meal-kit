@@ -38,6 +38,11 @@ public class OrderDetailServiceImpl implements OrderDetailService {
 	public List<Map<String, Object>> orderDetailProductList(List<Integer> ids) {
 		return map.orderDetailProductList(ids);
 	}
+	
+	@Override
+	public List<Map<String, Object>> orderDetailCountList() {
+		return map.orderDetailCountList();
+	}
 
 	@Override
 	public int orderDetailInsert(OrderDetailVO vo) {
