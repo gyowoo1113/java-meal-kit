@@ -31,12 +31,10 @@ public class AjaxProductSelect extends HttpServlet {
 		ProductService dao = new ProductServiceImpl();
 		ProductVO vo = new ProductVO();
 
-		//vo.setProductId(Integer.valueOf(request.getParameter("productId")));
 		vo.setProductId(Integer.parseInt(request.getParameter("productId")));
 		
 		vo = dao.productSelect(vo);
 
-		
 		ObjectMapper objectMapper = new ObjectMapper(); 
 
 		objectMapper.registerModule(new JavaTimeModule()); 

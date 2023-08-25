@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<<<<<<< HEAD
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+=======
+>>>>>>> origin/dc
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,6 +11,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+<<<<<<< HEAD
  <div class="content">
             <div class="animated fadeIn">
                 <div class="row">
@@ -50,5 +54,8 @@
                 </div>
             </div><!-- .animated -->
         </div><!-- .content -->
+=======
+	<h1>리뷰관리</h1>
+>>>>>>> origin/dc
 </body>
 </html>

@@ -73,7 +73,9 @@
 							<c:if test="${not empty id }">
 							<li><a href="mypage.do">마이페이지</a>
 							</c:if>
+							<c:if test="${grade eq 'ADMIN' }">
 							<li><a href="admin.do">관리</a></li>
+							</c:if>
 						</ul>
 					</nav>
 				</div>

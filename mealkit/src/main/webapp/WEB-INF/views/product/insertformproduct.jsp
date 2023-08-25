@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+
 	<div class="col-lg-12">
 		<div class="card">
 			<div class="card-header">
@@ -21,7 +22,7 @@
 							<label for="text-input" class=" form-control-label">제품이름</label>
 						</div>
 						<div class="col-12 col-md-9">
-							<input type="text" id="productName" name="productName" 
+							<input type="text" id="productName" name="productName"
 								placeholder="" required="required" class="form-control">
 						</div>
 					</div>
@@ -69,7 +70,7 @@
 								class="form-control-file">
 						</div>
 					</div>
-					
+
 					<div class="row form-group">
 						<div class="col col-md-3">
 							<label for="email-input" class=" form-control-label">제품재고</label>
@@ -78,12 +79,13 @@
 							<input type="number" id="productStock" name="productStock"
 								placeholder="" required="required" class="form-control">
 						</div>
-					</div>
-					<div class="card-footer">
-						<button type="submit" class="btn btn-lg btn-info btn-block">
-							<i class="fa fa-dot-circle-o"></i> 등록
-						</button>
 
+
+
+					</div>
+					<div class="col col-md-12">
+						<button type="submit" class="btn btn-lg btn-info btn-block">
+							등록</button>
 					</div>
 
 				</form>
