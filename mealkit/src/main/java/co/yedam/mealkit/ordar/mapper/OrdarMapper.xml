@@ -12,7 +12,7 @@
 			SELECT NVL(MAX(ordar_id),0)+1 FROM ordar
 		</selectKey>
 		
-		INSERT INTO ordar
+		INSERT INTO ordar (ordar_id,ordar_date,ship_check,member_id,address_id,ordar_payment)
 		VALUES (#{ordarId},sysdate,'FALSE',#{memberId},#{addressId},'FALSE')
 	</insert>
 
