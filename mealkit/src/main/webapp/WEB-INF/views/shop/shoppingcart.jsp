@@ -32,6 +32,7 @@
 	                        <table>
 	                            <thead>
 	                                <tr>
+	                                	<th></th>
 	                                    <th class="shoping__product">상품 목록</th>
 	                                    <th>가격</th>
 	                                    <th>개수</th>
@@ -154,8 +155,10 @@
 	function htmlView(data,idx){
 		var idx = "carts[" + idx + "].cartId";
 		var list = ``;
-		list += `<input name =` + idx + ` type ="hidden" value="\${data.cartId}">`;
 		list += `<tr id = "\${data.cartId}">`;
+		list += `<td>`;
+		list += `<input type ="checkbox" name ="check_value" value="\${data.cartId}" checked>`;
+		list += `</td>`;
 	    list += `<td class="shoping__cart__item">
 	            <img src="img/\${data.productImg}" width="100" height="100" alt="">
 	            <h5>\${data.productName}</h5>
