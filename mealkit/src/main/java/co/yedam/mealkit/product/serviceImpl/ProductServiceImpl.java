@@ -56,6 +56,12 @@ public class ProductServiceImpl implements ProductService {
 		return map.productSelectList3();
 	}
 
+	@Override
+	public List<ProductVO> productSelectList(String categoryId) {
+	
+		return map.productSelectList(categoryId);
+	}
+
 	
 
 

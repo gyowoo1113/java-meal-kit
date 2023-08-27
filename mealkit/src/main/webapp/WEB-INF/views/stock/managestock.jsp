@@ -360,6 +360,13 @@
 			body: formData.toString()
 		}).then(response => response.json())
 		  .then(json => htmpConevert2(json));
+		
+		document.getElementById("stockCount").value = "none";
+		document.getElementById("productId").value = "none";
+		document.getElementById("productName").value = "";
+		document.getElementById("productPrice").value = "";
+		document.getElementById("productDate").value = "none";
+		document.getElementById("productStock").value = "none";
 	
 	} 	
 

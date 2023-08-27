@@ -53,9 +53,9 @@
 						<div class="col-12 col-md-9">
 							<select name="categoryId" id="categoryId" class="form-control">
 
-								<option value="1">밥</option>
+								<option value="1">찌개</option>
 								<option value="2">국</option>
-								<option value="3">면</option>
+								<!-- <option value="3">면</option>  -->
 							</select>
 						</div>
 					</div>
@@ -79,9 +79,6 @@
 							<input type="number" id="productStock" name="productStock"
 								placeholder="" required="required" class="form-control">
 						</div>
-
-
-
 					</div>
 					<div class="col col-md-12">
 						<button type="submit" class="btn btn-lg btn-info btn-block">

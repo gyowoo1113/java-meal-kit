@@ -3,6 +3,7 @@
 <mapper namespace="co.yedam.mealkit.product.mapper.ProductMapper">	
 	<select id="productSelectList" resultType="co.yedam.mealkit.product.service.ProductVO">
 		SELECT * FROM product
+		<if test = "categoryId != null">  WHERE CATEGORY_ID =  #{categoryId}</if>
 	</select>
 	
 	<select id="productSelectList2" resultType="co.yedam.mealkit.product.service.ProductVO">

@@ -3,7 +3,6 @@ package co.yedam.mealkit.product.web;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 import javax.servlet.ServletException;
@@ -17,6 +16,7 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
 import co.yedam.mealkit.product.service.ProductService;
+import co.yedam.mealkit.product.service.ProductVO;
 import co.yedam.mealkit.product.serviceImpl.ProductServiceImpl;
 
 
@@ -34,13 +34,13 @@ public class AjaxCategorySelect extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		ProductService dao = new ProductServiceImpl();
-		List<Map<String, Object>> products = new ArrayList<>();
+		List<ProductVO> products = new ArrayList<>();
 
 		String requestBody = request.getReader().lines().collect(Collectors.joining(System.lineSeparator()));
-		 
-
+		System.out.println("카테고리" + requestBody);
 		
-	
+		products = dao.productSelectList(requestBody);
+		request.setAttribute("products", products);
 		ObjectMapper objectMapper = new ObjectMapper(); 
 		
 		objectMapper.registerModule(new JavaTimeModule()); 
