@@ -115,7 +115,7 @@
 				      					 			<div class="popmenu">
 						      					 		<span class="closeBtn" onclick="closeDisplay(event)">X</span>
 								                        <div class="blog__item__pic">
-								                            <img src="${r.reviewImg}" onerror="this.onerror=null; this.src='img/noimage.jpg'">
+								                            <img src="${r.reviewImg}" onerror="this.onerror=null; this.src='img/noimage.jpg'" width="300px" height="450px">
 								                        </div>
 								                        <div class="blog__item__text">
 								                        	<ul>
@@ -244,7 +244,10 @@ function modalDisplay(event) {
 	}
 	
 	function updatehit(text, parentTrTag) {
-		 parentTrTag.querySelector(".hit").innerHTML=text;
+		var selects = parentTrTag.querySelectorAll(".hit");
+		for (var hitTag of selects){
+			 hitTag.innerHTML = text;
+		}
 	}
 </script>
 </html>

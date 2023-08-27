@@ -2,19 +2,19 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="co.yedam.mealkit.review.mapper.ReviewMapper">
 
-	<select id="reviewSelectList" resultType="co.yedam.mealkit.common.CamelHashMap">
-		SELECT * FROM REVIEW 
+	<select id="reviewSelectList" resultType="co.yedam.mealkit.review.service.ReviewVO">
+		SELECT * FROM REVIEW
 		ORDER BY REVIEW_ID, REVIEW_HIT DESC
 	</select>
 	
 	<select id="reviewSelect" resultType="co.yedam.mealkit.review.service.ReviewVO">
 		SELECT *
-		FROM REVIEW WHERE REVIEW_ID = ${reviewId} 
+		FROM REVIEW WHERE REVIEW_ID = #{reviewId} 
 	</select>
 		
 	<select id="reviewSelectProduct" resultType="co.yedam.mealkit.review.service.ReviewVO">
-		SELECT * FROM REVIEW WHERE PRODUCT_ID = ${productId}
-		ORDER BY REVIEW_HIT DESC
+		SELECT * FROM REVIEW
+		<if test="memberId != null"> WHERE MEMBER_ID = #{memberId}</if>
 	</select>
 	
 	<select id="reviewSelectBestReview" resultType="co.yedam.mealkit.review.service.ReviewVO">
