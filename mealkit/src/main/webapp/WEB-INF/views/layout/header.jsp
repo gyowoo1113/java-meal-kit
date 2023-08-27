@@ -18,6 +18,7 @@
 
 
 </style>
+
 <title>Insert title here</title>
 </head>
 <body>
@@ -60,8 +61,7 @@
 			<div class="row">
 				<div class="col-lg-3">
 					<div class="header__logo">
-						<a href="home.do"><img src="template/ogani/img/logo.png"
-							alt=""></a>
+						<a href="home.do"><img src="img/MealKitLogo.jpg" alt="" width="170px"></a>
 					</div>
 				</div>
 				<div class="col-lg-6 container">
