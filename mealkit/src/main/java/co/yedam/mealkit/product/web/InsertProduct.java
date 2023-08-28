@@ -1,6 +1,8 @@
 package co.yedam.mealkit.product.web;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -52,14 +54,17 @@ public class InsertProduct extends HttpServlet {
 		int n = dao.productInsert(vo);
 
 		if (n == 1 ) {
-		//	request.setAttribute("message", " 등록 OOOO");
-			
 		
 		} else {
-		//	request.setAttribute("message", " 등록 XXXX");
-		}
 		
-		String viewName = "admin/product/alert";
+		}
+
+		List<ProductVO> products = new ArrayList<>();
+		products = dao.productSelectList();
+
+		request.setAttribute("products", products);
+		
+		String viewName = "admin/product/manageproduct";
 		ViewResolve.forward(request, response, viewName);
 		
 	}
