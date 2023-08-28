@@ -47,17 +47,22 @@
 	border: 20px solid; 
 }
 
+#a{
+	color: #fff;
+}
+
 
 </style>
 <title>회원가입</title>
 </head>
 <body class="bg-white">
 	<div class="sufee-login d-flex align-content-center flex-wrap">
-		<div class="container">
+		<div class="container" >
 			<div class="login-content">
 				<div class="mypg">
 					<div class="login-form">
-					
+					<img src = "img/MealKitLogo.png">
+					<br><br>
 						<form id="frm" action="membermypageupdate.do" method="post">
 							<div class="form-group">
 								<label>아이디</label> <input type="text" class="form-control" id="id" name="id" value="<%= session.getAttribute("id") %>" readonly >
@@ -79,10 +84,11 @@
 							</div>
 							<button type="submit"
 								class="btn btn-success btn-flat m-b-30 m-t-30">수정하기</button>
-							<div class="register-link m-t-15 text-center">
-								<p></p>
-							</div>
 							</form>
+							<br>
+							<button type="button"
+								class="btn btn-success btn-flat m-b-30 m-t-30"><a href="memberdeleteform.do">회원탈퇴</a></button>
+							<div class="register-link m-t-15 text-center">
 					</div>
 				</div>
 			</div>

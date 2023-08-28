@@ -41,7 +41,7 @@ public class MemberUpdateGrade extends HttpServlet {
 		
 		String message = null;
 		
-		int n = dao.memberUpdateVer2(vo);
+		int n = dao.memberGradeUpdate(vo);
 		
 		if (n != 0) {
 			HttpSession session = request.getSession();

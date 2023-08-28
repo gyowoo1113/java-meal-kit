@@ -29,14 +29,14 @@
 	<!-- 리뷰 가능한 물품 리스트 출력 및 리뷰 버튼 생성 -->
 		<div class="container">
 		<div class="list-content center1">
-			<table id="bootstrap-data-table" class="table table-striped table-bordered">
+			<table id="bootstrap-data-table" class="table table-striped table-bordered" style="margin-top: 50px;"> 
 				<thead>
 					<tr style="text-align: center;">
 						<th colspan="4">리뷰작성</th>
 					</tr>
 					<tr  style="text-align: center;">
 						<th width="200px">제품사진</th>
-						<th>상품이름</th>
+						<th width="320px">상품이름</th>
 						<th>상품가격</th>
 						<th>리뷰</th>
 					</tr>
@@ -59,31 +59,30 @@
 	<!-- Shoping Cart Section Begin -->
     <div class="container">
 		<div class="animated fadeIn center1">
-           	<table id="bootstrap-data-table" class="table table-striped table-bordered">
+           	<table id="bootstrap-data-table" class="table table-striped table-bordered" style="margin-top: 100px; margin-bottom: 100px;">
            		<thead>
-       				<tr style="text-align: center;" height="100px">	
+       				<tr style="text-align: center;">	
 	                    <td colspan="5">리뷰내역</td>
                 	</tr>
                   	<tr style="text-align: center;">
 		                 <td width="200px">리뷰사진</td>
-		                 <td>제목</td>
-		                 <td>내용</td>
-		                 <td width="120px">리뷰날짜</td>
-		                 <td width="100px">조회수</td>
+		                 <td width="250px">제목</td>
+		                 <td width="350px">내용</td>
+		                 <td width="110px">리뷰날짜</td>
+		                 <td width="75px">조회수</td>
                   	</tr>
            		</thead>
                	<tbody>
 					<c:forEach items="${reviews}" var="r">
                        <tr>
-                           <td>
-                           	<img src="${r.reviewImg}" onerror="this.onerror=null; this.src='img/noimage.jpg'" width="200px" height="170px">
-                           </td>
-                           <td style="vertical-align: middle;">${r.reviewTitle }</td>
-                           <td style="vertical-align: middle;">${r.reviewSubject }</td>
-                          	<td style="text-align: center; vertical-align: middle;">${r.reviewDate }</td>
-                           <td style="text-align: center; vertical-align: middle;">${r.reviewHit }회</td>
-	                       <input type="hidden" id="memberId" name="memberId" value="${id}">
-                       </tr>
+                          <td>
+                          	<img src="${r.reviewImg}" onerror="this.onerror=null; this.src='img/noimage.jpg'" width="200px" height="170px">
+                          </td>
+                          <td style="vertical-align: middle;">${r.reviewTitle }</td>
+                          <td style="vertical-align: middle;">${r.reviewSubject }</td>
+                          <td style="text-align: center; vertical-align: middle;">${r.reviewDate }</td>
+                          <td style="text-align: center; vertical-align: middle;">${r.reviewHit }회</td>
+                 	   </tr>
 					</c:forEach>
            		</tbody>		
         	</table>	

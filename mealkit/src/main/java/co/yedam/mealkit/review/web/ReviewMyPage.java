@@ -46,14 +46,17 @@ public class ReviewMyPage extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ReviewService rs = new ReviewServiceImpl();
-		List<ReviewVO> reviews = new ArrayList<>();
-		reviews = rs.reviewSelectList();
-		ReviewVO vo = new ReviewVO();
-		reviews = rs.reviewSelectProduct(vo);
-
 		HttpSession session = request.getSession();
 		String memberId = (String) session.getAttribute("id");
+		
+		ReviewService rs = new ReviewServiceImpl();
+		List<ReviewVO> reviews = new ArrayList<>();
+		ReviewVO vo = new ReviewVO();
+		
+		vo.setMemberId(memberId);
+		
+		reviews = rs.reviewSelectProduct(vo);
+		
 		setProductList(request,memberId);
 		
 		request.setAttribute("reviews", reviews);

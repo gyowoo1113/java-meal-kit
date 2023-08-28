@@ -15,7 +15,7 @@
 		</if>
 	</select>
 
-	<select id="memberSelectVer2"
+	<select id="memberViewPage"
 		resultType="co.yedam.mealkit.member.service.MemberVO">
 		SELECT * FROM MEMBER WHERE MEMBER_ID = #{memberId}
 		<if test="memberPassword != null">AND MEMBER_PASSWORD = #{memberPassword}</if>
@@ -52,7 +52,7 @@
 		WHERE MEMBER_ID = #{memberId}
 	</update>
 
-	<update id="memberUpdateVer2"
+	<update id="memberGradeUpdate"
 		parameterType="co.yedam.mealkit.member.service.MemberVO">
 		UPDATE MEMBER
 		<set>
@@ -62,7 +62,7 @@
 		WHERE MEMBER_ID = #{memberId}
 	</update>
 
-	<update id="memberUpdateVer3"
+	<update id="memberMypageUpdate"
 		parameterType="co.yedam.mealkit.member.service.MemberVO">
 		UPDATE MEMBER
 		<set>
@@ -75,7 +75,7 @@
 
 	<delete id="memberDelete"
 		parameterType="co.yedam.mealkit.member.service.MemberVO">
-		DELETE FROM MEMBER WHERE MEMBER_ID = #{MEMBER_ID}
+		DELETE FROM MEMBER WHERE MEMBER_PASSWORD = #{MEMBER_PASSWORD}
 	</delete>
 
 </mapper>

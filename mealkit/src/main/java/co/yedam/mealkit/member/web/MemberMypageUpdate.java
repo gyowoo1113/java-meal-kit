@@ -43,7 +43,7 @@ public class MemberMypageUpdate extends HttpServlet {
 		//System.out.println(request.getParameter("id") + request.getParameter(" ") + request.getParameter("email") );
 		String message = null;
 		
-		int n = dao.memberUpdateVer3(vo);
+		int n = dao.memberMypageUpdate(vo);
 		
 		if (n != 0) {
 			session.setAttribute("id", vo.getMemberId());
