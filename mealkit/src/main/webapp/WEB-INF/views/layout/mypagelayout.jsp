@@ -27,7 +27,6 @@
 	href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800'
 	rel='stylesheet' type='text/css'>
 
-
 <title> <tiles:getAsString name="title"/> </title>
 </head>
 <body>
@@ -126,8 +125,8 @@
     <!-- Header Section End -->
 
 	<div class="container">
-            <div class="row">
-                <div class="col-lg-4 col-md-5">
+            <div class="row mar_1">
+                <div class="col-lg-3 col-md-4">
 					<!-- Body Section Begin -->
 					<tiles:insertAttribute name="menu"/>
 					<!-- Body Section End -->

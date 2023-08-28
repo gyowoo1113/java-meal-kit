@@ -15,15 +15,15 @@ tr,td {
 </style>
 </head>
 <body>
-	<div class="container">
+	<div class="container" style="margin-left: 50px;">
 		<div class="list-content">
-			<table id="bootstrap-data-table" class="table table-striped table-bordered">
+			<table id="bootstrap-data-table" class="table table-striped table-bordered" style="width: 800px">
 				<thead>
 					<tr>
-						<th width="20%">주문일</th>
-						<th width="20%">주문번호</th>
-						<th width="40%">주문상품</th>
-						<th width="15%">결제/배송</th>
+						<th width="150px">주문일</th>
+						<th width="200px">주문번호</th>
+						<th width="400px">주문상품</th>
+						<th width="120px">결제/배송</th>
 					</tr>
 				</thead>
 				<tbody id="order_body">
