@@ -56,40 +56,35 @@
 <title>회원가입</title>
 </head>
 <body class="bg-white">
-	<div class="sufee-login d-flex align-content-center flex-wrap">
-		<div class="container" >
-			<div class="login-content">
-				<div class="mypg">
-					<div class="login-form">
-					<img src = "img/MealKitLogo.png">
+	<div class="container" style="margin-left: 100px; margin-top: -100px;">
+		<div class="login-content">
+			<div class="mypg">
+				<div class="login-form">
 					<br><br>
-						<form id="frm" action="membermypageupdate.do" method="post">
-							<div class="form-group">
-								<label>아이디</label> <input type="text" class="form-control" id="id" name="id" value="<%= session.getAttribute("id") %>" readonly >
-							</div>
-							<div class="form-group">
-								<label>비밀번호</label> <input type="password"
-									class="form-control" id="pw" name="pw" value="<%= session.getAttribute("pw") %>" readonly>
-							</div>
-							<div class="form-group">
-								<label>이름</label> <input type="text" class="form-control" id="name" name="name" value="<%= session.getAttribute("name") %>">
-							</div>
-							<div class="form-group">
-								<label>이메일</label> <input type="email" class="form-control"
-									id="email" name="email" value="<%= session.getAttribute("email") %>">
-							</div>
-							<div class="form-group">
-								<label>등급</label> <input type="text" class="form-control"
-									id="grade" name="grade" value="<%= session.getAttribute("grade") %>" readonly> <br>
-							</div>
-							<button type="submit"
-								class="btn btn-success btn-flat m-b-30 m-t-30">수정하기</button>
-							</form>
-							<br>
-							<button type="button"
-								class="btn btn-success btn-flat m-b-30 m-t-30"><a href="memberdeleteform.do">회원탈퇴</a></button>
-							<div class="register-link m-t-15 text-center">
-					</div>
+					<form id="frm" action="membermypageupdate.do" method="post">
+						<div class="form-group">
+							<label>아이디</label> <input type="text" class="form-control" id="id" name="id" value="<%= session.getAttribute("id") %>" readonly >
+						</div>
+						<div class="form-group">
+							<label>비밀번호</label> <input type="password"
+								class="form-control" id="pw" name="pw" value="<%= session.getAttribute("pw") %>" readonly>
+						</div>
+						<div class="form-group">
+							<label>이름</label> <input type="text" class="form-control" id="name" name="name" value="<%= session.getAttribute("name") %>">
+						</div>
+						<div class="form-group">
+							<label>이메일</label> <input type="email" class="form-control"
+								id="email" name="email" value="<%= session.getAttribute("email") %>">
+						</div>
+						<div class="form-group">
+							<label>등급</label> <input type="text" class="form-control"
+								id="grade" name="grade" value="<%= session.getAttribute("grade") %>" readonly> <br>
+						</div>
+						<button type="submit"
+							class="btn btn-success btn-flat m-b-30 m-t-30">수정하기</button>
+					</form>
+					<br>
+					<button type="button" class="btn btn-success btn-flat m-b-30 m-t-30"><a href="memberdeleteform.do">회원탈퇴</a></button>
 				</div>
 			</div>
 		</div>

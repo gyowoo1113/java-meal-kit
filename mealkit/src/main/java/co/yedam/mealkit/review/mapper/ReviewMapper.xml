@@ -13,7 +13,7 @@
 	</select>
 		
 	<select id="reviewSelectProduct" resultType="co.yedam.mealkit.review.service.ReviewVO">
-		SELECT * FROM REVIEW
+		SELECT * FROM REVIEW JOIN PRODUCT USING (PRODUCT_ID)
 		WHERE PRODUCT_ID = #{productId}
 	</select>
 	
