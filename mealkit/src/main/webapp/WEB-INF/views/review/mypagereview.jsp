@@ -94,4 +94,10 @@
     	<input type="hidden" name="productId" id="productId" value="">
     </form>
 </body>
+<script type="text/javascript">
+function moveReviewInsert(event){
+	document.getElementById("productId").value = event.target.id;
+	document.getElementById("frm").submit();
+}
+</script>
 </html>
