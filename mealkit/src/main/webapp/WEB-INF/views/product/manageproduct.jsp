@@ -98,7 +98,7 @@
 				<div class="col-md-12">
 					<div class="card">
 						<div class="card-header">
-							<strong class="card-title">입출고 수불대장</strong>
+							<strong class="card-title">제품 목록</strong>
 						</div>
 						<div class="card-body">
 
@@ -111,22 +111,15 @@
 											</div>
 											<div class="featured__controls">
 												<ul>
-
-													<li class="active" data-filter="*"><a href="manageproduct.do" id="all"
-														onclick="">전체메뉴</a></li>
-													<li data-filter=""><a href="#" id="categoryId1" data-value="1"
-														onclick="select('1')">찌개</a></li>
-
-													<li data-filter=""><a href="#" id="categoryId2" data-value="2"
-														onclick="select('2')">국</a></li>
-
+													<li class="active" data-filter="*"><a href="#"
+														id="all" data-value= "all" onclick="select('all')">전체메뉴</a></li>
+													<c:forEach items="${categorys}" var="c">
+														<li data-filter=""><a href="#" id="${c.categoryId}"
+															data-value="${c.categoryId}"
+															onclick="select(${c.categoryId})">${c.categoryName}</a></li>
+													</c:forEach>
 												</ul>
-												<!-- <select style="height: 50px" name="selecto" id="dline">
-													<option value="1">조회순</option>
-													<option value="2">신상품순</option>
-													<option value="3">낮은가격순</option>
-													<option value="4">높은가격순</option>
-												</select>  -->
+
 												<br> <br>
 
 												<hr>
@@ -158,17 +151,17 @@
 											</div>
 										</c:forEach>
 									</div>
-									
+
 								</div>
 								<div class="col col-md-12">
-										<div>
+									<div>
 
-											<button id="button" type="submit"
-												onclick="location.href= 'insertformproduct.do'"
-												class="btn btn-lg btn-info btn-block">등록</button>
+										<button id="button" type="submit"
+											onclick="location.href= 'insertformproduct.do'"
+											class="btn btn-lg btn-info btn-block">등록</button>
 
-										</div>
 									</div>
+								</div>
 							</section>
 							<form id="detailform" method="post" action="updateformproduct.do">
 								<input type="hidden" id="productId" name="productId" value="">
@@ -180,12 +173,10 @@
 		</div>
 	</div>
 	<!-- Featured Section End -->
-
 	<script type="text/javascript">
 		function moveShopDetail(event) {
 			var parentTag = event.target;
-			for (; parentTag.className != 'featured__item'; parentTag = parentTag.parentElement)
-				;
+			for (; parentTag.className != 'featured__item'; parentTag = parentTag.parentElement);
 
 			var frm = document.getElementById("detailform");
 			frm.querySelector("#productId").value = parentTag.id;
@@ -194,17 +185,8 @@
 
 		function select(type) {
 
-			console.log(type);
-			if(type == '1'){
-				linkElement = document.getElementById("categoryId1");
-			}else{
-				linkElement = document.getElementById("categoryId2");
-			}
-
-			
+			linkElement = document.getElementById(type);
 			let dataValue = linkElement.getAttribute("data-value");
-			console.log(dataValue);
-			
 			let url = "ajaxcategoryselect.do";
 			fetch(url,{ 
 				method:"POST",
@@ -216,23 +198,14 @@
 			  .then(json => htmpConevert(json));
 		}
 		function htmpConevert(datas){
-			console.log(datas);
-			
 			const featuredFilterElement = document.querySelector('.row.featured__filter');
 			featuredFilterElement.remove();
 			const newFeaturedFilterElement = document.createElement('div');
 			newFeaturedFilterElement.classList.add('row', 'featured__filter');
 			newFeaturedFilterElement.innerHTML = datas.map(data => htmlView(data)).join('');
 
-			// 새로운 요소를 문서에 추가
-			const parentElement = document.querySelector('.container'); // 적절한 부모 요소 선택
+			const parentElement = document.querySelector('.container'); 
 			parentElement.appendChild(newFeaturedFilterElement);
-			/*document.querySelector('tbody').remove();
-			const tbody = document.createElement('tbody');
-			
-			tbody.innerHTML = datas.map(data => htmlView(data)).join(''); 
-			document.querySelector('#bootstrap-data-table').appendChild(tbody);
-			*/
 		}
 		function htmlView(data){
 			

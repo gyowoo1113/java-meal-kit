@@ -28,7 +28,6 @@ public class HomeController extends HttpServlet {
 		ProductService dao= new ProductServiceImpl();
 		List<ProductVO> products = new ArrayList<>();
 		
-	
 		products = dao.productViewList();
 
 		request.setAttribute("products", products);

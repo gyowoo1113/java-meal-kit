@@ -88,7 +88,12 @@
                         </div>
                         <a href="#" class="primary-btn" onclick="insertToCart()">ADD TO CARD</a>
                         <ul>
-                            <li><b>Availability</b> <span>In Stock</span></li>
+                        	<c:if test="${product.productStock  <= '0'}">
+                            <li><b>재고</b> <span>없음</span></li>
+                        	</c:if>
+                        	<c:if test="${product.productStock  > '0'}">
+                            <li><b>재고</b> <span>있음</span></li>
+                            </c:if>
                         </ul>
                     </div>
                 </div>

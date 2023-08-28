@@ -33,7 +33,6 @@
 	rel='stylesheet' type='text/css'>
 </head>
 <body>
-
 	<div class="breadcrumbs">
 		<div class="breadcrumbs-inner">
 			<div class="row m-0">
@@ -54,7 +53,7 @@
 				<div class="col-md-12">
 					<div class="card">
 						<div class="card-header">
-							<strong class="card-title">입출고 수불대장</strong>
+							<strong class="card-title">입출고 목록</strong>
 						</div>
 						<div class="card-body">
 
@@ -110,7 +109,7 @@
 				<div class="col-md-12">
 					<div class="card">
 						<div class="card-header">
-							<strong class="card-title">입출고 관리</strong>
+							<strong class="card-title">제품 목록</strong>
 						</div>
 						<div class="card-body">
 
@@ -253,7 +252,6 @@
 
 	<script type="text/javascript">
 	
-
 	function select(type){
 		let linkElement;
 		
@@ -278,17 +276,13 @@
 	}
 	
 	function htmpConevert(datas){
-		console.log(datas);
 		document.querySelector('tbody').remove();
 		const tbody = document.createElement('tbody');
-		
 		tbody.innerHTML = datas.map(data => htmlView(data)).join(''); 
 		document.querySelector('#bootstrap-data-table').appendChild(tbody);
-		
 	}
 	
 	function htmlView(data){
-		
 		return `
 		
 		<tr >
@@ -301,9 +295,7 @@
 			`
 	}
 
-	
 	function selectProduct(n){
-		console.log("n값" + n);
 		document.getElementById("productId").value = n;
 		let productId = document.getElementById("productId").value;
 	
@@ -320,7 +312,6 @@
 		
 	}
 	function set(data){
-		console.log("set부분 : " + data.productId);
 		document.getElementById("productId").value = data.productId;
 		document.getElementById("productName").value = data.productName;
 		document.getElementById("productPrice").value = data.productPrice;
@@ -329,13 +320,9 @@
 	}
 	
  	function insertStock(){
- 		
  		let productStock = document.getElementById("productStock").value;
 		let productId = document.getElementById("productId").value;
-		//let radios = document.getElementById("radio1").value;  
 		let stockCount = document.getElementById("stockCount").value;
-		
-		console.log("재고" + productStock + "코드" + productId + "수량" + stockCount);
 		let radioButtons = document.getElementsByName("radios");
 		let radios;
 		for (let i = 0; i < radioButtons.length; i++) {
@@ -350,7 +337,7 @@
 		formData.append("radios", radios);
 		formData.append("stockCount", stockCount);
 		formData.append("productStock", productStock);
-		console.log(productId + radios + stockCount );
+	
 		let url = "ajaxstockinsert.do";
 		fetch(url,{ 
 			method:"POST",
@@ -370,43 +357,37 @@
 	
 	} 	
 
- 		function htmpConevert2(datas){
+ 	function htmpConevert2(datas){
  		
+ 		if(datas['message'] != undefined){
+ 			window.alert(datas['message']);
+ 		}
+ 		document.querySelector('tbody').remove();
+ 		const tbody = document.createElement('tbody');
  			
- 			if(datas['message'] != undefined){
- 				window.alert(datas['message']);
- 			}
- 			document.querySelector('tbody').remove();
- 			const tbody = document.createElement('tbody');
+ 		tbody.innerHTML = datas['stocks'].map(data => htmlView(data)).join(''); 
+ 		document.querySelector('#bootstrap-data-table').appendChild(tbody); 
  			
- 			tbody.innerHTML = datas['stocks'].map(data => htmlView(data)).join(''); 
- 			document.querySelector('#bootstrap-data-table').appendChild(tbody); 
+ 		document.querySelector('#productlist').remove();
+ 		const tbody2 = document.createElement('tbody');
+ 		tbody2.id = 'productlist';
  			
- 			
- 			document.querySelector('#productlist').remove();
- 			const tbody2 = document.createElement('tbody');
- 			tbody2.id = 'productlist';
- 			
- 			tbody2.innerHTML = datas['products'].map(data => htmlView2(data)).join(''); 
- 			document.querySelector('#producttable').appendChild(tbody2);
-		
+ 		tbody2.innerHTML = datas['products'].map(data => htmlView2(data)).join(''); 
+ 		document.querySelector('#producttable').appendChild(tbody2);
 		
 	}
- 		function htmlView2(data){
+ 	function htmlView2(data){
  			
- 			return `
- 			
- 			<tr onclick="selectProduct(\${data.productId})">
- 				<td >\${data.productId}</td>
- 				<td >\${data.productName}</td>
- 				<td >\${data.productPrice}</td>
- 				<td >\${data.productDate}</td>
- 				<td >\${data.productStock}</td>
- 			</tr>
- 				`
- 		}
- 	
- 		
+ 		return `
+ 		<tr onclick="selectProduct(\${data.productId})">
+ 			<td >\${data.productId}</td>
+ 			<td >\${data.productName}</td>
+ 			<td >\${data.productPrice}</td>
+ 			<td >\${data.productDate}</td>
+ 			<td >\${data.productStock}</td>
+ 		</tr>
+ 			`
+ 	}
  		
 </script>
 

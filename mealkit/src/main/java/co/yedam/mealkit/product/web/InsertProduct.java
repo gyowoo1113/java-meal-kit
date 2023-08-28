@@ -51,13 +51,7 @@ public class InsertProduct extends HttpServlet {
 		vo.setCategoryId(Integer.parseInt(multi.getParameter("categoryId")));
 		vo.setProductStock(Integer.parseInt(multi.getParameter("productStock")));
 
-		int n = dao.productInsert(vo);
-
-		if (n == 1 ) {
-		
-		} else {
-		
-		}
+		dao.productInsert(vo);
 
 		List<ProductVO> products = new ArrayList<>();
 		products = dao.productSelectList();

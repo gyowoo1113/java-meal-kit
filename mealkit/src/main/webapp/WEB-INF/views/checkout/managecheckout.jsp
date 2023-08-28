@@ -13,6 +13,20 @@ th, td {
 }
 </style>
 <body>
+
+	<div class="breadcrumbs">
+		<div class="breadcrumbs-inner">
+			<div class="row m-0">
+				<div class="col-sm-4">
+					<div class="page-header float-left">
+						<h1 style="font-size: 150%">
+							<strong>주문관리</strong>
+						</h1>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
  <div class="content">
    <div class="animated fadeIn">
        <div class="row">
