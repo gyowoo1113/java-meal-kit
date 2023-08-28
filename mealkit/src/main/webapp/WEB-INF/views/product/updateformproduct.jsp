@@ -40,7 +40,7 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 </head>
 <body>
-	<section class="breadcrumb-section set-bg" data-setbg="">
+	<section class="breadcrumb-section set-bg" data-setbg="template/ogani/img/logobar.png">
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-12 text-center">

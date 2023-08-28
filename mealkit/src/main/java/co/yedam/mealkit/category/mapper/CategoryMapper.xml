@@ -6,4 +6,15 @@
 		INSERT INTO CATEGORY
 		VALUES (#{categoryId},#{categoryName})
 	</insert>
+	
+	<select id="categorySelectList" resultType="co.yedam.mealkit.category.service.CategoryVO">
+		SELECT * 
+		FROM CATEGORY
+		ORDER BY CATEGORY_ID
+	</select>
+	<select id="categorySelect" resultType="co.yedam.mealkit.category.service.CategoryVO">
+		SELECT * FROM 
+		CATEGORY 
+		WHERE CATEGORY_ID = #{categoryId}
+	</select>
 </mapper>

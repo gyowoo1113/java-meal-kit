@@ -58,18 +58,15 @@
 						<h2>밀키트</h2>
 					</div>
 
-
-
 					<div class="featured__controls">
 						<ul>
 
-							<li class="active" data-filter="*"><a href="shopmenuform.do"
-								id="all" onclick="">전체메뉴</a></li>
-							<li data-filter=""><a href="#" id="categoryId1"
-								data-value="1" onclick="select('1')">찌개</a></li>
-
-							<li data-filter=""><a href="#" id="categoryId2"
-								data-value="2" onclick="select('2')">국</a></li>
+							<li class="active" data-filter="*"><a href="#" id="all"
+								data-value="all" onclick="select('all')">전체메뉴</a></li>
+							<c:forEach items="${categorys}" var="c">
+								<li data-filter=""><a href="#" id="${c.categoryId}"
+									data-value="${c.categoryId}" onclick="select(${c.categoryId})">${c.categoryName}</a></li>
+							</c:forEach>
 						</ul>
 						<br> <br>
 
@@ -120,14 +117,7 @@
 	}
 	function select(type) {
 
-		console.log(type);
-		if(type == '1'){
-			linkElement = document.getElementById("categoryId1");
-		}else{
-			linkElement = document.getElementById("categoryId2");
-		}
-
-		
+		linkElement = document.getElementById(type);
 		let dataValue = linkElement.getAttribute("data-value");
 		console.log(dataValue);
 		
