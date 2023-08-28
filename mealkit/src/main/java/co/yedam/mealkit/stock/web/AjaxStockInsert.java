@@ -51,11 +51,6 @@ public class AjaxStockInsert extends HttpServlet {
 		int stockCount = Integer.parseInt(request.getParameter("stockCount"));
 		int productStock = Integer.parseInt(request.getParameter("productStock"));
 
-		System.out.println(request.getParameter("radios"));
-		System.out.println("입출고 갯수"+stockCount );
-		System.out.println("제품재고" + productStock );
-		
-
 		if(request.getParameter("radios").equals("in")){
 			productStock += stockCount;
 			vo2.setProductId(Integer.parseInt(request.getParameter("productId")));
