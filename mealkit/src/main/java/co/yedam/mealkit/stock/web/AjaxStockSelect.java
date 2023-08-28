@@ -36,7 +36,6 @@ public class AjaxStockSelect extends HttpServlet {
 
 		String requestBody = request.getReader().lines().collect(Collectors.joining(System.lineSeparator()));
 		 
-
 		stocks = dao.stockSelectList(requestBody);
 	
 		ObjectMapper objectMapper = new ObjectMapper(); 

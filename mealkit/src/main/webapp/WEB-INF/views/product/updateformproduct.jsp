@@ -37,25 +37,20 @@
 <link rel="stylesheet" href="template/ogani/css/style.css"
 	type="text/css">
 
-<!-- sweetalert2 -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 </head>
 <body>
-	<!-- Breadcrumb Section Begin -->
-	<section class="breadcrumb-section set-bg"
-		data-setbg="template/ogani/img/lion.png">
+	<section class="breadcrumb-section set-bg" data-setbg="">
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-12 text-center">
 					<div class="breadcrumb__text">
 						<h2>제품 수정</h2>
-
 					</div>
 				</div>
 			</div>
 		</div>
 	</section>
-	<!-- Breadcrumb Section End -->
 
 	<!-- Product Details Section Begin -->
 	<section class="product-details spad">
@@ -139,7 +134,7 @@
 </body>
 <script type="text/javascript">
  
-	function readURL(input) {// 이미지 미리보기!!
+	function readURL(input) {
 	  if (input.files && input.files[0]) {
 	    var reader = new FileReader();
 	    reader.onload = function(e) {
@@ -155,30 +150,24 @@
 		document.getElementById('file').click();
 		
 		let fileInput = document.getElementById('file');
-	
 		let selectedFile = fileInput.files[0];
-		console.log(fileInput);
-			let formData = new FormData();
-		    formData.append('file', selectedFile);
+		let formData = new FormData();
+		formData.append('file', selectedFile);
 		
-			let url = "ajaxImgChange.do";
-			 fetch(url, {
-			        method: 'POST', 
-			        body: formData 
-			    })
-			    .then(response => response.text())
-			    .then(text => 
-			    {
-		            const imgElement = document.getElementById('productImg');
-		            imgElement.src = text.trim(); 
-		            console.log( imgElement);
-		        });
-		
-		
+		let url = "ajaxImgChange.do";
+		fetch(url, {
+			method: 'POST', 
+			body: formData 
+		}).then(response => response.text())
+		  .then(text => 
+		  {
+		   	const imgElement = document.getElementById('productImg');
+		    imgElement.src = text.trim(); 
+		    });	
 	}
 	function product(){
-			document.getElementById("frm2").action = "deleteproduct.do";
-			document.getElementById("frm2").submit();
+		document.getElementById("frm2").action = "deleteproduct.do";
+		document.getElementById("frm2").submit();
 	}
 </script>
 </html>

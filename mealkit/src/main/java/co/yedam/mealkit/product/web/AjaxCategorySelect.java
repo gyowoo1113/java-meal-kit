@@ -30,16 +30,15 @@ public class AjaxCategorySelect extends HttpServlet {
         
     }
 
-
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		ProductService dao = new ProductServiceImpl();
 		List<ProductVO> products = new ArrayList<>();
 
 		String requestBody = request.getReader().lines().collect(Collectors.joining(System.lineSeparator()));
-		System.out.println("카테고리" + requestBody);
-		
 		products = dao.productSelectList(requestBody);
+		
+		
 		request.setAttribute("products", products);
 		ObjectMapper objectMapper = new ObjectMapper(); 
 		

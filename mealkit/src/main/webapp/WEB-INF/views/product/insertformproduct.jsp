@@ -55,7 +55,7 @@
 
 								<option value="1">찌개</option>
 								<option value="2">국</option>
-								<!-- <option value="3">면</option>  -->
+								
 							</select>
 						</div>
 					</div>

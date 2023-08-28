@@ -22,15 +22,12 @@ import co.yedam.mealkit.product.serviceImpl.ProductServiceImpl;
 public class UpdateProduct extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-  
     public UpdateProduct() {
         super();
        
     }
 
-
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 		
 		ProductService dao = new ProductServiceImpl();
 		ProductVO vo = new ProductVO();

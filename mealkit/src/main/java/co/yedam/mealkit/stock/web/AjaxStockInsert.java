@@ -55,32 +55,7 @@ public class AjaxStockInsert extends HttpServlet {
 		System.out.println("입출고 갯수"+stockCount );
 		System.out.println("제품재고" + productStock );
 		
-	/*
-		if(productStock <= stockCount) {// 코드문제
-			System.out.println("에러 출고 개수 안됨");
-			request.setAttribute("message", "개수가 적어용");
-			dataMap.put("message", "재고 부족");
-		}else {
-			if(request.getParameter("radios").equals("in")) {
-				productStock += stockCount;
-			}
-			else {
-				productStock -= stockCount;
-			}
-			vo2.setProductId(Integer.parseInt(request.getParameter("productId")));
-			vo2.setProductStock(productStock);
-			
-			int n = dao2.productUpdate(vo2);
-			if( n == 1) {
-				System.out.println("업뎃 성공");
-			}
-			else {
-				System.out.println("업뎃 실패");
-			
-			}
-			dao.insertStock(vo);  //product table이 업데이트 되어야 stock table 동작해야함
-		}*/
-		////////////////////////////////////////////////////
+
 		if(request.getParameter("radios").equals("in")){
 			productStock += stockCount;
 			vo2.setProductId(Integer.parseInt(request.getParameter("productId")));
@@ -103,9 +78,7 @@ public class AjaxStockInsert extends HttpServlet {
 			
 		}
 		
-
-		//////////////// 수불대장 ajax 
-
+		//입출고 목록 ajax 
 		List<StockVO> stocks = new ArrayList<>();
 		stocks = dao.stockSelectList();
 		request.setAttribute("stocks", stocks);

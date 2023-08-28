@@ -30,17 +30,11 @@ public class DeleteProduct extends HttpServlet {
 		ProductService dao = new ProductServiceImpl();
 		ProductVO vo = new ProductVO();
 		
-;
 		vo.setProductId(Integer.parseInt(request.getParameter("productId")));
 		
 		
-		int n = dao.productDelete(vo);
+		dao.productDelete(vo);
 
-		if (n == 1) {
-			
-		} else {
-			
-		}
 		List<ProductVO> products = new ArrayList<>();
 		products = dao.productSelectList();
 
