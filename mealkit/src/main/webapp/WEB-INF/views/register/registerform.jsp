@@ -66,6 +66,8 @@
 	border-radius: 0.25rem;
 	transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
 }
+
+
 </style>
 <title>회원가입</title>
 </head>
@@ -74,13 +76,11 @@
 	<div class="sufee-login d-flex align-content-center flex-wrap">
 		<div class="container">
 			<div class="login-content">
-				<div class="login-logo">
-					<a href="index.html"> <img class="align-content"
-						src="template/elaadmin/images/logo.png" alt="">
-					</a>
-				</div>
-				<div class="login-form">
 
+
+				<div class="login-form">
+					<img src="img/MealKitLogo.png"> 
+					<br><br><br>
 
 					<form id="frm" action="register.do" onsubmit="return formCheck()"
 						method="post">
@@ -92,23 +92,24 @@
 						</div>
 						<div class="form-group">
 							<label>* 비밀번호</label> <input type="password" class="form-control"
-								placeholder="비밀번호 입력" id="memberPassword" name="memberPassword">
+								placeholder="4 ~ 10자리 입력" id="memberPassword"
+								name="memberPassword" minlength="4" maxlength="10" required>
 						</div>
 						<div class="form-group">
 							<label>* 비밀번호 확인</label> <input type="password"
 								class="form-control" placeholder="동일한 비밀번호 입력"
-								id="passwordCheck" name="passwordCheck">
+								id="passwordCheck" name="passwordCheck" minlength="4"
+								maxlength="10" required>
 						</div>
 						<div class="form-group">
 							<label>* 이름</label> <input type="text" class="form-control"
-								id="memberName" name="memberName">
+								id="memberName" name="memberName" required>
 						</div>
 						<div class="form-group">
 							<label>* 이메일</label> <input type="email" class="form-control"
-								placeholder="본인 이메일 입력" id="memberEmail" name="memberEmail">
-							<br> <br>
+								placeholder="본인 이메일 입력" id="memberEmail" name="memberEmail"
+								required> <br> <br>
 						</div>
-
 
 						<input type="submit"
 							class="btn btn-success btn-flat m-b-30 m-t-30" value="회 원 가 입">
