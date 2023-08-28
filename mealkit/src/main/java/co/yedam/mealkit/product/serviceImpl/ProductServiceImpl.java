@@ -20,9 +20,9 @@ public class ProductServiceImpl implements ProductService {
 	}
 	
 	@Override
-	public List<ProductVO> productSelectList2() {
+	public List<ProductVO> productManageList() {
 		
-		return map.productSelectList2();
+		return map.productManageList();
 	}
 	
 	@Override
@@ -50,16 +50,17 @@ public class ProductServiceImpl implements ProductService {
 		return map.productDelete(vo);
 	}
 
-	@Override
-	public List<ProductVO> productSelectList3() {
-		
-		return map.productSelectList3();
-	}
 
 	@Override
 	public List<ProductVO> productSelectList(String categoryId) {
 	
 		return map.productSelectList(categoryId);
+	}
+
+	@Override
+	public List<ProductVO> productViewList() {
+		
+		return map.productViewList();
 	}
 
 	

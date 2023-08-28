@@ -6,13 +6,13 @@
 		<if test = "categoryId != null">  WHERE CATEGORY_ID =  #{categoryId}</if>
 	</select>
 	
-	<select id="productSelectList2" resultType="co.yedam.mealkit.product.service.ProductVO">
+	<select id="productManageList" resultType="co.yedam.mealkit.product.service.ProductVO">
 		SELECT PRODUCT_ID, PRODUCT_NAME, PRODUCT_PRICE, PRODUCT_DATE, PRODUCT_STOCK
 		FROM PRODUCT
 		ORDER BY PRODUCT_STOCK ASC
 	</select>
 	
-	<select id="productSelectList3" resultType="co.yedam.mealkit.product.service.ProductVO">
+	<select id="productViewList" resultType="co.yedam.mealkit.product.service.ProductVO">
 			SELECT * 
 			FROM PRODUCT
 			WHERE PRODUCT_VIEW = 'ON'
@@ -36,7 +36,7 @@
     					ELSE MAX(product_id)+1 END AS PRODUCTID FROM PRODUCT
 		</selectKey>
 		INSERT INTO product
-		VALUES (#{productId},#{productName},#{productPrice},#{productComment},SYSDATE,#{categoryId},#{productImg},#{productStock},#{productView})
+		VALUES (#{productId},#{productName},#{productPrice},#{productComment},SYSDATE,#{categoryId},#{productImg},#{productStock},'OFF')
 	</insert>
 	
 	<update id="productUpdate" parameterType="co.yedam.mealkit.product.service.ProductVO">

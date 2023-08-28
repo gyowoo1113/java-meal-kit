@@ -20,9 +20,9 @@
 		<div class="top-left">
 			<div class="navbar-header">
 				<a class="navbar-brand" href="managemember.do"><img
-					src="template/elaadmin/images/logo.png" alt="Logo"></a> <a
+					src="template/elaadmin/images/MEALKITLOGO.png" alt="Logo"></a> <a
 					class="navbar-brand hidden" href="./"><img
-					src="template/elaadmin/images/logo2.png" alt="Logo"></a> <a
+					src="" alt=""></a> <a
 					id="menuToggle" class="menutoggle"><i class="fa fa-bars"></i></a>
 			</div>
 		</div>
@@ -30,7 +30,7 @@
 			<div class="header-menu">
 
 				<div class="headerpart">
-					<a href="home.do"><i class="fa fa-home"></i></a>
+					<a href="home.do"><i class="menu-icon ti-home"></i></a>
 				</div>
 
 

@@ -48,7 +48,7 @@ public class MemberMypage extends HttpServlet {
 		System.out.println(request.getParameter("memberId") + request.getParameter("memberPassword"));
 		
 		try {
-			vo = dao.memberSelectVer2(vo);
+			vo = dao.memberViewPage(vo);
 			
 			if (vo != null) {
 				session.setAttribute("id", vo.getMemberId()); // 세션에 값을 넣어줌

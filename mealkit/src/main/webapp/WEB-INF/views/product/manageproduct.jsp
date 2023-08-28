@@ -112,7 +112,8 @@
 											<div class="featured__controls">
 												<ul>
 
-													<li class="active" data-filter="*">전메뉴</li>
+													<li class="active" data-filter="*"><a href="manageproduct.do" id="all"
+														onclick="">전체메뉴</a></li>
 													<li data-filter=""><a href="#" id="categoryId1" data-value="1"
 														onclick="select('1')">찌개</a></li>
 
@@ -257,7 +258,6 @@
 				`
 		}
 	</script>
-
 	<script src="template/ogani/js/jquery-3.3.1.min.js"></script>
 	<script src="template/ogani/js/bootstrap.min.js"></script>
 	<script src="template/ogani/js/jquery.nice-select.min.js"></script>
