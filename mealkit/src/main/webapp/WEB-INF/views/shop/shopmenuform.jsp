@@ -39,7 +39,6 @@
 	white-space: nowrap;
 	width: auto;
 }
-
 </style>
 <meta charset="UTF-8">
 <title>Insert title here</title>
@@ -63,63 +62,126 @@
 
 					<div class="featured__controls">
 						<ul>
-							<!-- data-filter .클래스 따라가서 출력함!!!!!! 컨+f로 찾아서 넣기 -->
-							<li class="active" data-filter="*">전메뉴</li>
-							<li data-filter=".oranges">과일류</li>
-							<li data-filter=".fresh-meat">육류</li>
-							<li data-filter=".vegetables">3</li>
-							<li data-filter=".fastfood">4</li>
+
+							<li class="active" data-filter="*"><a href="shopmenuform.do"
+								id="all" onclick="">전체메뉴</a></li>
+							<li data-filter=""><a href="#" id="categoryId1"
+								data-value="1" onclick="select('1')">찌개</a></li>
+
+							<li data-filter=""><a href="#" id="categoryId2"
+								data-value="2" onclick="select('2')">국</a></li>
 						</ul>
-						<select style="height: 50px" name="selecto" id="dline">
-							<option value="1">조회순</option>
-							<option value="2">신상품순</option>
-							<option value="3">낮은가격순</option>
-							<option value="4">높은가격순</option>
-						</select> <br> <br> <br> <br>
+						<br> <br>
 
 						<hr>
 					</div>
 				</div>
 			</div>
-
-			<div class="row featured__filter">
-				<c:forEach items="${products}" var="p">
-					<div class="col-lg-3 col-md-4 col-sm-6 mix fresh-meat vegetables joindt">
-						<div class="featured__item" onclick="moveShopDetail(event)" id="${p.productId}">
-							<div class="featured__item__pic set-bg">
-								<img src="img/${p.productImg }" height=270 width=270>
-								<ul class="featured__item__pic__hover">
-									<li><a href="#"><i class="fa fa-heart"></i></a></li>
-									<li><a href="#"><i class="fa fa-retweet"></i></a></li>
-									<li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-								</ul>
+			<div class="container2">
+				<div class="row featured__filter">
+					<c:forEach items="${products}" var="p">
+						<div
+							class="col-lg-3 col-md-4 col-sm-6 mix fresh-meat vegetables joindt">
+							<div class="featured__item" onclick="moveShopDetail(event)"
+								id="${p.productId}">
+								<div class="featured__item__pic set-bg">
+									<img src="img/${p.productImg }" height=270 width=270>
+									<ul class="featured__item__pic__hover">
+										<li><a href="#"><i class="fa fa-heart"></i></a></li>
+									</ul>
+								</div>
+								<div class="featured__item__text">
+									<h6>
+										<a href="#">${p.productName }</a>
+									</h6>
+									<h5>￦${p.productPrice}</h5>
+								</div>
 							</div>
-						<div class="featured__item__text">
-							<h6>
-								<a href="#">${p.productName }</a>
-							</h6>
-							<h5>￦${p.productPrice}</h5>
 						</div>
-					</div>	
+					</c:forEach>
 				</div>
-				</c:forEach>
 			</div>
 		</div>
 	</section>
 	<form id="detailform" method="post" action="shopdetail.do">
-			<input type="hidden" id="productId" name="productId" value="">
+		<input type="hidden" id="productId" name="productId" value="">
 	</form>
 	<!-- Featured Section End -->
 </body>
 <script type="text/javascript">
+	function moveShopDetail(event) {
+		var parentTag = event.target;
+		for (; parentTag.className != 'featured__item'; parentTag = parentTag.parentElement)
+			;
 
-function moveShopDetail(event){
-	var parentTag = event.target;
-    for(;parentTag.className != 'featured__item'; parentTag=parentTag.parentElement);
+		var frm = document.getElementById("detailform");
+		frm.querySelector("#productId").value = parentTag.id;
+		document.getElementById("detailform").submit();
+	}
+	function select(type) {
 
-	var frm = document.getElementById("detailform");
-	frm.querySelector("#productId").value = parentTag.id;
-	document.getElementById("detailform").submit();
-}
+		console.log(type);
+		if(type == '1'){
+			linkElement = document.getElementById("categoryId1");
+		}else{
+			linkElement = document.getElementById("categoryId2");
+		}
+
+		
+		let dataValue = linkElement.getAttribute("data-value");
+		console.log(dataValue);
+		
+		let url = "ajaxcategoryselect.do";
+		fetch(url,{ 
+			method:"POST",
+			headers: {
+				"Content-Type":"application/x-www-form-urlencoded",
+			},
+			body: dataValue
+		}).then(response => response.json())
+		  .then(json => htmpConevert(json));
+	}
+	function htmpConevert(datas){
+		console.log(datas);
+		
+		const featuredFilterElement = document.querySelector('.row.featured__filter');
+		featuredFilterElement.remove();
+		const newFeaturedFilterElement = document.createElement('div');
+		newFeaturedFilterElement.classList.add('row', 'featured__filter');
+		newFeaturedFilterElement.innerHTML = datas.map(data => htmlView(data)).join('');
+
+		// 새로운 요소를 문서에 추가
+		const parentElement = document.querySelector('.container2'); // 적절한 부모 요소 선택
+		parentElement.appendChild(newFeaturedFilterElement);
+		/*document.querySelector('tbody').remove();
+		const tbody = document.createElement('tbody');
+		
+		tbody.innerHTML = datas.map(data => htmlView(data)).join(''); 
+		document.querySelector('#bootstrap-data-table').appendChild(tbody);
+		*/
+	}
+	function htmlView(data){
+		
+		return `
+		<div class="col-lg-3 col-md-4 col-sm-6 mix fresh-meat vegetables joindt">
+		<div class="featured__item" onclick="moveShopDetail(event)"
+		id="\${data.productId}">
+		<div class="featured__item__pic set-bg">
+			<img src="img/\${data.productImg }" height=270 width=270>
+			<ul class="featured__item__pic__hover">
+				<li><a href="#"><i class="fa fa-heart"></i></a></li>
+
+			</ul>
+		</div>
+		<div class="featured__item__text">
+			<h6>
+				<a href="#">\${data.productName }</a>
+			</h6>
+			<h5>￦\${data.productPrice}</h5>
+		</div>
+	</div>
+	</div>
+			`
+	}
 </script>
 </html>
