@@ -8,21 +8,20 @@
 <title>Insert title here</title>
 </head>
 <style>
-    .carousel-control-prev-icon,
-    .carousel-control-next-icon {
-        background-color: green; 
-    }
-    
-    .margin-set{
-    	margin-bottom:20px;
-    }
+.carousel-control-prev-icon, .carousel-control-next-icon {
+	background-color: green;
+}
+
+.margin-set {
+	margin-bottom: 20px;
+}
 </style>
 <body>
 	<section class="featured spad">
 		<div class="container">
-		
-						<div class="margin-set">
-			<div class="row">
+
+			<div class="margin-set">
+				<div class="row">
 					<div class="col-lg-7 container">
 						<div class="hero__search__form">
 							<form id="searchfrm" method="post" action="shopmenuform.do">
@@ -30,8 +29,7 @@
 									<option value="category">카테고리</option>
 									<option value="name">이름</option>
 									<option value="comment">내용</option>
-								</select>
-								<input type="text" id="val" name="val">
+								</select> <input type="text" id="val" name="val">
 								<button type="submit" value="search" class="site-btn">SEARCH</button>
 							</form>
 						</div>

@@ -11,29 +11,22 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import co.yedam.mealkit.category.service.CategoryService;
+import co.yedam.mealkit.category.service.CategoryVO;
+import co.yedam.mealkit.category.serviceImpl.CategoryServiceImple;
 import co.yedam.mealkit.common.ViewResolve;
 import co.yedam.mealkit.product.service.ProductService;
-import co.yedam.mealkit.product.service.ProductVO;
 import co.yedam.mealkit.product.serviceImpl.ProductServiceImpl;
 
-/**
- * Servlet implementation class ShopMenuform
- */
 @WebServlet("/shopmenuform.do")
 public class ShopMenuform extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
     public ShopMenuform() {
         super();
-        // TODO Auto-generated constructor stub
+      
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ProductService ps = new ProductServiceImpl();
 		List<Map<String, Object>> products = new ArrayList<>();
@@ -45,15 +38,19 @@ public class ShopMenuform extends HttpServlet {
 
 		request.setAttribute("products", products);
 		
+		CategoryService dao2 = new CategoryServiceImple();
+		List<CategoryVO> categorys = new ArrayList<>();
+		categorys = dao2.categorySelectList();
+		
+		request.setAttribute("categorys", categorys);
+		
 		String viewName = "shop/shopmenuform";
 		ViewResolve.forward(request, response, viewName);
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
+
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		
 		doGet(request, response);
 	}
 
