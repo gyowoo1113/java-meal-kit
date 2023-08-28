@@ -55,7 +55,7 @@ public class ReviewMyPage extends HttpServlet {
 		
 		vo.setMemberId(memberId);
 		
-		reviews = rs.reviewSelectProduct(vo);
+		reviews = rs.reviewSelectMember(vo);
 		
 		setProductList(request,memberId);
 		
