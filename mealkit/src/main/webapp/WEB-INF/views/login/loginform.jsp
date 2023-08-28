@@ -42,27 +42,19 @@
 		<div class="container">
 			<div class="login-content">
 				<div class="login-form">
-
-
+					<img src ="img/MealKitLogo.png">
+					<br><br><br><br>
 					<form id="frm" action="memberlogin.do" method="post">
 						<div class="form-group">
 							<label>아이디</label> <input type="text" class="form-control"
-								placeholder="아이디 입력" id="memberId" name="memberId">
+								placeholder="아이디 입력" id="memberId" name="memberId" required>
 						</div>
 						<div class="form-group">
 							<label>비밀번호</label> <input type="password" class="form-control"
-								placeholder="비밀번호 입력" id="memberPassword" name="memberPassword">
+								placeholder="비밀번호 입력" id="memberPassword" name="memberPassword" required>
 						</div>
-
-
-						<div class="checkbox">
-							</label> <label class="pull-right"> <a
-								href="searchpasswordform.do"> 비밀번호 재설정</a>
-							</label>
-
-						</div>
-
-
+							
+						<br>
 						<button type="submit"
 							class="btn btn-success btn-flat m-b-30 m-t-30">로 그 인</button>
 					</form>

@@ -27,9 +27,9 @@ public class MemberServiceImpl implements MemberService {
 	}
 	
 	@Override
-	public MemberVO memberSelectVer2(MemberVO vo) {
+	public MemberVO memberViewPage(MemberVO vo) {
 		
-		return map.memberSelectVer2(vo);
+		return map.memberViewPage(vo);
 	}
 	
 	@Override
@@ -53,15 +53,15 @@ public class MemberServiceImpl implements MemberService {
 	}
 	
 	@Override
-	public int memberUpdateVer2(MemberVO vo) {
+	public int memberGradeUpdate(MemberVO vo) {
 		
-		return map.memberUpdateVer2(vo);
+		return map.memberGradeUpdate(vo);
 	}
 	
 	@Override
-	public int memberUpdateVer3(MemberVO vo) {
+	public int memberMypageUpdate(MemberVO vo) {
 		
-		return map.memberUpdateVer3(vo);
+		return map.memberMypageUpdate(vo);
 	}
 	
 	@Override
