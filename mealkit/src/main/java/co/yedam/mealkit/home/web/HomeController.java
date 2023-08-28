@@ -29,7 +29,7 @@ public class HomeController extends HttpServlet {
 		List<ProductVO> products = new ArrayList<>();
 		
 	
-		products = dao.productSelectList3();
+		products = dao.productViewList();
 
 		request.setAttribute("products", products);
 		

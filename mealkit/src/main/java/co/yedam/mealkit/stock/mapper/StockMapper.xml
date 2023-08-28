@@ -4,12 +4,12 @@
 
 
 	<select id="stockSelectList" resultType="co.yedam.mealkit.common.CamelHashMap">
-		SELECT S.PRODUCT_ID, PRODUCT_NAME, STOCK_TYPE,  TO_CHAR(STOCK_DATE, 'YYYY-MM-DD') AS STOCK_DATE, STOCK_COUNT
+		SELECT S.PRODUCT_ID, PRODUCT_NAME, STOCK_TYPE,  TO_CHAR(STOCK_DATE, 'YYYY-MM-DD') AS STOCK_DATE, STOCK_COUNT, STOCK_DATE AS DD
 		FROM STOCK S, PRODUCT P
 		WHERE S.PRODUCT_ID = P.PRODUCT_ID
 		<if test = "stockType == 'in'">AND STOCK_TYPE = #{stockType}</if>
 		<if test = "stockType == 'out'">AND STOCK_TYPE = #{stockType}</if>
-		ORDER BY STOCK_DATE DESC 
+		ORDER BY DD DESC 
 	</select>
 	
 	<insert id="insertStock" parameterType="co.yedam.mealkit.stock.service.StockVO">

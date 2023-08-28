@@ -37,7 +37,7 @@ public class ManageStock extends HttpServlet {
 		request.setAttribute("stocks", stocks);
 		
 
-		products= dao2.productSelectList2();
+		products= dao2.productManageList();
 		request.setAttribute("products", products);
 		
 		String viewName = "admin/stock/managestock";

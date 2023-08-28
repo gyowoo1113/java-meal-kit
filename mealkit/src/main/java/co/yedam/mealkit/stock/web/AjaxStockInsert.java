@@ -113,7 +113,7 @@ public class AjaxStockInsert extends HttpServlet {
 	
 		//리스트 넘기기
 		List<ProductVO> products = new ArrayList<>();
-		products= dao2.productSelectList2();
+		products= dao2.productManageList();
 		request.setAttribute("products", products);
 		
 		ObjectMapper objectMapper = new ObjectMapper(); 

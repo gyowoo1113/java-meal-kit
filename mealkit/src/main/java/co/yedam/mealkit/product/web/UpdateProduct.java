@@ -18,9 +18,6 @@ import co.yedam.mealkit.product.service.ProductService;
 import co.yedam.mealkit.product.service.ProductVO;
 import co.yedam.mealkit.product.serviceImpl.ProductServiceImpl;
 
-
-
-
 @WebServlet("/updateproduct.do")
 public class UpdateProduct extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -56,13 +53,8 @@ public class UpdateProduct extends HttpServlet {
 		vo.setProductPrice(Integer.parseInt(multi.getParameter("productPrice")));
 		vo.setProductView(multi.getParameter("radios"));
 	
-		int n = dao.productUpdate(vo);
+		dao.productUpdate(vo);
 		
-		if( n == 1) {
-			
-		}else {
-			
-		}
 		List<ProductVO> products = new ArrayList<>();
 		products = dao.productSelectList();
 
