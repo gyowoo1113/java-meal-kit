@@ -34,9 +34,9 @@
 	rel='stylesheet' type='text/css'>
 
 <style>
-#mail {
+#uMail {
 	display: inline;
-	width: 58%;
+	width: 55%;
 	height: calc(2.25rem + 2px);
 	padding: 0.375rem 0.75rem;
 	font-size: 1rem;
@@ -65,6 +65,10 @@
 	transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
 }
 
+#solomail {
+	display: block;
+}
+
 a {
 	color: white;
 }
@@ -82,33 +86,58 @@ a {
 						src="template/elaadmin/images/logo.png" alt="">
 					</a>
 				</div>
-				<div class="login-form">
-					<form>
-						<form id="frm" >
-							<div class="form-group">
-								<label>* 아이디</label> <input type="text" class="form-control"
-									placeholder="아이디 입력">
-							</div>
-							<div class="form-group">
-								<label>* 이메일</label> <input type="email" class="form-control"
-									placeholder="본인 이메일 입력"> <br> <input type="text"
-									placeholder="인증번호" id="mail">
-							
-									<button type="submit" id="gomail" onclick="location.href='searchpassword.do'">메일인증</button>	
-								<br> <br>
-							</div>
+				<form id="frm" method="post" >
+					<div class="login-form">
 
-							<button type="submit"
-								class="btn btn-success btn-flat m-b-30 m-t-30">
-								<a href="viewpasswordform.do">비밀번호 재설정</a>
-							</button>
-							<div class="social-login-content"></div>
-						</form>
-					</form>
-				</div>
+						<div class="form-group">
+							<label>* 아이디</label> <input type="text" class="form-control"
+								placeholder="아이디 입력" id="uId" name="uId">
+						</div>
+						<div class="form-group">
+							<label id="solomail">* 이메일</label> <input type="email"
+								class="form-control" placeholder="본인 이메일 입력" id="uMail"
+								name="uMail">
+							<button type="submit" id="gomail" onclick="sendMail()" >메일인증</button>
+							<br>
+							<br> <input type="text" placeholder="인증번호"
+								class="form-control"> <br>
+						</div>
+						<button type="submit"
+							class="btn btn-success btn-flat m-b-30 m-t-30" disabled='disabled'>비밀번호 재설정</button>
+						<div class="social-login-content"></div>
+						</div>
+				</form>
 			</div>
 		</div>
 	</div>
+
+	
+
+	<script type="text/javascript">
+	function sendMail() {
+	    let uId = document.getElementById("uId").value; // memberId 변수에 해당 input 요소에 입력된 값이 할당
+	    let uMail = document.getElementById("uMail").value; // 위와 동일
+	
+	    console.log("ggg" +uId + uMail);
+	    
+	    let url = "searchpassword.do?uId="+uId + "&uMail=" + uMail; // html 인풋박스에 적은 값을 ajax로 보냄
+	    
+	    fetch(url)
+	        .then(response => response.text())
+	        .then(text => valueCheck(text));
+	}
+
+	function valueCheck(text) {
+	    if (text == 'yes') {
+	        alert("인증번호가 발송되었습니다."); // 아이디와 메일이 DB값과 일치하면 인증번호 발송
+	    } else {
+	        alert("아이디 및 이메일이 존재하지 않습니다.");
+	        document.getElementById("uId").value = ""; // 인풋값을 강제로 비움
+	        document.getElementById("uId").focus(); // 아이디를 바로 입력할 수 있게 위치시킴
+	    }
+	}
+
+	</script>
 
 	<script
 		src="https://cdn.jsdelivr.net/npm/jquery@2.2.4/dist/jquery.min.js"></script>

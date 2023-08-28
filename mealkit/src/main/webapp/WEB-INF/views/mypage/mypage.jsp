@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -51,51 +52,44 @@
 <title>회원가입</title>
 </head>
 <body class="bg-white">
-
 	<div class="sufee-login d-flex align-content-center flex-wrap">
 		<div class="container">
 			<div class="login-content">
 				<div class="mypg">
 					<div class="login-form">
-						<form>
+					
+						<form id="frm" action="membermypageupdate.do" method="post">
 							<div class="form-group">
-								<label>* 아이디</label> <input type="text" class="form-control"
-									placeholder="아이디 입력">
+								<label>아이디</label> <input type="text" class="form-control" id="id" name="id" value="<%= session.getAttribute("id") %>" readonly >
 							</div>
 							<div class="form-group">
-								<label>* 비밀번호</label> <input type="password"
-									class="form-control" placeholder="비밀번호 입력">
+								<label>비밀번호</label> <input type="password"
+									class="form-control" id="pw" name="pw" value="<%= session.getAttribute("pw") %>" readonly>
 							</div>
 							<div class="form-group">
-								<label>* 비밀번호 확인</label> <input type="password"
-									class="form-control" placeholder="동일한 비밀번호 입력">
+								<label>이름</label> <input type="text" class="form-control" id="name" name="name" value="<%= session.getAttribute("name") %>">
 							</div>
 							<div class="form-group">
-								<label>* 이름</label> <input type="text" class="form-control">
+								<label>이메일</label> <input type="email" class="form-control"
+									id="email" name="email" value="<%= session.getAttribute("email") %>">
 							</div>
 							<div class="form-group">
-								<label>* 이메일</label> <input type="email" class="form-control"
-									placeholder="본인 이메일 입력"> <br> <input type="text"
-									placeholder="인증번호" id="mail">
-								<button id="gomail">메일인증</button>
-								<br>
-								<br>
-
+								<label>등급</label> <input type="text" class="form-control"
+									id="grade" name="grade" value="<%= session.getAttribute("grade") %>" readonly> <br>
 							</div>
-
-
 							<button type="submit"
-								class="btn btn-success btn-flat m-b-30 m-t-30">회 원 가 입</button>
+								class="btn btn-success btn-flat m-b-30 m-t-30">수정하기</button>
 							<div class="register-link m-t-15 text-center">
 								<p></p>
 							</div>
-						</form>
+							</form>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-
+	
+	
 	<script
 		src="https://cdn.jsdelivr.net/npm/jquery@2.2.4/dist/jquery.min.js"></script>
 	<script

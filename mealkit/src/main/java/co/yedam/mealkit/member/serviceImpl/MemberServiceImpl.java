@@ -25,6 +25,20 @@ public class MemberServiceImpl implements MemberService {
 		
 		return map.memberSelect(vo);
 	}
+	
+	@Override
+	public MemberVO memberSelectVer2(MemberVO vo) {
+		
+		return map.memberSelectVer2(vo);
+	}
+	
+	@Override
+	public MemberVO memberSearchPw(MemberVO vo) {
+		
+		return map.memberSelect(vo);
+	}
+	
+
 
 	@Override
 	public int memberInsert(MemberVO vo) {
@@ -43,6 +57,13 @@ public class MemberServiceImpl implements MemberService {
 		
 		return map.memberUpdateVer2(vo);
 	}
+	
+	@Override
+	public int memberUpdateVer3(MemberVO vo) {
+		
+		return map.memberUpdateVer3(vo);
+	}
+	
 	@Override
 	public int memberDelete(MemberVO vo) {
 		
