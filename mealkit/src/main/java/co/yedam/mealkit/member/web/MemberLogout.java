@@ -38,15 +38,16 @@ public class MemberLogout extends HttpServlet {
 		HttpSession session = request.getSession();
 
 		String name = (String) session.getAttribute("name");
+		String message = null;
+		
+		if(name == (String) session.getAttribute("name")) {
 		session.invalidate();
+		message = "로그아웃이 정상적으로 완료되었습니다.";
 		
-		ProductService dao= new ProductServiceImpl();
-		List<ProductVO> products = new ArrayList<>();
-		products = dao.productSelectList();
-
-		request.setAttribute("products", products);
+		}
+		request.setAttribute("message", message);
 		
-		String viewName = "home/home";
+		String viewName = "member/membermessage";
 		ViewResolve.forward(request, response, viewName);
 	}
 

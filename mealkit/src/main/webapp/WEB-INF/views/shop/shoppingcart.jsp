@@ -32,6 +32,7 @@
 	                        <table>
 	                            <thead>
 	                                <tr>
+	                                	<th></th>
 	                                    <th class="shoping__product">상품 목록</th>
 	                                    <th>가격</th>
 	                                    <th>개수</th>
@@ -126,9 +127,13 @@
 		
 		var priceTags = document.querySelectorAll('.shoping__cart__total');
 		var total = 0;
-		priceTags.forEach(tag => {
-			total += Number(tag.textContent.substr(1).replace(",",""));
-		})
+		for (var priceTag of priceTags){
+			var parentTrTag = priceTag;
+			for (;parentTrTag.tagName != 'TR'; parentTrTag = parentTrTag.parentElement);
+			if (parentTrTag.querySelector('input').checked){
+				total += Number(priceTag.textContent.substr(1).replace(",",""));
+			}
+		}
 		
 		spanTag.forEach(tag =>{
 			tag.textContent = `￦` + total.toLocaleString();
@@ -154,8 +159,11 @@
 	function htmlView(data,idx){
 		var idx = "carts[" + idx + "].cartId";
 		var list = ``;
-		list += `<input name =` + idx + ` type ="hidden" value="\${data.cartId}">`;
 		list += `<tr id = "\${data.cartId}">`;
+		list += `<td>`;
+		list += `<input type ="checkbox" name ="check_value" value="\${data.cartId}" checked 
+		onclick="updateTotalPrice()">`;
+		list += `</td>`;
 	    list += `<td class="shoping__cart__item">
 	            <img src="img/\${data.productImg}" width="100" height="100" alt="">
 	            <h5>\${data.productName}</h5>

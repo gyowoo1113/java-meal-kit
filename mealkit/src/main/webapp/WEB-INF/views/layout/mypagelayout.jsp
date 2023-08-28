@@ -5,8 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="apple-touch-icon" href="https://i.imgur.com/QRAUqs9.png">
-<link rel="shortcut icon" href="https://i.imgur.com/QRAUqs9.png">
+<link rel="shortcut icon" type="image/x-icon" href="img/LOGO.png">
 
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.0/normalize.min.css">

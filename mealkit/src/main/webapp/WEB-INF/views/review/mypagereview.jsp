@@ -5,54 +5,22 @@
 <html>
 <head>
 <style>
-.btnWrap {
-	width: 1000px;
-	margin: 300px auto;
-}
-
-.popupBtn {
-	width: 150px;
-	height: 50px;
-	padding: 10px 5px;
-}
-
-.modalWrap {
-	position: fixed; /* Stay in place */
-	z-index: 1; /* Sit on top */
-	padding-top: 100px; /* Location of the box */
-	left: 0;
-	top: 0;
-	width: 100%; /* Full width */
-	height: 100%; /* Full height */
-	overflow: auto; /* Enable scroll if needed */
-	background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
-	display: none;
-}
-
-.modalBody {
-	width: 700px;
-	padding: 50px 50px;
-	margin: 0 auto;
-	border: 1px solid #777;
-	background-color: #fff;
-}
-
-.closeBtn {
-	float: right;
-	font-weight: bold;
-	color: #777;
-	font-size: 25px;
-	cursor: pointer;
-}
-
-/* table css */
-.list-content {
-    margin: 8vh auto;
-}
-
-tr,td {
-	text-align:center;
-}
+	.center1{
+		margin-right: 100px;
+		width: 1000px;
+	}
+	.tdline{
+		line-height: 170px;
+	}
+	
+	td{
+		vertical-align: middle;
+	}
+	input{
+		margin-top: 60px;
+		padding: 10px;
+		text-align: center;
+	}
 </style>
 <meta charset="UTF-8">
 <title>Insert title here</title>
@@ -60,26 +28,26 @@ tr,td {
 <body>
 	<!-- 리뷰 가능한 물품 리스트 출력 및 리뷰 버튼 생성 -->
 		<div class="container">
-		<div class="list-content">
+		<div class="list-content center1">
 			<table id="bootstrap-data-table" class="table table-striped table-bordered">
 				<thead>
-					<tr>
+					<tr style="text-align: center;">
 						<th colspan="4">리뷰작성</th>
 					</tr>
-					<tr>
-						<th width="50%">제품사진</th>
-						<th width="25%">상품이름</th>
-						<th width="25%">상품가격</th>
-						<th width="25%">리뷰</th>
+					<tr  style="text-align: center;">
+						<th width="200px">제품사진</th>
+						<th>상품이름</th>
+						<th>상품가격</th>
+						<th>리뷰</th>
 					</tr>
 				</thead>
 				<tbody>
 					<c:forEach items="${products}" var="p">
 					<tr>
-						<td><img src="img/${p.productImg}" width="20%"  onerror="this.onerror=null; this.src='img/noimage.jpg'"></td>
-						<td>${p.productName }</td>
-						<td>${p.productPrice }</td>
-						<td><input type="button" value="작성" onclick="moveReviewInsert(event)" id="${p.productId}">
+						<td><img src="img/${p.productImg}" width="200px" height="170px" onerror="this.onerror=null; this.src='img/noimage.jpg'"></td>
+						<td class="tdline">${p.productName }</td>
+						<td class="tdline" style="text-align: center;">${p.productPrice }원</td>
+						<td><div style="text-align: center;"><input type="button" value="작성" onclick="moveReviewInsert(event)" id="${p.productId}"></div>
 						</td>
 					</tr>
 					</c:forEach>
@@ -90,30 +58,31 @@ tr,td {
 	
 	<!-- Shoping Cart Section Begin -->
     <div class="container">
-		<div class="animated fadeIn">
+		<div class="animated fadeIn center1">
            	<table id="bootstrap-data-table" class="table table-striped table-bordered">
            		<thead>
-       				<tr>	
+       				<tr style="text-align: center;" height="100px">	
 	                    <td colspan="5">리뷰내역</td>
                 	</tr>
-                  	<tr>
-		                 <td>이미지</td>
+                  	<tr style="text-align: center;">
+		                 <td width="200px">리뷰사진</td>
 		                 <td>제목</td>
 		                 <td>내용</td>
-		                 <td>리뷰날짜</td>
-		                 <td>조회수</td>
+		                 <td width="120px">리뷰날짜</td>
+		                 <td width="100px">조회수</td>
                   	</tr>
            		</thead>
                	<tbody>
 					<c:forEach items="${reviews}" var="r">
                        <tr>
                            <td>
-                           	<img src="${r.reviewImg}" onerror="this.onerror=null; this.src='img/noimage.jpg'" width="200px" height="100px">
+                           	<img src="${r.reviewImg}" onerror="this.onerror=null; this.src='img/noimage.jpg'" width="200px" height="170px">
                            </td>
-                           <td>${r.reviewTitle }</td>
-                           <td>${r.reviewSubject }</td>
-                           <td>${r.reviewDate }</td>
-                           <td>${r.reviewHit }</td>
+                           <td style="vertical-align: middle;">${r.reviewTitle }</td>
+                           <td style="vertical-align: middle;">${r.reviewSubject }</td>
+                          	<td style="text-align: center; vertical-align: middle;">${r.reviewDate }</td>
+                           <td style="text-align: center; vertical-align: middle;">${r.reviewHit }회</td>
+	                       <input type="hidden" id="memberId" name="memberId" value="${id}">
                        </tr>
 					</c:forEach>
            		</tbody>		
@@ -126,47 +95,6 @@ tr,td {
     </form>
 </body>
 <script type="text/javascript">
-function modalDisplay(event) {
-	
-	var parentTrTag = event.target;
-	
-	for(;parentTrTag.className != 'shoping__cart__table'; parentTrTag=parentTrTag.parentElement);
-    
-	reviewUp(parentTrTag);
-    parentTrTag.querySelector(".modalWrap").style.display = 'block';
-}
-
-function closeDisplay(event) {
-	var parentTrTag = event.target;
-	
-	for(;parentTrTag.className != 'shoping__cart__table'; parentTrTag=parentTrTag.parentElement);
-    parentTrTag.querySelector(".modalWrap").style.display = 'none';
-}
-
-function reviewUp(parentTrTag){
-	// ajax를 이용해서 검색 결과를 가져오고 화면을 재구성한다.
-	let reviewId = parentTrTag.id; //  
-	
-	let payload = "reviewId="+reviewId;
-	let url = "ajaxreviewupdate.do";
-	
-	
-	fetch(url,{
-		method: "post",
-		headers: { 'Content-Type' : 'application/x-www-form-urlencoded'},
-		body: payload
-	}).then(response => response.text())
-		.then(text => updatehit(text, parentTrTag));
-		
-	  //.then(json => console.log(json));
-	  
-   
-}
-
-function updatehit(text, parentTrTag) {
-	 parentTrTag.querySelector(".hit").innerHTML=text;
-}
-
 function moveReviewInsert(event){
 	document.getElementById("productId").value = event.target.id;
 	document.getElementById("frm").submit();

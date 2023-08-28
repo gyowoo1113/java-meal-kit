@@ -11,13 +11,31 @@
 		resultType="co.yedam.mealkit.member.service.MemberVO">
 		SELECT * FROM MEMBER WHERE MEMBER_ID = #{memberId}
 		<if test="memberPassword != null">
-		 AND MEMBER_PASSWORD = #{memberPassword}
+			AND MEMBER_PASSWORD = #{memberPassword}
+		</if>
+	</select>
+
+	<select id="memberSelectVer2"
+		resultType="co.yedam.mealkit.member.service.MemberVO">
+		SELECT * FROM MEMBER WHERE MEMBER_ID = #{memberId}
+		<if test="memberPassword != null">AND MEMBER_PASSWORD = #{memberPassword}</if>
+		<if test="memberName != null">AND MEMBER_NAME = #{memberName}</if>
+		<if test="memberEmail != null">AND MEMBER_EMAIL = #{memberEmail}</if>
+		<if test="memberGrade != null">AND MEMBER_GRADE = #{memberGrade}</if>
+	</select>
+
+	<select id="memberSearchPw"
+		resultType="co.yedam.mealkit.member.service.MemberVO">
+		SELECT * FROM MEMBER WHERE MEMBER_ID = #{memberId}
+		<if test="memberEmail != null">
+			AND MEMBER_EMAIL = #{memberEmail}
 		</if>
 	</select>
 
 	<insert id="memberInsert"
 		parameterType="co.yedam.mealkit.member.service.MemberVO">
-		INSERT INTO MEMBER (MEMBER_ID, MEMBER_PASSWORD, MEMBER_NAME, MEMBER_EMAIL)
+		INSERT INTO MEMBER (MEMBER_ID, MEMBER_PASSWORD,
+		MEMBER_NAME, MEMBER_EMAIL)
 		VALUES(#{memberId},#{memberPassword},#{memberName},#{memberEmail})
 	</insert>
 
@@ -26,21 +44,34 @@
 		UPDATE MEMBER
 		<set>
 			<if test="memberId != null">member_Id = #{memberId},</if>
+			<if test="memberPassword != null">member_Password = #{memberPassword},</if>
 			<if test="memberName != null">member_Name = #{memberName},</if>
+			<if test="memberGrade != null">member_Grade = #{memberGrade},</if>
+			<if test="memberEmail != null">member_Email= #{memberEmail}</if>
+		</set>
+		WHERE MEMBER_ID = #{memberId}
+	</update>
+
+	<update id="memberUpdateVer2"
+		parameterType="co.yedam.mealkit.member.service.MemberVO">
+		UPDATE MEMBER
+		<set>
+			<if test="memberId != null">member_Id = #{memberId},</if>
 			<if test="memberGrade != null">member_Grade = #{memberGrade}</if>
 		</set>
-		WHERE MEMBER_GRADE = #{memberGrade}
+		WHERE MEMBER_ID = #{memberId}
 	</update>
-	
-	<update id="memberUpdateVer2" parameterType="co.yedam.mealkit.member.service.MemberVO">
-	UPDATE MEMBER
-	<set>
-		<if test="memberId != null">member_Id = #{memberId},</if>
-		<if test="memberGrade != null">member_Grade = #{memberGrade}</if>
-	</set>
-	WHERE MEMBER_ID = #{memberId}
+
+	<update id="memberUpdateVer3"
+		parameterType="co.yedam.mealkit.member.service.MemberVO">
+		UPDATE MEMBER
+		<set>
+			<if test="memberName != null">member_Name = #{memberName},</if>
+			<if test="memberEmail != null">member_Email = #{memberEmail}</if>
+		</set>
+		WHERE MEMBER_ID = #{memberId}
 	</update>
-	
+
 
 	<delete id="memberDelete"
 		parameterType="co.yedam.mealkit.member.service.MemberVO">

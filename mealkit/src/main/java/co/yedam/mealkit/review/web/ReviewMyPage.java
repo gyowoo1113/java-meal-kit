@@ -49,6 +49,8 @@ public class ReviewMyPage extends HttpServlet {
 		ReviewService rs = new ReviewServiceImpl();
 		List<ReviewVO> reviews = new ArrayList<>();
 		reviews = rs.reviewSelectList();
+		ReviewVO vo = new ReviewVO();
+		reviews = rs.reviewSelectProduct(vo);
 
 		HttpSession session = request.getSession();
 		String memberId = (String) session.getAttribute("id");
