@@ -45,8 +45,6 @@ public class MemberMypage extends HttpServlet {
 		vo.setMemberEmail(request.getParameter("memberEmail"));
 		vo.setMemberGrade(request.getParameter("memberGrade"));
 		
-		System.out.println(request.getParameter("memberId") + request.getParameter("memberPassword"));
-		
 		try {
 			vo = dao.memberViewPage(vo);
 			
