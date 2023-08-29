@@ -49,7 +49,7 @@
 </head>
 <body>
     <!-- Breadcrumb Section Begin -->
-    <section class="breadcrumb-section set-bg" data-setbg="template/ogani/img/breadcrumb.jpg">
+    <section class="breadcrumb-section set-bg" data-setbg="template/ogani/img/logobar2.png">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
@@ -150,7 +150,7 @@
 								                                <tr>
 								                                    <td class="shoping__cart__item">
 								                                        <img src="${r.reviewImg}" onerror="this.onerror=null; this.src='img/noimage.jpg'" width="100px" height="100px" style="margin-right: 50px">
-								                                        <h5>${r.reviewTitle }</h5>
+								                                        <h5 style="width: 450px;">${r.reviewTitle }</h5>
 								                                    </td>
 								                                    <td class="shoping__cart__price" style="width: 200px">
 								                                         <i class="fa fa-calendar-o">${r.reviewDate}</i>

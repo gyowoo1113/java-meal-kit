@@ -46,7 +46,7 @@
 								</thead>
 								<tbody>
 									<c:forEach items="${reviews}" var="r">
-										<tr>
+										<tr onmouseover="this.style.background='gray'" onmouseout="this.style.background='white'" onclick="selectReview('${r.reviewId}')">
 											<td width="100px" style="text-align: center;">${r.reviewId}</td>
 											<td width="300px">${r.reviewTitle }</td>
 											<td width="500px">${r.reviewSubject }</td>
@@ -61,11 +61,21 @@
 						</div>
 					</div>
 				</div>
-
 			</div>
+			<div>
+			<form id="reviewfrm" action="reviewselect.do" method="post">
+				<input type="hidden" id="reviewId" name="reviewId">
+			</form>
+		</div>
 		</div>
 		<!-- .animated -->
 	</div>
 	<!-- .content -->
 </body>
+<script type="text/javascript">
+function selectReview(rid){
+	document.getElementById("reviewId").value = rid;
+	document.getElementById("reviewfrm").submit();
+}
+</script>
 </html>

@@ -46,7 +46,7 @@
 			<if test="productPrice != 0">PRODUCT_PRICE = #{productPrice},</if>
 			<if test="productComment != null">PRODUCT_COMMENT = #{productComment},</if>
 			<if test="productImg != null">PRODUCT_IMG = #{productImg},</if>
-			<if test="productStock != 0">PRODUCT_STOCK = #{productStock},</if>
+			<if test="productStock != null and !productStock.equals('')">PRODUCT_STOCK = #{productStock},</if>
 			<if test="productView != null">PRODUCT_VIEW = #{productView}</if>
 		</set>
 		WHERE PRODUCT_ID = #{productId}

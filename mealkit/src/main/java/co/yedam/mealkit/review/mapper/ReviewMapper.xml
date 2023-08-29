@@ -13,7 +13,7 @@
 	</select>
 		
 	<select id="reviewSelectProduct" resultType="co.yedam.mealkit.review.service.ReviewVO">
-		SELECT * FROM REVIEW
+		SELECT * FROM REVIEW JOIN PRODUCT USING (PRODUCT_ID)
 		WHERE PRODUCT_ID = #{productId}
 	</select>
 	
@@ -41,4 +41,8 @@
 		UPDATE REVIEW SET REVIEW_HIT = REVIEW_HIT + 1
 		WHERE REVIEW_ID = #{reviewId}
 	</update>
+	
+	<delete id="reviewDelete" parameterType="co.yedam.mealkit.review.service.ReviewVO">
+		DELETE FROM REVIEW WHERE REVIEW_ID = #{reviewId}
+	</delete>
 </mapper>
