@@ -32,10 +32,11 @@ public class CheckoutContrller extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int listNum = Integer.valueOf(request.getParameter("list_num"));
+		
+		String listNum = request.getParameter("list_num");
 		String viewName = "checkout/checkoutresult";
-		if (listNum != 0) {
-			setCartList(request,listNum);
+		if (listNum == null || Integer.valueOf(listNum) != 0) {
+			setCartList(request,Integer.valueOf(listNum));
 			setAddressList(request);
 			viewName = "checkout/checkout";
 		} else {
