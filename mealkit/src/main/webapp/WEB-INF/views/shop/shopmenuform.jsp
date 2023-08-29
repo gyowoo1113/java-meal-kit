@@ -57,10 +57,8 @@
 					<div class="section-title">
 						<h2>밀키트</h2>
 					</div>
-
 					<div class="featured__controls">
 						<ul>
-
 							<li class="active" data-filter="*"><a href="#" id="all"
 								data-value="all" onclick="select('all')">전체메뉴</a></li>
 							<c:forEach items="${categorys}" var="c">
