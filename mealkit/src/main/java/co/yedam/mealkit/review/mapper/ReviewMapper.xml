@@ -41,4 +41,8 @@
 		UPDATE REVIEW SET REVIEW_HIT = REVIEW_HIT + 1
 		WHERE REVIEW_ID = #{reviewId}
 	</update>
+	
+	<delete id="reviewDelete" parameterType="co.yedam.mealkit.review.service.ReviewVO">
+		DELETE FROM REVIEW WHERE REVIEW_ID = #{reviewId}
+	</delete>
 </mapper>
