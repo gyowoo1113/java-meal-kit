@@ -13,6 +13,9 @@ import javax.servlet.http.HttpServletResponse;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
+import co.yedam.mealkit.category.service.CategoryService;
+import co.yedam.mealkit.category.service.CategoryVO;
+import co.yedam.mealkit.category.serviceImpl.CategoryServiceImple;
 import co.yedam.mealkit.common.ViewResolve;
 import co.yedam.mealkit.product.service.ProductService;
 import co.yedam.mealkit.product.service.ProductVO;
@@ -56,6 +59,12 @@ public class UpdateProduct extends HttpServlet {
 		products = dao.productSelectList();
 
 		request.setAttribute("products", products);
+		
+		CategoryService dao2 = new CategoryServiceImple();
+		List<CategoryVO> categorys = new ArrayList<>();
+		categorys = dao2.categorySelectList();
+		
+		request.setAttribute("categorys", categorys);
 		String viewName = "admin/product/manageproduct";
 		ViewResolve.forward(request, response, viewName);
 	}

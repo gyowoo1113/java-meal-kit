@@ -101,6 +101,9 @@ function doPayment(event){
     			headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
     			body: payload
     		}).then(updatePayment(parentTrTag));
+    		
+    	
+    	
         }else{
         	var msg = data.error_msg;
         	alertIcon = 'error'

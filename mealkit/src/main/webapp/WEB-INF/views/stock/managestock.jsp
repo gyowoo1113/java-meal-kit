@@ -229,7 +229,7 @@
 										<div>
 											<button id="button" type="button"
 												class="btn btn-lg btn-info btn-block"
-												onclick="insertStock()">슈웅</button>
+												onclick="insertStock()">등록</button>
 										</div>
 										<div>
 											<input type="hidden" id="productId" name="productId">
